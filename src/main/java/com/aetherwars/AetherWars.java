@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import com.aetherwars.model.BoardCardController;
+import com.aetherwars.model.BoardController;
 import javafx.application.Application;
-import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
 
 import com.aetherwars.model.Type;
 import com.aetherwars.model.Character;
@@ -30,28 +32,41 @@ public class AetherWars extends Application {
   }
 
   @Override
-  public void start(Stage stage) {
-    Text text = new Text();
-    text.setText("Loading...");
-    text.setX(50);
-    text.setY(50);
+  public void start(Stage stage) throws Exception {
+//    Text text = new Text();
+//    text.setText("Loading...");
+//    text.setX(50);
+//    text.setY(50);
+//
+//    Group root = new Group();
+//    root.getChildren().add(text);
+//
+//    Scene scene = new Scene(root, 1280, 720);
+//
+//    stage.setTitle("Minecraft: Aether Wars");
+//    stage.setScene(scene);
+//    stage.show();
+//
+//    try {
+//      this.loadCards();
+//      text.setText("Minecraft: Aether Wars!");
+//    } catch (Exception e) {
+//      text.setText("Failed to load cards: " + e);
+//    }
 
-    Group root = new Group();
-    root.getChildren().add(text);
+      // set up the scene
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("views/board2.fxml"));
+      Parent root = loader.load();
 
-    Scene scene = new Scene(root, 1280, 720);
+      BoardController boardController = loader.getController();
+      boardController.refreshBoard();
 
-    stage.setTitle("Minecraft: Aether Wars");
-    stage.setScene(scene);
-    stage.show();
-
-    try {
-      this.loadCards();
-      text.setText("Minecraft: Aether Wars!");
-    } catch (Exception e) {
-      text.setText("Failed to load cards: " + e);
+      Scene scene = new Scene(root);
+      // set up the stage
+      stage.setTitle("Minecraft: Aether Wars");
+      stage.setScene(scene);
+      stage.show();
     }
-  }
 
   public static void main(String[] args) {
     launch();

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="48.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aetherwars.model.BoardCardController">
+   <children>
+      <ImageView fx:id="boardCardImage" fitHeight="31.0" fitWidth="40.0" layoutX="4.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="boardCardAtk" layoutX="3.0" layoutY="3.0" text="ATK">
+         <font>
+            <Font size="3.0" />
+         </font></Label>
+      <Label fx:id="boardCardHp" layoutX="40.0" layoutY="3.0" text="HP">
+         <font>
+            <Font size="3.0" />
+         </font></Label>
+      <Label fx:id="boardCardExp" layoutX="5.0" layoutY="45.0" text="EXP">
+         <font>
+            <Font size="3.0" />
+         </font></Label>
+      <Label fx:id="boardCardMaxExp" layoutX="19.0" layoutY="45.0" text="MAX EXP">
+         <font>
+            <Font size="3.0" />
+         </font></Label>
+      <Label fx:id="boardCardLvl" layoutX="37.0" layoutY="45.0" text="LVL">
+         <font>
+            <Font size="3.0" />
+         </font></Label>
+   </children>
+</Pane>
