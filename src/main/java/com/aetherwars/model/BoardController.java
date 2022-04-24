@@ -71,7 +71,6 @@ public class BoardController {
         // displayCard((Character) Card.availableCard.get(8),board1_2);
         // displayCard((Character) Card.availableCard.get(9),board1_3);
         // displayCard((Character) Card.availableCard.get(10),board1_4);
-
         displayCard(leftBoard.getCard(0), board0_0);
         displayCard(leftBoard.getCard(1), board0_1);
         displayCard(leftBoard.getCard(2), board0_2);
@@ -86,7 +85,7 @@ public class BoardController {
     }
 
     public void displayCard(Character cur, Pane board) throws IOException {
-        System.out.println("iki " + cur.getName());
+
         FXMLLoader boardCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/boardCard.fxml"));
         Pane boardPane = boardCardLoader.load();
 
@@ -116,6 +115,7 @@ public class BoardController {
     }
 
     public void refreshBoard() throws IOException {
+
         displayBoard();
         displayHand();
     }

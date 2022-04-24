@@ -35,7 +35,7 @@ abstract public class Container<T extends Card> {
 		return cards.get(index);
 	}
 
-	public List<T> getCards() {
+	public List<T> getCards(int i) {
 		return cards;
 	}
 }
