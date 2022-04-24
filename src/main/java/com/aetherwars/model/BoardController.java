@@ -1,7 +1,10 @@
 package com.aetherwars.model;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -11,37 +14,19 @@ import java.util.List;
 
 public class BoardController {
     @FXML
-    private Pane board0_0;
+    private Pane board0_0, board0_1, board0_2, board0_3, board0_4;
 
     @FXML
-    private Pane board0_1;
+    private Pane board1_0, board1_1, board1_2, board1_3, board1_4;
 
     @FXML
-    private Pane board0_2;
-
-    @FXML
-    private Pane board0_3;
-
-    @FXML
-    private Pane board0_4;
-
-    @FXML
-    private Pane board1_0;
-
-    @FXML
-    private Pane board1_1;
-
-    @FXML
-    private Pane board1_2;
-
-    @FXML
-    private Pane board1_3;
-
-    @FXML
-    private Pane board1_4;
+    private ImageView deckA;
 
     @FXML
     private GridPane hand;
+
+    @FXML
+    private Pane drawPane;
 
     public void displayBoard() throws IOException {
         displayCard(board0_0);
@@ -87,5 +72,18 @@ public class BoardController {
     public void refreshBoard() throws IOException {
         displayBoard();
         displayHand();
+    }
+
+    @FXML
+    void deckAClicked(MouseEvent event) throws IOException {
+        this.drawPane.setVisible(true);
+
+        FXMLLoader drawPaneLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawPane.fxml"));
+        Pane drawPane = drawPaneLoader.load();
+
+        DrawPaneController drawPaneController = drawPaneLoader.getController();
+        drawPaneController.setDrawPane();
+
+        this.drawPane.getChildren().add(drawPane);
     }
 }
