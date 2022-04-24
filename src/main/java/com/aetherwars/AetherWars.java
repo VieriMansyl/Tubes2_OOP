@@ -114,23 +114,26 @@ public class AetherWars extends Application {
 //      text.setText("Failed to load cards: " + e);
 //    }
 
+    Board b1 = null;
+    Board b2 = null;
       try {
           Card.availableCard = this.loadCards();
           Player p1 = new Player("Bagus");
-          Board b1 = new Board();
+          b1 = new Board();
+          b2 = new Board();
           int count = 1;
           this.loadDeck("card/data/deck1.csv", p1);
 
       } catch (Exception e) {
             System.out.println("TES");
       }
-
       // set up the scene
       FXMLLoader loader = new FXMLLoader(getClass().getResource("views/board2.fxml"));
       Parent root = loader.load();
 
       BoardController boardController = loader.getController();
       boardController.refreshBoard();
+      boardController.setupBoardController(b1, b2);
 
       Scene scene = new Scene(root);
       // set up the stage

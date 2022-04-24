@@ -31,6 +31,10 @@ abstract public class Container<T extends Card> {
 		}
 	}
 
+	public T getCard(int index) {
+		return cards.get(index);
+	}
+
 	public List<T> getCards() {
 		return cards;
 	}
