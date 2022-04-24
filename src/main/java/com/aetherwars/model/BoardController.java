@@ -44,24 +44,27 @@ public class BoardController {
     private GridPane hand;
 
     public void displayBoard() throws IOException {
-        displayCard(board0_0);
-        displayCard(board0_1);
-        displayCard(board0_2);
-        displayCard(board0_3);
-        displayCard(board0_4);
-        displayCard(board1_0);
-        displayCard(board1_1);
-        displayCard(board1_2);
-        displayCard(board1_3);
-        displayCard(board1_4);
+//        displayCard((Character)  , board0_0);
+        displayCard((Character) , board0_1);
+        displayCard((Character) Card.availableCard.get(2),board0_2);
+        displayCard((Character) Card.availableCard.get(3),board0_3);
+        displayCard((Character) Card.availableCard.get(4),board0_4);
+
+        displayCard((Character) Card.availableCard.get(6),board1_0);
+        displayCard((Character) Card.availableCard.get(7),board1_1);
+        displayCard((Character) Card.availableCard.get(8),board1_2);
+        displayCard((Character) Card.availableCard.get(9),board1_3);
+        displayCard((Character) Card.availableCard.get(10),board1_4);
     }
 
-    public void displayCard(/*Card,*/Pane board) throws IOException {
+    public void displayCard(Character cur, Pane board) throws IOException {
+        System.out.println("iki " + cur.getName());
         FXMLLoader boardCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/boardCard.fxml"));
         Pane boardPane = boardCardLoader.load();
 
         BoardCardController boardCardController = boardCardLoader.getController();
-        boardCardController.setCard(/*Card*/);
+
+        boardCardController.setCard(cur);
         board.getChildren().add(boardPane);
     }
 
