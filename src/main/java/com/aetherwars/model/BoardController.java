@@ -45,7 +45,9 @@ public class BoardController {
 
     public void displayBoard() throws IOException {
 //        displayCard((Character)  , board0_0);
-        displayCard((Character) , board0_1);
+//        displayCard((Character) , board0_1);
+        // board.getcard.index
+        // problem: board not define
         displayCard((Character) Card.availableCard.get(2),board0_2);
         displayCard((Character) Card.availableCard.get(3),board0_3);
         displayCard((Character) Card.availableCard.get(4),board0_4);
