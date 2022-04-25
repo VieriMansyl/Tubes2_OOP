@@ -3,10 +3,13 @@ package com.aetherwars.model;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
+import javafx.scene.input.TransferMode;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.input.DragEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,10 +26,12 @@ public class BoardController {
     private ImageView deckA;
 
     @FXML
-    private GridPane hand;
+    private FlowPane hand;
 
     @FXML
     private Pane drawPane;
+
+    private ArrayList<Pane> handPanes;
 
     public void displayBoard() throws IOException {
         displayCard(board0_0);
@@ -59,14 +64,20 @@ public class BoardController {
 //            handCardController.setCard(/*Card*/);
 //            hand.add(handPane, i, 0);
 //        }
-        for (int i = 0; i < 6; i++) {
+        this.handPanes = new ArrayList<>();
+
+        hand.setAlignment(Pos.CENTER);
+
+        for (int i = 0; i < 8; i++) {
             FXMLLoader handCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/handSpellCard.fxml"));
             Pane handPane = handCardLoader.load();
 
             HandSpellCardController handCardController = handCardLoader.getController();
-            handCardController.setCard(/*Card*/);
-            hand.add(handPane, i, 0);
+            handCardController.setCard(/*Card*/i);
+            hand.getChildren().add(handPane);
+            this.handPanes.add(handPane);
         }
+
     }
 
     public void refreshBoard() throws IOException {
@@ -86,4 +97,18 @@ public class BoardController {
 
         this.drawPane.getChildren().add(drawPane);
     }
+
+    @FXML
+    void handleCardDragOver(DragEvent event) {
+//        System.out.println("OVER");
+        if (event.getDragboard().hasString()) {
+            event.acceptTransferModes(TransferMode.ANY);
+        }
+    }
+
+    @FXML
+    void handleCardDropped(DragEvent event) {
+        System.out.println(event.getDragboard().getString());
+    }
+
 }

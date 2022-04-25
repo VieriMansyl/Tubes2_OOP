@@ -23,21 +23,21 @@ public class DrawPaneController {
         Pane handPane0 = handCardLoader0.load();
 
         HandSpellCardController handCardController0 = handCardLoader0.getController();
-        handCardController0.setCard(/*Card*/);
+        handCardController0.setCard(/*Card*/0);
         card0.getChildren().add(handPane0);
 
         FXMLLoader handCardLoader1 = new FXMLLoader(getClass().getResource("/com/aetherwars/views/handSpellCard.fxml"));
         Pane handPane1 = handCardLoader1.load();
 
         HandSpellCardController handCardController1 = handCardLoader1.getController();
-        handCardController1.setCard(/*Card*/);
+        handCardController1.setCard(/*Card*/0);
         card1.getChildren().add(handPane1);
 //
         FXMLLoader handCardLoader2 = new FXMLLoader(getClass().getResource("/com/aetherwars/views/handSpellCard.fxml"));
         Pane handPane2 = handCardLoader2.load();
 
         HandSpellCardController handCardController2 = handCardLoader2.getController();
-        handCardController2.setCard(/*Card*/);
+        handCardController2.setCard(/*Card*/0);
         card2.getChildren().add(handPane2);
     }
     @FXML
