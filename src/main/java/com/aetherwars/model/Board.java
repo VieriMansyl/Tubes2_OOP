@@ -35,19 +35,20 @@ public class Board extends Container<Character> {
 		 * pengecekan apakah terdapat kartu bertipe karakter pada
 		 * board, dan melakukan throw error apabila none
 		 */
-		if (card.getType() == CardType.SPELL) {
-			boolean hasCharacter = false;
-			for (int i = 0; i < cards.size(); ++i) {
-				if (cards.get(i).getType() == CardType.CHARACTER) {
-					hasCharacter = true;
-					break;
-				}
-			}
-			if (!hasCharacter) {
-				throw new IllegalCardPlacementException("Placing Spell card when there's no character");
-			}
-		}
+//		if (card.getType() == CardType.SPELL) {
+//			boolean hasCharacter = false;
+//			for (int i = 0; i < cards.size(); ++i) {
+//				if (cards.get(i).getType() == CardType.CHARACTER) {
+//					hasCharacter = true;
+//					break;
+//				}
+//			}
+//			if (!hasCharacter) {
+//				throw new IllegalCardPlacementException("Placing Spell card when there's no character");
+//			}
+//		}
 		cards.set(index, card);
+		System.out.println(card.getName());
 	}
 
 	/*

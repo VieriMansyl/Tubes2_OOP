@@ -116,20 +116,25 @@ public class AetherWars extends Application {
 
     Board b1 = null;
     Board b2 = null;
+    Player p1 = null;
+    Player p2 = null;
 
       try {
 
           Card.availableCard = this.loadCards();
-          Player p1 = new Player("Bagus");
+          p1 = new Player("Bagus");
+          p2 = new Player("Te");
 
           b1 = new Board();
           b2 = new Board();
+          p1.setBoard(b1);
+          p2.setBoard(b2);
 
           int count = 1;
           this.loadDeck("card/data/deck1.csv", p1);
+          this.loadDeck("card/data/deck1.csv", p2);
+          p1.getBoard().setCard((Character) p1.getDeck().getCard(0),1);
           System.out.println("IKI DECK P1 "+ p1.getDeck().getCard(0).getName());
-          b1.setCard((Character) p1.getDeck().getCard(0), 0);
-          b2.setCard((Character) p1.getDeck().getCard(0), 0);
 
       } catch (Exception e) {
             System.out.println("KENAPA SINI");
@@ -137,10 +142,11 @@ public class AetherWars extends Application {
 
       // set up the scene
       FXMLLoader loader = new FXMLLoader(getClass().getResource("views/board2.fxml"));
+//      FXMLLoader loader = new FXMLLoader(getClass().getResource("views/board1.fxml"));
       Parent root = loader.load();
 
       BoardController boardController = loader.getController();
-      boardController.setupBoardController(b1, b2);
+      boardController.setupBoardController(p1,p2);
       boardController.refreshBoard();
 
 

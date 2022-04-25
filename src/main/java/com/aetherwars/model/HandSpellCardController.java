@@ -22,11 +22,14 @@ public class HandSpellCardController {
 
     private int test;
 
-    public void setCard(/* Card Hand */int i) {
-        this.test = i;
-        handSpellCardMana.setText("5");
-        handSpellCardSpell.setText("Sugondese");
-        handSpellCardImage.setImage(new Image("/com/aetherwars/card/image/spell/morph/Sugondese.png"));
+    public void setCard(Card cur /*int i*/) {
+        if (cur != null){
+
+            this.test = 0;
+            handSpellCardMana.setText("5");
+            handSpellCardSpell.setText("Sugondese");
+            handSpellCardImage.setImage(new Image("/com/aetherwars/" + cur.imgSrc));
+        }
     }
 
     @FXML

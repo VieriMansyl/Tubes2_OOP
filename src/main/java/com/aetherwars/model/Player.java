@@ -52,6 +52,14 @@ public class Player {
         show.chooseCard(card);
     }
 
+    public Board getBoard() {
+        return this.board;
+    }
+
+    public void setBoard(Board board){
+        this.board = board;
+    }
+
     // DECK
     public void setDeck(Deck deck){
         this.deck = deck;
