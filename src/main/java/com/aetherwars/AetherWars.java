@@ -40,7 +40,7 @@ public class AetherWars extends Application {
         for (String[] row : spellLevelRows) {
             int temp = -1;
             if (row[1].equals("Level Up")) temp = 1;
-            LevelSpell l = new LevelSpell(Integer.parseInt(row[0]), row[1], row[2], row[3], Integer.parseInt(row[4]),temp);
+            LevelSpell l = new LevelSpell(Integer.parseInt(row[0]), row[1], row[2], row[3], Integer.parseInt(row[4]));
             Card.availableCard.add(l);
         }
 
@@ -90,23 +90,9 @@ public class AetherWars extends Application {
         player.setDeck(tes);
     }
 
-
   @Override
   public void start(Stage stage) throws Exception {
-//    Text text = new Text();
-//    text.setText("Loading...");
-//    text.setX(50);
-//    text.setY(50);
-//
-//    Group root = new Group();
-//    root.getChildren().add(text);
-//
-//    Scene scene = new Scene(root, 1280, 720);
-//
-//    stage.setTitle("Minecraft: Aether Wars");
-//    stage.setScene(scene);
-//    stage.show();
-//
+
 //    try {
 //      this.loadCards();
 //      text.setText("Minecraft: Aether Wars!");
@@ -142,13 +128,11 @@ public class AetherWars extends Application {
 
       // set up the scene
       FXMLLoader loader = new FXMLLoader(getClass().getResource("views/board2.fxml"));
-//      FXMLLoader loader = new FXMLLoader(getClass().getResource("views/board1.fxml"));
       Parent root = loader.load();
 
       BoardController boardController = loader.getController();
       boardController.setupBoardController(p1,p2);
       boardController.refreshBoard();
-
 
       Scene scene = new Scene(root);
       // set up the stage

@@ -97,7 +97,6 @@ public class BoardController {
     }
 
     public void refreshBoard() throws IOException {
-
         displayBoard();
         displayHand();
     }
@@ -126,8 +125,17 @@ public class BoardController {
     }
 
     @FXML
-    void handleCardDropped(DragEvent event) {
-        System.out.println(event.getDragboard().getString());
+    void handleCardDropped(DragEvent event) throws IOException {
+//        System.out.println(event.getDragboard().getString());
+        FXMLLoader boardCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/boardCard.fxml"));
+        Pane boardPane = boardCardLoader.load();
+
+        BoardCardController boardCardController = boardCardLoader.getController();
+
+        Character card = new Character(1, "Obsidian", CharacterType.valueOf("OVERWORLD"), "An obsidian block used to create Nether portals.", "card/image/character/Obsidian.png", 1, 25, 8, 0, 5);
+
+        boardCardController.setCard(card);
+        ((Pane) event.getSource()).getChildren().add(boardPane);
     }
 
 }

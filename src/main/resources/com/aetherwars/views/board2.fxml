@@ -24,10 +24,10 @@
                   <Image url="@../card/image/character/Ghast.png" />
                </image>
             </ImageView>
-            <Pane fx:id="board0_1" layoutX="117.0" layoutY="170.0" prefHeight="110.0" prefWidth="85.0" />
-            <Pane fx:id="board0_2" layoutX="172.0" layoutY="288.0" prefHeight="110.0" prefWidth="85.0" />
-            <Pane fx:id="board0_3" layoutX="117.0" layoutY="406.0" prefHeight="110.0" prefWidth="85.0" />
-            <Pane fx:id="board0_4" layoutX="21.0" layoutY="460.0" prefHeight="110.0" prefWidth="85.0" />
+            <Pane fx:id="board0_1" layoutX="117.0" layoutY="170.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
+            <Pane fx:id="board0_2" layoutX="172.0" layoutY="288.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
+            <Pane fx:id="board0_3" layoutX="117.0" layoutY="406.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
+            <Pane fx:id="board0_4" layoutX="21.0" layoutY="460.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
             <Pane fx:id="board0_0" layoutX="21.0" layoutY="111.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
             <ImageView fitHeight="90.0" fitWidth="80.0" layoutX="974.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -35,11 +35,11 @@
                </image>
             </ImageView>
             <ProgressBar layoutX="589.0" layoutY="17.0" prefHeight="38.0" prefWidth="448.0" progress="0.0" />
-            <Pane fx:id="board1_0" layoutX="963.0" layoutY="111.0" prefHeight="110.0" prefWidth="85.0" />
-            <Pane fx:id="board1_1" layoutX="867.0" layoutY="170.0" prefHeight="110.0" prefWidth="85.0" />
-            <Pane fx:id="board1_2" layoutX="803.0" layoutY="288.0" prefHeight="110.0" prefWidth="85.0" />
-            <Pane fx:id="board1_3" layoutX="867.0" layoutY="406.0" prefHeight="110.0" prefWidth="85.0" />
-            <Pane fx:id="board1_4" layoutX="963.0" layoutY="460.0" prefHeight="110.0" prefWidth="85.0" />
+            <Pane fx:id="board1_0" layoutX="963.0" layoutY="111.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
+            <Pane fx:id="board1_1" layoutX="867.0" layoutY="170.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
+            <Pane fx:id="board1_2" layoutX="803.0" layoutY="288.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
+            <Pane fx:id="board1_3" layoutX="867.0" layoutY="406.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
+            <Pane fx:id="board1_4" layoutX="963.0" layoutY="460.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="589.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="280.0" />
             <ImageView fx:id="deckA" fitHeight="100.0" fitWidth="80.0" layoutX="353.0" layoutY="84.0" onMouseClicked="#deckAClicked" pickOnBounds="true" preserveRatio="true">
                <image>
