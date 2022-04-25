@@ -1,8 +1,15 @@
-package com.aetherwars.model;
+package com.aetherwars.controller;
+
+//import com.aetherwars.model.Player;
+//import com.aetherwars.model.Card;
+//import com.aetherwars.model.Character;
+import com.aetherwars.model.*;
+import com.aetherwars.model.Character;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -18,10 +25,13 @@ public class DrawPaneController {
 
     @FXML
     private Pane card2;
+
+    private FlowPane hand;
     private Player currPlayer;
 
-    public void setDrawPane(Player currPlayer) throws IOException {
+    public void setDrawPane(Player currPlayer, FlowPane hand) throws IOException {
         this.currPlayer = currPlayer;
+        this.hand = hand;
         List<Card> listOfCard= currPlayer.getDeck().getTop3();
         FXMLLoader handCardLoader0 = new FXMLLoader(getClass().getResource("/com/aetherwars/views/handSpellCard.fxml"));
         Pane handPane0 = handCardLoader0.load();
@@ -45,10 +55,17 @@ public class DrawPaneController {
         card2.getChildren().add(handPane2);
     }
     @FXML
-    void onChooseCard0(MouseEvent event) throws IllegalCardPlacementException {
+    void onChooseCard0(MouseEvent event) throws IllegalCardPlacementException, IOException {
         System.out.println("Card 0");
         currPlayer.getBoard().setCard((Character) currPlayer.getDeck().getTop3().get(0),0);
         System.out.println("berhasil set" + currPlayer.getBoard().getCard(0).getName());
+
+        FXMLLoader handCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/handSpellCard.fxml"));
+        Pane handPane = handCardLoader.load();
+
+        HandSpellCardController handCardController = handCardLoader.getController();
+        handCardController.setCard(new Character(1, "Obsidian", CharacterType.valueOf("OVERWORLD"), "An obsidian block used to create Nether portals.", "card/image/character/Obsidian.png", 1, 25, 8, 0, 5));
+        hand.getChildren().add(handPane);
     }
 
     @FXML

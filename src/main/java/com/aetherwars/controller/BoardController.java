@@ -1,5 +1,8 @@
-package com.aetherwars.model;
+package com.aetherwars.controller;
 
+import  com.aetherwars.model.*;
+
+import com.aetherwars.model.Character;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,8 +33,6 @@ public class BoardController {
 
     @FXML
     private Pane drawPane;
-
-    private ArrayList<Pane> handPanes;
     
     private Player p1;
     private Player p2;
@@ -80,18 +81,16 @@ public class BoardController {
 //            handCardController.setCard(/*Card*/);
 //            hand.add(handPane, i, 0);
 //        }
-        this.handPanes = new ArrayList<>();
 
         hand.setAlignment(Pos.CENTER);
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 5; i++) {
             FXMLLoader handCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/handSpellCard.fxml"));
             Pane handPane = handCardLoader.load();
 
             HandSpellCardController handCardController = handCardLoader.getController();
 //            handCardController.setCard(/*Card*/i);
             hand.getChildren().add(handPane);
-            this.handPanes.add(handPane);
         }
 
     }
@@ -110,7 +109,7 @@ public class BoardController {
 
         this.p1.getDeck().shuffleCards();
         DrawPaneController drawPaneController = drawPaneLoader.getController();
-        drawPaneController.setDrawPane(p1);
+        drawPaneController.setDrawPane(p1, this.hand);
 
         this.drawPane.getChildren().add(drawPane);
         refreshBoard();

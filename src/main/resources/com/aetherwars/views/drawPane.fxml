@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aetherwars.model.DrawPaneController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aetherwars.controller.DrawPaneController">
    <children>
       <Pane fx:id="card0" layoutX="9.0" layoutY="2.0" onMouseClicked="#onChooseCard0" prefHeight="56.0" prefWidth="40.0" />
       <Pane fx:id="card1" layoutX="65.0" layoutY="2.0" onMouseClicked="#onChooseCard1" prefHeight="56.0" prefWidth="40.0" />

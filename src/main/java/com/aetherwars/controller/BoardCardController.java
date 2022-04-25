@@ -1,4 +1,6 @@
-package com.aetherwars.model;
+package com.aetherwars.controller;
+
+import com.aetherwars.model.Character;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -31,7 +33,7 @@ public class BoardCardController {
             boardCardHp.setText(String.valueOf(cur.getCurrHealth()));
             boardCardLvl.setText(String.valueOf(cur.getLevel()));
             boardCardMaxExp.setText("5");
-            boardCardImage.setImage(new Image("/com/aetherwars/" + cur.imgSrc));
+            boardCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));
         }
     }
 }

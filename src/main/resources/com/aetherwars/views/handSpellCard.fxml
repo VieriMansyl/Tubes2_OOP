@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="SpellCard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#handleCardDragDetection" onMouseClicked="#click" prefHeight="56.0" prefWidth="40.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aetherwars.model.HandSpellCardController">
+<Pane fx:id="SpellCard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#handleCardDragDetection" onMouseClicked="#click" prefHeight="56.0" prefWidth="40.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aetherwars.controller.HandSpellCardController">
    <children>
       <ImageView fx:id="handSpellCardImage" fitHeight="39.0" fitWidth="36.0" layoutX="2.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="handSpellCardSpell" layoutX="16.0" layoutY="49.0" text="SPELL">

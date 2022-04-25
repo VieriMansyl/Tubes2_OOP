@@ -39,6 +39,8 @@ abstract public class Card {
         return mana;
     }
 
+    public String getImgSrc() { return this.imgSrc; }
+
     public static Card getCard(int id) {
         for (Card c : availableCard) {
             if (c.id == id)
