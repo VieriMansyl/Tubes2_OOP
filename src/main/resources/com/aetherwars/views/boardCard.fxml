@@ -1,32 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="48.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aetherwars.model.BoardCardController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="85.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aetherwars.model.BoardCardController">
    <children>
-      <ImageView fx:id="boardCardImage" fitHeight="31.0" fitWidth="40.0" layoutX="22.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="boardCardAtk" layoutX="3.0" layoutY="3.0" text="ATK">
+      <ImageView fitHeight="110.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../character_bg.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="boardCardImage" fitHeight="73.0" fitWidth="70.0" layoutX="8.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="boardCardAtk" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" text="ATK" textAlignment="CENTER">
          <font>
-            <Font size="3.0" />
+            <Font size="10.0" />
          </font></Label>
-      <Label fx:id="boardCardHp" layoutX="40.0" layoutY="3.0" text="HP">
+      <Label fx:id="boardCardHp" alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" text="HP" textAlignment="CENTER">
          <font>
-            <Font size="3.0" />
+            <Font size="10.0" />
          </font></Label>
-      <Label fx:id="boardCardExp" layoutX="5.0" layoutY="45.0" text="EXP">
+      <Label fx:id="boardCardExp" alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="84.0" text="Ex" textAlignment="CENTER">
          <font>
-            <Font size="3.0" />
+            <Font size="10.0" />
          </font></Label>
-      <Label fx:id="boardCardMaxExp" layoutX="19.0" layoutY="45.0" text="MAX EXP">
+      <Label fx:id="boardCardMaxExp" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="94.0" text="XX" textAlignment="CENTER">
          <font>
-            <Font size="3.0" />
+            <Font size="10.0" />
          </font></Label>
-      <Label fx:id="boardCardLvl" layoutX="37.0" layoutY="45.0" text="LVL">
+      <Label fx:id="boardCardLvl" alignment="CENTER" contentDisplay="CENTER" layoutX="58.0" layoutY="93.0" text="Lv" textAlignment="CENTER">
          <font>
-            <Font size="3.0" />
+            <Font size="10.0" />
          </font></Label>
+      <ImageView fitHeight="11.0" fitWidth="9.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../card/image/icon/atk.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="9.0" fitWidth="9.0" layoutX="73.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../card/image/icon/hp.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="11.0" fitWidth="12.0" layoutX="2.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../card/image/icon/exp.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="12.0" fitWidth="13.0" layoutX="70.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../card/image/icon/lvl.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="boardCardMaxExp1" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="90.0" text="/" textAlignment="CENTER">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
