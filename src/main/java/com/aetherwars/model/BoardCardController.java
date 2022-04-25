@@ -24,12 +24,14 @@ public class BoardCardController {
     @FXML
     private Label boardCardMaxExp;
 
-    public void setCard(/* Card */) {
-        boardCardAtk.setText("10");
-        boardCardExp.setText("0");
-        boardCardHp.setText("100");
-        boardCardLvl.setText("1");
-        boardCardMaxExp.setText("5");
-        boardCardImage.setImage(new Image("/com/aetherwars/card/image/character/Creeper.png"));
+    public void setCard(Character cur) {
+        if (cur != null){
+            boardCardAtk.setText(cur.getName());
+            boardCardExp.setText(cur.getDesc());
+            boardCardHp.setText(String.valueOf(cur.getCurrHealth()));
+            boardCardLvl.setText(String.valueOf(cur.getLevel()));
+            boardCardMaxExp.setText("5");
+            boardCardImage.setImage(new Image("/com/aetherwars/" + cur.imgSrc));
+        }
     }
 }

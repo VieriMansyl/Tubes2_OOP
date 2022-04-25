@@ -32,26 +32,56 @@ public class BoardController {
     private Pane drawPane;
 
     private ArrayList<Pane> handPanes;
+    
+    private Board leftBoard;
+    private Board rightBoard;
 
-    public void displayBoard() throws IOException {
-        displayCard(board0_0);
-        displayCard(board0_1);
-        displayCard(board0_2);
-        displayCard(board0_3);
-        displayCard(board0_4);
-        displayCard(board1_0);
-        displayCard(board1_1);
-        displayCard(board1_2);
-        displayCard(board1_3);
-        displayCard(board1_4);
+    /**
+     * this function serves to setup
+     * the board controller class
+     */
+    public void setupBoardController(Board leftBoard, Board rightBoard) {
+        this.leftBoard = leftBoard;
+        this.rightBoard = rightBoard;
     }
 
-    public void displayCard(/*Card,*/Pane board) throws IOException {
+    public void displayBoard() throws IOException {
+//        displayCard((Character)  , board0_0);
+//        displayCard((Character) , board0_1);
+        
+        // board.getcard.index
+        // problem: board not define
+ 
+        // displayCard((Character) Card.availableCard.get(2),board0_2);
+        // displayCard((Character) Card.availableCard.get(3),board0_3);
+        // displayCard((Character) Card.availableCard.get(4),board0_4);
+
+        // displayCard((Character) Card.availableCard.get(6),board1_0);
+        // displayCard((Character) Card.availableCard.get(7),board1_1);
+        // displayCard((Character) Card.availableCard.get(8),board1_2);
+        // displayCard((Character) Card.availableCard.get(9),board1_3);
+        // displayCard((Character) Card.availableCard.get(10),board1_4);
+        displayCard(leftBoard.getCard(0), board0_0);
+        displayCard(leftBoard.getCard(1), board0_1);
+        displayCard(leftBoard.getCard(2), board0_2);
+        displayCard(leftBoard.getCard(3), board0_3);
+        displayCard(leftBoard.getCard(4), board0_4);
+
+        displayCard(rightBoard.getCard(0), board1_0);
+        displayCard(rightBoard.getCard(1), board1_1);
+        displayCard(rightBoard.getCard(2), board1_2);
+        displayCard(rightBoard.getCard(3), board1_3);
+        displayCard(rightBoard.getCard(4), board1_4);
+    }
+
+    public void displayCard(Character cur, Pane board) throws IOException {
+
         FXMLLoader boardCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/boardCard.fxml"));
         Pane boardPane = boardCardLoader.load();
 
         BoardCardController boardCardController = boardCardLoader.getController();
-        boardCardController.setCard(/*Card*/);
+
+        boardCardController.setCard(cur);
         board.getChildren().add(boardPane);
     }
 
@@ -81,6 +111,7 @@ public class BoardController {
     }
 
     public void refreshBoard() throws IOException {
+
         displayBoard();
         displayHand();
     }

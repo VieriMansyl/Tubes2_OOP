@@ -1,0 +1,3 @@
+id	name	description	imagepath	mana
+401	Level Up	Character level+1	card/image/spell/swap/Potion of Turtle Master.png	1
+402	Level Down	Character level-1	card/image/spell/swap/Potion of Bargaining.png	2
