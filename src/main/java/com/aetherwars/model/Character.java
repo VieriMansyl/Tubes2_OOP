@@ -48,10 +48,18 @@ public class Character extends Card implements CharacterAction {
     }
 
     public void addHealth(double health) {
-        currHealth += health;
+        baseHealth += health;
     }
 
     public void addAttack(double attack) {
+        baseAttack += attack;
+    }
+
+    public void addTempHealth(double health) {
+        currHealth += health;
+    }
+
+    public void addTempAttack(double attack) {
         currAttack += attack;
     }
 
@@ -77,12 +85,30 @@ public class Character extends Card implements CharacterAction {
     }
 
     public void attachSpell(Spell s) {
-        attachedSpells.add(s);
+        if (s instanceof Morph || s instanceof LevelSpell) {
+            s.effect(this);
+        }
+        else {
+            attachedSpells.add(s);
+        }
+    }
+
+    public boolean isDead() {
+        return currHealth == 0;
+    }
+
+    public void newTurn() {
+        this.currAttack = baseAttack;
+        this.currHealth = baseHealth;
+        spellEffect();
+        if (currAttack < 0)
+            currAttack = 0;
+        if (currHealth < 0)
+            currHealth = 0;
     }
 
     private void spellEffect() {
-        /* Spell.effect() is currently a placeholder */
-        // attachedSpells.forEach(s -> s.effect(this));
+        attachedSpells.forEach(s -> s.effect(this));
     }
 
     private void levelUp() {
@@ -108,18 +134,19 @@ public class Character extends Card implements CharacterAction {
     }
 
     public void morph(int characterID){
-        if (Card.getCard(characterID).getType() != CardType.CHARACTER)
-            return;
         Character copyChar = (Character) Card.getCard(characterID);
+        assert copyChar != null;
         this.id = copyChar.id;
-        this.type = CardType.CHARACTER;
+        this.characterType = copyChar.characterType;
         this.name = copyChar.name;
         this.desc = copyChar.desc;
+        this.mana = copyChar.mana;
+        this.imgSrc = copyChar.imgSrc;
         this.baseAttack = copyChar.baseAttack;
         this.baseHealth = copyChar.baseHealth;
         this.level = 1;
         this.exp = 0;
-        this.attachedSpells = new ArrayList<>();
+        this.attachedSpells.clear();
     }
 }
 

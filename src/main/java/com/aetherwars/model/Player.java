@@ -1,7 +1,7 @@
 package com.aetherwars.model;
 
 public class Player {
-    private String name;
+    private final String name;
     private double health;
     private int mana;
     private Deck deck;
@@ -13,7 +13,6 @@ public class Player {
         this.name = name;
         this.health = 80;
         this.mana = 1;
-
     }
 
     public String getName() {
@@ -67,5 +66,35 @@ public class Player {
 
     public Deck getDeck(){
         return this.deck;
+    }
+
+    public boolean playCard(Character character) {
+        assert hand.cards.contains(character);
+        if (mana < character.getMana()) {
+            return false;
+        }
+        // return board.setCard(character, index?);
+        return true;    // placeholder
+    }
+
+    public boolean playCard(Character character, Spell spell) {
+        assert hand.cards.contains(spell);
+        if (!hand.cards.contains(character)) {
+            return false;
+        }
+
+        if (spell instanceof LevelSpell) {
+            if (mana < Math.ceil(character.getLevel())) {
+                return false;
+            }
+        }
+        else {
+            if (mana < spell.getMana()) {
+                return false;
+            }
+        }
+
+        character.attachSpell(spell);
+        return true;
     }
 }

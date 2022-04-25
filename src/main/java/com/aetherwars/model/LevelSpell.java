@@ -1,10 +1,10 @@
 package com.aetherwars.model;
 
-public class LevelSpell extends Spell implements SpellAction{
-    private int lvl;    //Nilainya +1 atau -1
+public class LevelSpell extends Spell {
+    private final int lvl;
 
-    public LevelSpell(int id, String name, String desc, String imgSrc, int mana,int lvl){
-        super(id, name, desc, imgSrc, mana);
+    public LevelSpell(int id, String name, String desc, String imgSrc, int lvl){
+        super(id, name, desc, imgSrc, 0);
         this.lvl = lvl;
     }
 
@@ -17,4 +17,5 @@ public class LevelSpell extends Spell implements SpellAction{
         target.setLevel(temp);
         target.setExp(0);
     }
+
 }
