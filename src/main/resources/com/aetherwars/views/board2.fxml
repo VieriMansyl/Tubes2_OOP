@@ -75,8 +75,12 @@
             <Label fx:id="counterDeckA" alignment="CENTER" contentDisplay="CENTER" layoutX="353.0" layoutY="191.0" prefHeight="19.0" prefWidth="69.0" text="COUNTER" textAlignment="CENTER" />
             <Label fx:id="counterDeckB" alignment="CENTER" contentDisplay="CENTER" layoutX="640.0" layoutY="191.0" prefHeight="19.0" prefWidth="69.0" text="COUNTER" textAlignment="CENTER" />
             <ProgressBar layoutX="21.0" layoutY="17.0" prefHeight="38.0" prefWidth="448.0" progress="0.0" />
-            <FlowPane fx:id="flowPaneManaA" alignment="TOP_RIGHT" columnHalignment="RIGHT" layoutX="219.0" layoutY="56.0" prefHeight="20.0" prefWidth="250.0" style="-fx-background-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" AnchorPane.rightAnchor="611.0" />
-            <FlowPane fx:id="flowPaneManaB" columnHalignment="RIGHT" layoutX="589.0" layoutY="56.0" prefHeight="20.0" prefWidth="250.0" style="-fx-background-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <FlowPane fx:id="flowPaneManaB" columnHalignment="RIGHT" layoutX="589.0" layoutY="56.0" prefHeight="20.0" prefWidth="250.0" style="-fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: black;" />
+            <FlowPane alignment="TOP_RIGHT" layoutX="21.0" layoutY="56.0" prefHeight="20.0" prefWidth="448.0">
+               <children>
+                  <FlowPane fx:id="flowPaneManaA" alignment="TOP_RIGHT" columnHalignment="RIGHT" prefHeight="20.0" prefWidth="250.0" style="-fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: black;" />
+               </children>
+            </FlowPane>
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="718.0" prefWidth="305.0">
          <children>

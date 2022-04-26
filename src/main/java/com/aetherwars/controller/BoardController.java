@@ -121,7 +121,7 @@ public class BoardController {
     }
 
     public void displayManaPane() throws IOException {
-        flowPaneManaA.setPrefWidth(100 /* RUMUS = max * 25*/);
+        flowPaneManaA.setPrefWidth(100 /* RUMUS = max * 25*/ + 2 /*border*/);
 
         for (int i = 0; i < 3 /* cur */; i++) {
             FXMLLoader manaBarLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/manaBar.fxml"));
@@ -130,7 +130,7 @@ public class BoardController {
             flowPaneManaA.getChildren().add(manaBar);
         }
 
-        flowPaneManaB.setPrefWidth(75 /* RUMUS = max * 25*/);
+        flowPaneManaB.setPrefWidth(75 /* RUMUS = max * 25*/+ 2 /*border*/);
 
         for (int i = 0; i < 3 /* cur */; i++) {
             FXMLLoader manaBarLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/manaBar.fxml"));
