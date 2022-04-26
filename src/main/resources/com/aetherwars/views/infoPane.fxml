@@ -3,12 +3,30 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aetherwars.controller.InfoPaneController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aetherwars.controller.InfoPaneController">
    <children>
-      <ImageView fx:id="image" fitHeight="150.0" fitWidth="85.0" layoutX="15.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="attack" layoutX="130.0" layoutY="36.0" text="Label" />
-      <Label fx:id="health" layoutX="130.0" layoutY="73.0" text="Label" />
+      <ImageView fx:id="image" fitHeight="146.0" fitWidth="144.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="157.0" layoutY="8.0" prefHeight="28.0" prefWidth="117.0" text="Name" textAlignment="CENTER">
+         <font>
+            <Font name="Rockwell" size="15.0" />
+         </font></Label>
+      <Text fx:id="cardInfo" layoutX="157.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Info">
+         <font>
+            <Font name="Rockwell" size="10.0" />
+         </font>
+      </Text>
+      <Text fx:id="currAppliedSpell" layoutX="7.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="current applied spells">
+         <font>
+            <Font name="Rockwell" size="10.0" />
+         </font>
+      </Text>
+      <Label fx:id="type" alignment="CENTER" contentDisplay="CENTER" layoutX="157.0" layoutY="43.0" prefHeight="28.0" prefWidth="117.0" text="Type" textAlignment="CENTER">
+         <font>
+            <Font name="Rockwell" size="15.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

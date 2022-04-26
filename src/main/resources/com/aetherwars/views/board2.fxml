@@ -93,8 +93,8 @@
                   <Image url="@../card/image/wallpaper_2.jpg" />
                </image>
             </ImageView>
-            <Pane fx:id="infoPane" layoutX="52.0" layoutY="37.0" prefHeight="200.0" prefWidth="200.0" />
-            <Pane layoutX="52.0" layoutY="437.0" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="infoPane" layoutX="13.0" layoutY="11.0" prefHeight="280.0" prefWidth="280.0" />
+            <Pane fx:id="infoPane1" layoutX="13.0" layoutY="381.0" prefHeight="280.0" prefWidth="280.0" />
             <Text fx:id="cardDesc" layoutX="140.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
          </children></AnchorPane>
   </items>
