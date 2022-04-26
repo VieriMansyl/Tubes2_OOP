@@ -22,11 +22,37 @@ public class HandSpellCardController {
     @FXML
     private Label handSpellCardSpell;
 
+    public void centerImage() {
+        Image img = handSpellCardImage.getImage();
+        if (img != null) {
+            double w = 0;
+            double h = 0;
+
+            double ratioX = handSpellCardImage.getFitWidth() / img.getWidth();
+            double ratioY = handSpellCardImage.getFitHeight() / img.getHeight();
+
+            double reducCoeff = 0;
+            if(ratioX >= ratioY) {
+                reducCoeff = ratioY;
+            } else {
+                reducCoeff = ratioX;
+            }
+
+            w = img.getWidth() * reducCoeff;
+            h = img.getHeight() * reducCoeff;
+
+            handSpellCardImage.setX((handSpellCardImage.getFitWidth() - w) / 2);
+            handSpellCardImage.setY((handSpellCardImage.getFitHeight() - h) / 2);
+
+        }
+    }
+
     public void setCard(Spell cur) {
         if (cur != null){
             handSpellCardMana.setText(Integer.toString(cur.getMana()));
             handSpellCardSpell.setText(cur.getName());
             handSpellCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));
+            centerImage();
         }
     }
 
