@@ -122,7 +122,8 @@ public class BoardController {
             Pane handPane = handCardLoader.load();
 
             HandSpellCardController handCardController = handCardLoader.getController();
-//            handCardController.setCard(/*Card*/i);
+            Spell card = new LevelSpell(1, "tes", "tes", "card/image/spell/swap/Potion of Turtle Master.png", 1);
+            handCardController.setCard(card, hand.getChildren().size());
             hand.getChildren().add(handPane);
         }
 
@@ -206,24 +207,19 @@ public class BoardController {
 
     @FXML
     void handleCardDragOver(DragEvent event) {
-//        System.out.println("OVER");
         if (event.getDragboard().hasString()) {
             event.acceptTransferModes(TransferMode.ANY);
         }
     }
 
     @FXML
-    void handleCardDropped(DragEvent event) throws IOException {
-//        System.out.println(event.getDragboard().getString());
-        FXMLLoader boardCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/boardCard.fxml"));
-        Pane boardPane = boardCardLoader.load();
+    void handleCardDropped(DragEvent event) {
+        char player = ((Pane) event.getSource()).getId().charAt(5);
+        int idx = Integer.parseInt(String.valueOf(((Pane) event.getSource()).getId().charAt(7)));
+        System.out.println(player);
+        System.out.println(idx);
 
-        BoardCardController boardCardController = boardCardLoader.getController();
-
-        Character card = new Character(1, "Obsidian", CharacterType.valueOf("OVERWORLD"), "An obsidian block used to create Nether portals.", "card/image/character/Obsidian.png", 1, 25, 8, 0, 5);
-
-        boardCardController.setCard(card);
-        ((Pane) event.getSource()).getChildren().add(boardPane);
+        System.out.println(event.getDragboard().getString());
     }
 
     @FXML

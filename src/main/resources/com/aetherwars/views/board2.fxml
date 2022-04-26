@@ -49,7 +49,7 @@
                </image>
             </ImageView>
             <FlowPane fx:id="hand" layoutX="254.0" layoutY="498.0" prefHeight="157.0" prefWidth="566.0" />
-            <FlowPane fx:id="drawPane" alignment="TOP_RIGHT" layoutX="329.0" layoutY="286.0" prefHeight="200.0" prefWidth="417.0" style="-fx-background-color: red;" visible="false" />
+            <FlowPane fx:id="drawPane" alignment="CENTER" layoutX="329.0" layoutY="286.0" prefHeight="200.0" prefWidth="417.0" style="-fx-background-color: red;" visible="false" />
             <Pane layoutX="442.0" layoutY="106.0" prefHeight="87.0" prefWidth="179.0">
                <children>
                   <Text fx:id="labelCurrPhase" layoutX="24.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phase" textAlignment="CENTER" wrappingWidth="129.2124137878418">

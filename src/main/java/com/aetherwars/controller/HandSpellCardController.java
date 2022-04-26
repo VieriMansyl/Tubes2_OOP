@@ -22,8 +22,11 @@ public class HandSpellCardController {
     @FXML
     private Label handSpellCardSpell;
 
-    public void setCard(Spell cur) {
+    private int idx;
+
+    public void setCard(Spell cur, int idx) {
         if (cur != null){
+            this.idx = idx;
             handSpellCardMana.setText(Integer.toString(cur.getMana()));
             handSpellCardSpell.setText(cur.getName());
             handSpellCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));
@@ -37,11 +40,10 @@ public class HandSpellCardController {
 
     @FXML
     void handleCardDragDetection(MouseEvent event) {
-        System.out.println("DRAG");
         Dragboard db = SpellCard.startDragAndDrop(TransferMode.ANY);
 
         ClipboardContent cb = new ClipboardContent();
-        cb.putString("ISI");
+        cb.putString(String.valueOf(this.idx));
 
         db.setContent(cb);
 

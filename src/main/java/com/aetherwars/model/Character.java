@@ -39,6 +39,10 @@ public class Character extends Card implements CharacterAction {
         return level;
     }
 
+    public int getExp() {
+        return exp;
+    }
+
     public CharacterType getCharacterType() {
         return characterType;
     }

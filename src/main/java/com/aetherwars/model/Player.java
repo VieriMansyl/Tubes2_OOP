@@ -68,17 +68,26 @@ public class Player {
         return this.deck;
     }
 
-    public boolean playCard(Character character) {
+    public boolean playCard(Character character, int index) {
         assert hand.cards.contains(character);
+        hand.cards.remove(character);
+
         if (mana < character.getMana()) {
             return false;
         }
-        // return board.setCard(character, index?);
-        return true;    // placeholder
-    }
 
-    public boolean playCard(Character character, Spell spell) {
+        try {
+            board.setCard(character, index);
+            return true;
+        } catch (IllegalCardPlacementException e) {
+            return false;
+        }
+    }
+/*
+    public boolean playCard(Spell spell, int index) {
         assert hand.cards.contains(spell);
+        hand.cards.remove(spell);
+
         if (!hand.cards.contains(character)) {
             return false;
         }
@@ -97,4 +106,5 @@ public class Player {
         character.attachSpell(spell);
         return true;
     }
+*/
 }

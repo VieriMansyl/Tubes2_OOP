@@ -50,7 +50,7 @@ public class DrawSpellCardController {
             Pane handPane = handCardLoader.load();
 
             HandSpellCardController handCardController = handCardLoader.getController();
-            handCardController.setCard(this.card);
+            handCardController.setCard(this.card, hand.getChildren().size());
             hand.getChildren().add(handPane);
             this.drawPane.setVisible(false);
         } catch (IOException e) {
