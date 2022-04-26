@@ -7,8 +7,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
+import javafx.scene.layout.Pane;
 
 public class HandCharacterCardController {
+    @FXML
+    private Pane CharacterCard;
+
     @FXML
     private Label handCharacterCardAtk;
 
@@ -21,10 +29,27 @@ public class HandCharacterCardController {
     @FXML
     private Label handCharacterCardMana;
 
-    public void setCard(Character cur) {
-        handCharacterCardMana.setText(Integer.toString(cur.getMana()));
-        handCharacterCardHp.setText(Double.toString(cur.getCurrHealth()));
-        handCharacterCardAtk.setText(Double.toString(cur.getCurrAttack()));
-        handCharacterCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));
+    private int idx;
+
+    public void setCard(Character cur, int idx) {
+        if (cur != null) {
+            this.idx = idx;
+            handCharacterCardMana.setText(Integer.toString(cur.getMana()));
+            handCharacterCardHp.setText(Double.toString(cur.getCurrHealth()));
+            handCharacterCardAtk.setText(Double.toString(cur.getCurrAttack()));
+            handCharacterCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));
+            BoardController.centerImage(handCharacterCardImage);
+        }
+    }
+
+    void handleCardDragDetection(MouseEvent event) {
+        Dragboard db = CharacterCard.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent cb = new ClipboardContent();
+        cb.putString(String.valueOf(this.idx));
+
+        db.setContent(cb);
+
+        event.consume();
     }
 }

@@ -74,21 +74,22 @@ public class AetherWars extends Application {
         return Card.availableCard;
     }
 
-    public void loadDeck(String srcDeck, Player player) throws IOException, URISyntaxException {
+    public Deck loadDeck(String srcDeck) throws IOException, URISyntaxException {
 
         Deck tes = new Deck();
         File CSVFile = new File(getClass().getResource(srcDeck).toURI());
         CSVReader cardReader = new CSVReader(CSVFile, "\t");
         List<String[]> cardID = cardReader.read();
         for (String[] id : cardID){
-            Card current = Card.getCard(Integer.parseInt(id[0]));
-            try{
+            Card current = Card.getNewCard(Integer.parseInt(id[0]));
+            try {
                 tes.addCard(current);
-            }catch (Exception e){
+            } catch (Exception e){
                 //do nothing ?
             }
         }
-        player.setDeck(tes);
+        tes.shuffleCards();
+        return tes;
     }
 
   @Override
@@ -101,30 +102,26 @@ public class AetherWars extends Application {
 //      text.setText("Failed to load cards: " + e);
 //    }
 
-    Board b1 = null;
-    Board b2 = null;
+
     Player p1 = null;
     Player p2 = null;
 
       try {
-
           Card.availableCard = this.loadCards();
-          p1 = new Player("Bagus");
-          p2 = new Player("Te");
+          Deck d1 = this.loadDeck("card/data/deck1.csv");
+          Deck d2 = this.loadDeck("card/data/deck1.csv");
 
-          b1 = new Board();
-          b2 = new Board();
-          p1.setBoard(b1);
-          p2.setBoard(b2);
+          Hand h1 = new Hand(d1);
+          Hand h2 = new Hand(d2);
 
-          int count = 1;
-          this.loadDeck("card/data/deck1.csv", p1);
-          this.loadDeck("card/data/deck1.csv", p2);
-          p1.getBoard().setCard((Character) p1.getDeck().getCard(0),1);
-          System.out.println("IKI DECK P1 "+ p1.getDeck().getCard(0).getName());
+          Board b1 = new Board();
+          Board b2 = new Board();
+
+          p1 = new Player("Player1", d1,h1,b1);
+          p2 = new Player("Player2", d2,h2,b2);
 
       } catch (Exception e) {
-            System.out.println("KENAPA SINI");
+            System.out.println("Constructor error");
       }
 
       // set up the scene

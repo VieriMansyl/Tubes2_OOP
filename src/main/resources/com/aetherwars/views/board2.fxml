@@ -68,11 +68,11 @@
             <Pane fx:id="board1_2" layoutX="803.0" layoutY="288.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
             <Pane fx:id="board1_3" layoutX="867.0" layoutY="406.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
             <Pane fx:id="board1_4" layoutX="963.0" layoutY="460.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" AnchorPane.rightAnchor="32.999999999999915" />
-            <ImageView fx:id="deckA" fitHeight="100.0" fitWidth="80.0" layoutX="353.0" layoutY="84.0" onMouseClicked="#deckAClicked" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="deckA" fitHeight="100.0" fitWidth="80.0" layoutX="353.0" layoutY="84.0" onMouseClicked="#deckClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../card.png" />
                </image></ImageView>
-            <ImageView fitHeight="100.0" fitWidth="80.0" layoutX="640.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="deckB" fitHeight="100.0" fitWidth="80.0" layoutX="640.0" layoutY="84.0" onMouseClicked="#deckClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../card.png" />
                </image>

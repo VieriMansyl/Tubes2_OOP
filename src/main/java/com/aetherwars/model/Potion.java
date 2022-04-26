@@ -1,6 +1,6 @@
 package com.aetherwars.model;
 
-public class Potion extends Spell {
+public class Potion extends Spell implements HasDuration {
     private int duration;
     private final int atk;
     private final int hp;
@@ -12,16 +12,29 @@ public class Potion extends Spell {
         this.hp = hp;
     }
 
+    public int getAtk() {
+        return atk;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
     public void effect(Character target){
         target.addTempHealth(this.hp);
         target.addTempAttack(this.atk);
-    }
-
-    public void substractDuration(){
-        this.duration--;
+        this.duration -= 1;
     }
 
     public int getDuration(){
         return this.duration;
+    }
+
+    public void addDuration(int duration){
+        this.duration += duration;
+    }
+
+    public String getInfo(){
+        return ("ATK" + atk + "/HP" + hp);
     }
 }

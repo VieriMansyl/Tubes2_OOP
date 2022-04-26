@@ -12,10 +12,6 @@ public class Deck extends Container<Card> {
 
 	public Deck() {
 		/*
-		 * TODO: read CSV untuk membaca deck
-		 */
-
-		/*
 		 * akan memanggil DeckCardAmountException apabila
 		 * jumlah kartu tidak sesuai dengan requirement setelah
 		 * melakukan pembacaan dari CSV

@@ -16,4 +16,8 @@ public class Morph extends Spell {
         // Effect Morph
         target.morph(characterID);
     }
+
+    public String getInfo(){
+        return ("MORPH");
+    }
 }

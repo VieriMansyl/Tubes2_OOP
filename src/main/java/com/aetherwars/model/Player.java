@@ -4,15 +4,20 @@ public class Player {
     private final String name;
     private double health;
     private int mana;
+    private int maxMana;
     private Deck deck;
     private Hand hand;
     private Show show;
     private Board board;
 
-    public Player(String name) {
+    public Player(String name, Deck deck, Hand hand, Board board) {
         this.name = name;
         this.health = 80;
         this.mana = 1;
+        this.maxMana = 0;
+        this.board = board;
+        this.hand = hand;
+        this.deck = deck;
     }
 
     public String getName() {
@@ -27,6 +32,10 @@ public class Player {
         return mana;
     }
 
+    public int getMaxMana() {
+        return maxMana;
+    }
+
     public Hand getHand() {
         return hand;
     }
@@ -35,12 +44,22 @@ public class Player {
         return show;
     }
 
+    public Board getBoard() {
+        return this.board;
+    }
+
+    public Deck getDeck(){
+        return this.deck;
+    }
+
     public void addHealth(int health) {
         this.health += health;
     }
 
-    public void newTurn(int turn) {
-        mana = Math.min(turn, 10);
+    public void newTurn() {
+        if (maxMana < 10)
+            maxMana += 1;
+        mana = maxMana;
     }
 
     public void drawCards() {
@@ -49,23 +68,6 @@ public class Player {
 
     public void pickCard(Card card) throws HandOverException {
         show.chooseCard(card);
-    }
-
-    public Board getBoard() {
-        return this.board;
-    }
-
-    public void setBoard(Board board){
-        this.board = board;
-    }
-
-    // DECK
-    public void setDeck(Deck deck){
-        this.deck = deck;
-    }
-
-    public Deck getDeck(){
-        return this.deck;
     }
 
     public boolean playCard(Character character, int index) {
@@ -83,14 +85,12 @@ public class Player {
             return false;
         }
     }
-/*
+
     public boolean playCard(Spell spell, int index) {
         assert hand.cards.contains(spell);
         hand.cards.remove(spell);
 
-        if (!hand.cards.contains(character)) {
-            return false;
-        }
+        Character character = board.getCard(index);
 
         if (spell instanceof LevelSpell) {
             if (mana < Math.ceil(character.getLevel())) {
@@ -106,5 +106,5 @@ public class Player {
         character.attachSpell(spell);
         return true;
     }
-*/
+
 }

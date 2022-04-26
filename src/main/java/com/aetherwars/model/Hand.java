@@ -8,7 +8,7 @@ class HandOverException extends Exception {
 	}
 }
 
-class Hand extends Container<Card> {
+public class Hand extends Container<Card> {
 
 	public Hand(Deck deck) {
 		cards = new ArrayList<Card>();

@@ -30,31 +30,6 @@ public class DrawCharacterCardController {
     private FlowPane hand, drawPane;
     private Character card;
 
-    public void centerImage() {
-        Image img = handCharacterCardImage.getImage();
-        if (img != null) {
-            double w = 0;
-            double h = 0;
-
-            double ratioX = handCharacterCardImage.getFitWidth() / img.getWidth();
-            double ratioY = handCharacterCardImage.getFitHeight() / img.getHeight();
-
-            double reducCoeff = 0;
-            if(ratioX >= ratioY) {
-                reducCoeff = ratioY;
-            } else {
-                reducCoeff = ratioX;
-            }
-
-            w = img.getWidth() * reducCoeff;
-            h = img.getHeight() * reducCoeff;
-
-            handCharacterCardImage.setX((handCharacterCardImage.getFitWidth() - w) / 2);
-            handCharacterCardImage.setY((handCharacterCardImage.getFitHeight() - h) / 2);
-
-        }
-    }
-
     public void setCard(Character cur, FlowPane hand, FlowPane drawPane) {
         if (cur != null){
             this.hand = hand;
@@ -64,7 +39,7 @@ public class DrawCharacterCardController {
             handCharacterCardHp.setText(Double.toString(cur.getCurrHealth()));
             handCharacterCardAtk.setText(Double.toString(cur.getCurrAttack()));
             handCharacterCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));
-            centerImage();
+            BoardController.centerImage(handCharacterCardImage);
         }
     }
 
@@ -75,7 +50,7 @@ public class DrawCharacterCardController {
             Pane handPane = handCardLoader.load();
 
             HandCharacterCardController handCardController = handCardLoader.getController();
-            handCardController.setCard(this.card);
+            handCardController.setCard(this.card, hand.getChildren().size());
             hand.getChildren().add(handPane);
             this.drawPane.setVisible(false);
         } catch (IOException e) {
