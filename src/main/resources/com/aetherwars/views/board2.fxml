@@ -12,7 +12,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
 <SplitPane dividerPositions="0.7792151789564468" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="1393.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aetherwars.controller.BoardController">
   <items>
@@ -58,8 +57,8 @@
                         <Font size="26.0" />
                      </font>
                   </Text>
-                  <Button fx:id="buttonPrevPhase" layoutX="9.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickPrevPhase" prefHeight="29.0" prefWidth="77.0" text="Button" />
-                  <Button fx:id="buttonNextPhase" layoutX="90.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickNextPhase" prefHeight="29.0" prefWidth="82.0" text="Button" />
+                  <Button fx:id="buttonNextPhase" layoutX="9.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickNextPhase" prefHeight="29.0" prefWidth="77.0" text="Button" />
+                  <Button fx:id="buttonEndPhase" layoutX="90.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickEndPhase" prefHeight="29.0" prefWidth="82.0" text="Button" />
                </children>
             </Pane>
             <Text layoutX="505.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turn" textAlignment="CENTER" wrappingWidth="51.19047546386713">
@@ -84,9 +83,9 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="718.0" prefWidth="305.0">
          <children>
-            <TextFlow layoutX="52.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" />
-            <TextFlow layoutX="52.0" layoutY="237.0" prefHeight="200.0" prefWidth="200.0" />
-            <TextFlow layoutX="52.0" layoutY="460.0" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="infoPane" layoutX="52.0" layoutY="37.0" prefHeight="200.0" prefWidth="200.0" />
+            <Pane layoutX="52.0" layoutY="437.0" prefHeight="200.0" prefWidth="200.0" />
+            <Text fx:id="cardDesc" layoutX="140.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
          </children></AnchorPane>
   </items>
 </SplitPane>

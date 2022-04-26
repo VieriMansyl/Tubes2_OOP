@@ -31,10 +31,7 @@ public class BoardController {
     private Pane board1_0, board1_1, board1_2, board1_3, board1_4;
 
     @FXML
-    private Button buttonNextPhase;
-
-    @FXML
-    private Button buttonPrevPhase;
+    private Button buttonNextPhase, buttonEndPhase;
 
     @FXML
     private Label counterDeckA;
@@ -62,6 +59,12 @@ public class BoardController {
 
     @FXML
     private ProgressBar healthBarA, healthBarB;
+
+    @FXML
+    private Text cardDesc;
+
+    @FXML
+    private Pane infoPane;
     
     private Player p1;
     private Player p2;
@@ -153,6 +156,20 @@ public class BoardController {
         displayHand();
         displayManaPane();
         displayHealthBar();
+
+        counterDeckA.setText("40");
+        counterDeckB.setText("60");
+        turn.setText("0");
+
+        // for testing purpose
+        cardDesc.setText("asdasdasdasdasdasdasddasasd"); //bisa set warp text
+
+        FXMLLoader infoPaneLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/infoPane.fxml"));
+        Pane infoPane = infoPaneLoader.load();
+
+        InfoPaneController infoPaneController = infoPaneLoader.getController();
+        infoPaneController.setUpInfoPane();
+        this.infoPane.getChildren().add(infoPane);
     }
 
     public void displayHealthBar() {
@@ -211,12 +228,12 @@ public class BoardController {
 
     @FXML
     void onClickNextPhase(ActionEvent event) {
-
+        labelCurrPhase.setText("Draw Phase");
     }
 
     @FXML
-    void onClickPrevPhase(ActionEvent event) {
-
+    void onClickEndPhase(ActionEvent event) {
+        labelCurrPhase.setText("End Phase");
     }
 
 }
