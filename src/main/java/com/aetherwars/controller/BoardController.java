@@ -102,6 +102,7 @@ public class BoardController {
     }
 
     public void displayHand() throws IOException {
+        hand.getChildren().clear();
 //        for (int i = 0; i < 6; i++) {
 //            FXMLLoader handCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/handCharacterCard.fxml"));
 //            Pane handPane = handCardLoader.load();
@@ -125,6 +126,9 @@ public class BoardController {
     }
 
     public void displayManaPane() throws IOException {
+        flowPaneManaA.getChildren().clear();
+        flowPaneManaB.getChildren().clear();
+
         flowPaneManaA.setPrefWidth(100 /* RUMUS = max * 25*/ + 2 /*border*/);
 
         for (int i = 0; i < 3 /* cur */; i++) {
@@ -158,17 +162,29 @@ public class BoardController {
 
     @FXML
     void deckAClicked(MouseEvent event) throws IOException {
+        this.drawPane.getChildren().clear();
         this.drawPane.setVisible(true);
 
-        FXMLLoader drawPaneLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawPane.fxml"));
-        Pane drawPane = drawPaneLoader.load();
-
         this.p1.getDeck().shuffleCards();
-        DrawPaneController drawPaneController = drawPaneLoader.getController();
-        drawPaneController.setDrawPane(p1, this.hand);
+        List<Card> listOfCard= this.p1.getDeck().getTop3();
 
-        this.drawPane.getChildren().add(drawPane);
-        refreshBoard();
+        for (Card card : listOfCard) {
+            if (listOfCard.get(0) instanceof Spell) {
+                FXMLLoader drawCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawSpellCard.fxml"));
+                Pane drawCardPane = drawCardLoader.load();
+
+                DrawSpellCardController drawCardController = drawCardLoader.getController();
+                drawCardController.setCard((Spell) card, hand, this.drawPane);
+                this.drawPane.getChildren().add(drawCardPane);
+            } else /* Character */ {
+                FXMLLoader drawCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawCharacterCard.fxml"));
+                Pane drawCardPane = drawCardLoader.load();
+
+                DrawCharacterCardController drawCardController = drawCardLoader.getController();
+                drawCardController.setCard((Character) card, hand, this.drawPane);
+                this.drawPane.getChildren().add(drawCardPane);
+            }
+        }
     }
 
     @FXML

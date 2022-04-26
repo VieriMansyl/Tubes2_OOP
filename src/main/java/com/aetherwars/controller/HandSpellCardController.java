@@ -22,23 +22,17 @@ public class HandSpellCardController {
     @FXML
     private Label handSpellCardSpell;
 
-    private int test;
-
-    private Card card;
-
-    public void setCard(Card cur /*int i*/) {
+    public void setCard(Spell cur) {
         if (cur != null){
-            this.card = cur; /* apakah harus membuat objek baru atau reference saja cukup? */
-            this.test = 0;
-            handSpellCardMana.setText("5");
-            handSpellCardSpell.setText("Sugondese");
-            handSpellCardImage.setImage(new Image("/com/aetherwars/card/image/character/Shulker.png" /*+ cur.imgSrc*/));
+            handSpellCardMana.setText(Integer.toString(cur.getMana()));
+            handSpellCardSpell.setText(cur.getName());
+            handSpellCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));
         }
     }
 
     @FXML
     void click(MouseEvent event) {
-        System.out.println(this.test);
+
     }
 
     @FXML

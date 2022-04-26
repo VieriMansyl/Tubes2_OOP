@@ -1,6 +1,7 @@
 package com.aetherwars.controller;
 
 import com.aetherwars.model.*;
+import com.aetherwars.model.Character;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,10 +21,10 @@ public class HandCharacterCardController {
     @FXML
     private Label handCharacterCardMana;
 
-    public void setCard(/* Card Hand */) {
-        handCharacterCardAtk.setText("10");
-        handCharacterCardHp.setText("100");
-        handCharacterCardMana.setText("5");
-        handCharacterCardImage.setImage(new Image("/com/aetherwars/card/image/character/Creeper.png"));
+    public void setCard(Character cur) {
+        handCharacterCardMana.setText(Integer.toString(cur.getMana()));
+        handCharacterCardHp.setText(Double.toString(cur.getCurrHealth()));
+        handCharacterCardAtk.setText(Double.toString(cur.getCurrAttack()));
+        handCharacterCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));
     }
 }
