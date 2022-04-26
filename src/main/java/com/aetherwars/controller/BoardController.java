@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
@@ -58,6 +59,9 @@ public class BoardController {
 
     @FXML
     private Label turn;
+
+    @FXML
+    private ProgressBar healthBarA, healthBarB;
     
     private Player p1;
     private Player p2;
@@ -132,7 +136,7 @@ public class BoardController {
 
         flowPaneManaB.setPrefWidth(75 /* RUMUS = max * 25*/+ 2 /*border*/);
 
-        for (int i = 0; i < 3 /* cur */; i++) {
+        for (int i = 0; i < 1 /* cur */; i++) {
             FXMLLoader manaBarLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/manaBar.fxml"));
             Rectangle manaBar = manaBarLoader.load();
 
@@ -144,6 +148,12 @@ public class BoardController {
         displayBoard();
         displayHand();
         displayManaPane();
+        displayHealthBar();
+    }
+
+    public void displayHealthBar() {
+        healthBarA.setProgress(0.7);
+        healthBarB.setProgress(0.5);
     }
 
     @FXML
