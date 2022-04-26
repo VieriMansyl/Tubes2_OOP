@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
 <SplitPane dividerPositions="0.7792151789564468" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="1393.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aetherwars.controller.BoardController">
   <items>
@@ -40,7 +40,6 @@
             <Pane fx:id="board1_2" layoutX="803.0" layoutY="288.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
             <Pane fx:id="board1_3" layoutX="867.0" layoutY="406.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
             <Pane fx:id="board1_4" layoutX="963.0" layoutY="460.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="589.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="280.0" />
             <ImageView fx:id="deckA" fitHeight="100.0" fitWidth="80.0" layoutX="353.0" layoutY="84.0" onMouseClicked="#deckAClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../card.png" />
@@ -51,16 +50,16 @@
                </image>
             </ImageView>
             <FlowPane fx:id="hand" layoutX="254.0" layoutY="498.0" prefHeight="157.0" prefWidth="566.0" />
-            <FlowPane fx:id="drawPane" layoutX="323.0" layoutY="280.0" prefHeight="200.0" prefWidth="417.0" />
+            <FlowPane fx:id="drawPane" alignment="TOP_RIGHT" layoutX="329.0" layoutY="286.0" prefHeight="200.0" prefWidth="417.0" />
             <Pane layoutX="442.0" layoutY="106.0" prefHeight="87.0" prefWidth="179.0">
                <children>
-                  <Text layoutX="24.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phase" textAlignment="CENTER" wrappingWidth="129.2124137878418">
+                  <Text fx:id="labelCurrPhase" layoutX="24.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phase" textAlignment="CENTER" wrappingWidth="129.2124137878418">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Text>
-                  <Button layoutX="9.0" layoutY="50.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="77.0" text="Button" />
-                  <Button layoutX="90.0" layoutY="50.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="82.0" text="Button" />
+                  <Button fx:id="buttonPrevPhase" layoutX="9.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickPrevPhase" prefHeight="29.0" prefWidth="77.0" text="Button" />
+                  <Button fx:id="buttonNextPhase" layoutX="90.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickNextPhase" prefHeight="29.0" prefWidth="82.0" text="Button" />
                </children>
             </Pane>
             <Text layoutX="505.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turn" textAlignment="CENTER" wrappingWidth="51.19047546386713">
@@ -68,21 +67,22 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <ProgressBar layoutX="23.0" layoutY="17.0" prefHeight="38.0" prefWidth="448.0" progress="0.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="191.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="280.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="483.0" layoutY="53.0" prefHeight="20.0" prefWidth="93.0" text="XX" textAlignment="CENTER">
+            <Label fx:id="turn" alignment="CENTER" contentDisplay="CENTER" layoutX="483.0" layoutY="53.0" prefHeight="20.0" prefWidth="93.0" text="XX" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="353.0" layoutY="191.0" prefHeight="19.0" prefWidth="69.0" text="COUNTER" textAlignment="CENTER" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="640.0" layoutY="191.0" prefHeight="19.0" prefWidth="69.0" text="COUNTER" textAlignment="CENTER" />
+            <Label fx:id="counterDeckA" alignment="CENTER" contentDisplay="CENTER" layoutX="353.0" layoutY="191.0" prefHeight="19.0" prefWidth="69.0" text="COUNTER" textAlignment="CENTER" />
+            <Label fx:id="counterDeckB" alignment="CENTER" contentDisplay="CENTER" layoutX="640.0" layoutY="191.0" prefHeight="19.0" prefWidth="69.0" text="COUNTER" textAlignment="CENTER" />
+            <ProgressBar layoutX="21.0" layoutY="17.0" prefHeight="38.0" prefWidth="448.0" progress="0.0" />
+            <FlowPane fx:id="flowPaneManaA" alignment="TOP_RIGHT" columnHalignment="RIGHT" layoutX="219.0" layoutY="56.0" prefHeight="20.0" prefWidth="250.0" style="-fx-background-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" AnchorPane.rightAnchor="611.0" />
+            <FlowPane fx:id="flowPaneManaB" columnHalignment="RIGHT" layoutX="589.0" layoutY="56.0" prefHeight="20.0" prefWidth="250.0" style="-fx-background-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="718.0" prefWidth="305.0">
          <children>
-            <Label layoutX="7.0" layoutY="10.0" prefHeight="199.0" prefWidth="290.0" text="Label" />
-            <Label layoutX="7.0" layoutY="216.0" prefHeight="210.0" prefWidth="290.0" text="Label" />
-            <Label layoutX="7.0" layoutY="434.0" prefHeight="225.0" prefWidth="290.0" text="Label" />
+            <TextFlow layoutX="52.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" />
+            <TextFlow layoutX="52.0" layoutY="237.0" prefHeight="200.0" prefWidth="200.0" />
+            <TextFlow layoutX="52.0" layoutY="460.0" prefHeight="200.0" prefWidth="200.0" />
          </children></AnchorPane>
   </items>
 </SplitPane>

@@ -3,16 +3,20 @@ package com.aetherwars.controller;
 import  com.aetherwars.model.*;
 
 import com.aetherwars.model.Character;
-import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.input.DragEvent;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,13 +30,34 @@ public class BoardController {
     private Pane board1_0, board1_1, board1_2, board1_3, board1_4;
 
     @FXML
+    private Button buttonNextPhase;
+
+    @FXML
+    private Button buttonPrevPhase;
+
+    @FXML
+    private Label counterDeckA;
+
+    @FXML
+    private Label counterDeckB;
+
+    @FXML
     private ImageView deckA;
+
+    @FXML
+    private FlowPane drawPane;
+
+    @FXML
+    private FlowPane flowPaneManaA, flowPaneManaB;
 
     @FXML
     private FlowPane hand;
 
     @FXML
-    private Pane drawPane;
+    private Text labelCurrPhase;
+
+    @FXML
+    private Label turn;
     
     private Player p1;
     private Player p2;
@@ -95,9 +120,30 @@ public class BoardController {
 
     }
 
+    public void displayManaPane() throws IOException {
+        flowPaneManaA.setPrefWidth(100 /* RUMUS = max * 25*/);
+
+        for (int i = 0; i < 3 /* cur */; i++) {
+            FXMLLoader manaBarLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/manaBar.fxml"));
+            Rectangle manaBar = manaBarLoader.load();
+
+            flowPaneManaA.getChildren().add(manaBar);
+        }
+
+        flowPaneManaB.setPrefWidth(75 /* RUMUS = max * 25*/);
+
+        for (int i = 0; i < 3 /* cur */; i++) {
+            FXMLLoader manaBarLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/manaBar.fxml"));
+            Rectangle manaBar = manaBarLoader.load();
+
+            flowPaneManaB.getChildren().add(manaBar);
+        }
+    }
+
     public void refreshBoard() throws IOException {
         displayBoard();
         displayHand();
+        displayManaPane();
     }
 
     @FXML
@@ -135,6 +181,16 @@ public class BoardController {
 
         boardCardController.setCard(card);
         ((Pane) event.getSource()).getChildren().add(boardPane);
+    }
+
+    @FXML
+    void onClickNextPhase(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onClickPrevPhase(ActionEvent event) {
+
     }
 
 }
