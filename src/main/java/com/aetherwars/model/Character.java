@@ -35,6 +35,10 @@ public class Character extends Card implements CharacterAction {
         return currHealth;
     }
 
+    public int getExp(){
+        return exp;
+    }
+
     public int getLevel(){
         return level;
     }
