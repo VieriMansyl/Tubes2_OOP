@@ -91,7 +91,7 @@ public class Character extends Card implements CharacterAction {
     }
 
     public void addLevel(int level) {
-        while (level > 0 && this.level > 1 && this.level < 10) {
+        while (level > 0 && this.level >= 1 && this.level < 10) {
             levelUp(false);
             level -= 1;
         }

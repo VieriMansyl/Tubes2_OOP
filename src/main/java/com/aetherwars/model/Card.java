@@ -17,6 +17,7 @@ abstract public class Card {
         this.name = name;
         this.desc = desc;
         this.mana = mana;
+
     }
 
     public int getId() {
