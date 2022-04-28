@@ -120,6 +120,11 @@
                   <FlowPane fx:id="flowPaneManaA" alignment="TOP_RIGHT" columnHalignment="RIGHT" prefHeight="20.0" prefWidth="250.0" style="-fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: black;" />
                </children>
             </FlowPane>
+            <ImageView fx:id="graveYard" fitHeight="72.0" fitWidth="74.0" layoutX="974.0" layoutY="585.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../background/graveyard.png" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="718.0" prefWidth="305.0" SplitPane.resizableWithParent="false">
          <children>
