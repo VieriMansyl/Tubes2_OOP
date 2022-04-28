@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="110.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../character_bg.jpg" />
+            <Image url="@../card/image/character_bg.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="boardCardImage" fitHeight="73.0" fitWidth="70.0" layoutX="8.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />

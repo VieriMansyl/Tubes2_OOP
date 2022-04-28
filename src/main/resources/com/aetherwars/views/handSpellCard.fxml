@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="112.0" fitWidth="87.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../spell_bg.jpg" />
+            <Image url="@../card/image/spell_bg.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="handSpellCardImage" fitHeight="71.0" fitWidth="77.0" layoutX="4.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
