@@ -24,7 +24,14 @@ public class Deck extends Container<Card> {
 	}
 
 	public List<Card> getTop3() {
-		return cards.subList(0, 3);
+		List<Card> temp = new ArrayList<Card>();
+		for(int i = 0; i < 3; ++i) {
+			temp.add(cards.remove(0));
+			if(cards.size() <= 0) {
+				break;
+			}
+		}
+		return temp;
 	}
 
 	public Card getTop() {
