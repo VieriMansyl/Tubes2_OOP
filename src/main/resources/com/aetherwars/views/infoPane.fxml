@@ -3,35 +3,60 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aetherwars.controller.InfoPaneController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="280.0" style="-fx-background-radius: 4;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aetherwars.controller.InfoPaneController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="34.0" layoutX="153.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" width="125.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="121.0" layoutX="7.0" layoutY="157.0" stroke="BLACK" strokeType="INSIDE" width="144.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="34.0" layoutX="153.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="125.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="201.0" layoutX="153.0" layoutY="77.0" stroke="BLACK" strokeType="INSIDE" width="125.0" />
-      <ImageView fx:id="image" fitHeight="146.0" fitWidth="144.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="157.0" layoutY="8.0" prefHeight="28.0" prefWidth="117.0" text="Name" textAlignment="CENTER">
-         <font>
-            <Font name="Rockwell" size="15.0" />
-         </font></Label>
-      <Text fx:id="cardInfo" layoutX="157.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Info">
-         <font>
-            <Font name="Rockwell" size="10.0" />
-         </font>
-      </Text>
-      <Text fx:id="currAppliedSpell" layoutX="11.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="current applied spells">
-         <font>
-            <Font name="Rockwell" size="10.0" />
-         </font>
-      </Text>
-      <Label fx:id="type" alignment="CENTER" contentDisplay="CENTER" layoutX="157.0" layoutY="43.0" prefHeight="28.0" prefWidth="117.0" text="Type" textAlignment="CENTER">
-         <font>
-            <Font name="Rockwell" size="15.0" />
-         </font>
-      </Label>
+      <Pane layoutX="6.0" layoutY="4.0" prefHeight="152.0" prefWidth="143.0" style="-fx-border-color: rgb(178,39,39); -fx-border-radius: 6;">
+         <children>
+            <ImageView fx:id="cardImage" fitHeight="138.0" fitWidth="130.0" layoutX="7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+      <Pane layoutX="5.0" layoutY="396.0" prefHeight="103.0" prefWidth="270.0" style="-fx-border-color: rgb(178,39,39); -fx-border-radius: 6;">
+         <children>
+            <Text fx:id="currAppliedSpell" layoutX="5.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="current applied spells">
+               <font>
+                  <Font name="Rockwell" size="10.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="153.0" layoutY="5.0" prefHeight="34.0" prefWidth="122.0" style="-fx-border-color: rgb(178,39,39); -fx-border-radius: 6;">
+         <children>
+            <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="28.0" prefWidth="117.0" text="Name" textAlignment="CENTER">
+               <font>
+                  <Font name="Rockwell" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="153.0" layoutY="42.0" prefHeight="34.0" prefWidth="122.0" style="-fx-border-color: rgb(178,39,39); -fx-border-radius: 6;">
+         <children>
+            <Label fx:id="type" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="3.0" prefHeight="28.0" prefWidth="117.0" text="Type" textAlignment="CENTER">
+               <font>
+                  <Font name="Rockwell" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="153.0" layoutY="79.0" prefHeight="79.0" prefWidth="122.0" style="-fx-border-color: rgb(178,39,39); -fx-border-radius: 6;">
+         <children>
+            <Text fx:id="cardInfo" layoutX="6.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Info">
+               <font>
+                  <Font name="Rockwell" size="10.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="5.0" layoutY="161.0" prefHeight="231.0" prefWidth="270.0" style="-fx-border-color: rgb(178,39,39); -fx-border-radius: 6;">
+         <children>
+            <Text fx:id="description" layoutX="6.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="260.35472869873047">
+               <font>
+                  <Font name="Rockwell" size="10.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
    </children>
 </Pane>
