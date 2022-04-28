@@ -45,54 +45,59 @@
                   </RadialGradient>
                </fill>
             </Rectangle>
-            <Pane fx:id="board0_0" layoutX="21.0" layoutY="111.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <Pane fx:id="board0_0" layoutX="21.0" layoutY="111.0" onDragDetected="#handleCardDragDetection" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" onMouseEntered="#onHover" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
             <Circle fill="WHITE" layoutX="530.0" layoutY="53.0" radius="47.0" stroke="BLACK" strokeType="INSIDE" />
             <ImageView fitHeight="90.0" fitWidth="80.0" layoutX="21.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../card/image/character/Ghast.png" />
                </image>
             </ImageView>
-            <Pane fx:id="board0_1" layoutX="117.0" layoutY="170.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
-            <Pane fx:id="board0_2" layoutX="172.0" layoutY="288.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
-            <Pane fx:id="board0_3" layoutX="117.0" layoutY="406.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
-            <Pane fx:id="board0_4" layoutX="21.0" layoutY="460.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <Pane fx:id="board0_1" layoutX="117.0" layoutY="170.0" onDragDetected="#handleCardDragDetection" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" onMouseEntered="#onHover" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <Pane fx:id="board0_2" layoutX="172.0" layoutY="288.0" onDragDetected="#handleCardDragDetection" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" onMouseEntered="#onHover" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <Pane fx:id="board0_3" layoutX="117.0" layoutY="406.0" onDragDetected="#handleCardDragDetection" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" onMouseEntered="#onHover" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <Pane fx:id="board0_4" layoutX="21.0" layoutY="460.0" onDragDetected="#handleCardDragDetection" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" onMouseEntered="#onHover" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
             <ImageView fitHeight="90.0" fitWidth="80.0" layoutX="974.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../card/image/character/Ghast.png" />
                </image>
             </ImageView>
             <ProgressBar fx:id="healthBarB" layoutX="589.0" layoutY="12.0" prefHeight="28.0" prefWidth="448.0" progress="0.0" />
-            <Pane fx:id="board1_0" layoutX="963.0" layoutY="111.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
-            <Pane fx:id="board1_1" layoutX="867.0" layoutY="170.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
-            <Pane fx:id="board1_2" layoutX="803.0" layoutY="288.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
-            <Pane fx:id="board1_3" layoutX="867.0" layoutY="406.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
-            <Pane fx:id="board1_4" layoutX="963.0" layoutY="460.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
-            <ImageView fx:id="deckA" fitHeight="100.0" fitWidth="80.0" layoutX="353.0" layoutY="84.0" onMouseClicked="#deckClicked" pickOnBounds="true" preserveRatio="true">
+            <Pane fx:id="board1_0" layoutX="963.0" layoutY="111.0" onDragDetected="#handleCardDragDetection" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" onMouseEntered="#onHover" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <Pane fx:id="board1_1" layoutX="867.0" layoutY="170.0" onDragDetected="#handleCardDragDetection" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" onMouseEntered="#onHover" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <Pane fx:id="board1_2" layoutX="803.0" layoutY="288.0" onDragDetected="#handleCardDragDetection" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" onMouseEntered="#onHover" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <Pane fx:id="board1_3" layoutX="867.0" layoutY="406.0" onDragDetected="#handleCardDragDetection" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" onMouseEntered="#onHover" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <Pane fx:id="board1_4" layoutX="963.0" layoutY="460.0" onDragDetected="#handleCardDragDetection" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" onMouseEntered="#onHover" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <ImageView fx:id="deckA" fitHeight="100.0" fitWidth="80.0" layoutX="353.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../card/image/card.png" />
                </image></ImageView>
-            <ImageView fx:id="deckB" fitHeight="100.0" fitWidth="80.0" layoutX="640.0" layoutY="84.0" onMouseClicked="#deckClicked" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="deckB" fitHeight="100.0" fitWidth="80.0" layoutX="640.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../card/image/card.png" />
                </image>
             </ImageView>
             <FlowPane fx:id="hand" layoutX="254.0" layoutY="513.0" prefHeight="143.0" prefWidth="566.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
             <FlowPane fx:id="drawPane" alignment="CENTER" layoutX="329.0" layoutY="286.0" prefHeight="200.0" prefWidth="417.0" visible="false" />
-            <Pane layoutX="442.0" layoutY="100.0" prefHeight="102.0" prefWidth="179.0">
+            <Pane layoutX="442.0" layoutY="100.0" prefHeight="110.0" prefWidth="179.0">
                <children>
-                  <Text fx:id="labelCurrPhase" layoutX="1.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phase" textAlignment="CENTER" wrappingWidth="176.67914962768555">
+                  <Text fx:id="labelCurrPhase" layoutX="1.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phase" textAlignment="CENTER" wrappingWidth="176.67914962768555">
                      <font>
                         <Font name="Constantia Bold Italic" size="26.0" />
                      </font>
                   </Text>
-                  <Button fx:id="buttonNextPhase" layoutX="9.0" layoutY="65.0" mnemonicParsing="false" onAction="#onClickNextPhase" prefHeight="29.0" prefWidth="77.0" text="NEXT">
+                  <Button fx:id="buttonNextPhase" layoutX="9.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickNextPhase" prefHeight="29.0" prefWidth="77.0" text="NEXT">
                      <font>
                         <Font name="Rockwell" size="14.0" />
                      </font></Button>
-                  <Button fx:id="buttonEndPhase" layoutX="90.0" layoutY="65.0" mnemonicParsing="false" onAction="#onClickEndPhase" prefHeight="29.0" prefWidth="82.0" text="END">
+                  <Button fx:id="buttonEndPhase" layoutX="90.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickEndPhase" prefHeight="29.0" prefWidth="82.0" text="END">
                      <font>
                         <Font name="Rockwell" size="14.0" />
                      </font></Button>
+                  <Button fx:id="giveExpButton" layoutX="50.0" layoutY="84.0" mnemonicParsing="false" onMouseClicked="#onExpClick" text="GIVE EXP">
+                     <font>
+                        <Font name="Rockwell" size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
             <Text layoutX="505.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TURN" textAlignment="CENTER" wrappingWidth="51.19047546386713">
@@ -136,16 +141,6 @@
             <Pane fx:id="infoPane" layoutX="13.0" layoutY="11.0" prefHeight="503.0" prefWidth="280.0" style="-fx-background-color: rgba(255,255,255,0.7); -fx-background-radius: 4;" />
             <Pane fx:id="description" layoutX="13.0" layoutY="521.0" prefHeight="143.0" prefWidth="282.0" style="-fx-background-color: rgba(255,255,255,0.8); -fx-background-radius: 4;">
                <children>
-                  <Button fx:id="atkButton" layoutX="104.0" layoutY="14.0" mnemonicParsing="false" text="ATTACK">
-                     <font>
-                        <Font name="Rockwell" size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="giveExpButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="GIVE EXP">
-                     <font>
-                        <Font name="Rockwell" size="14.0" />
-                     </font>
-                  </Button>
                   <Label fx:id="infoTurn" alignment="CENTER" contentDisplay="CENTER" layoutY="105.0" prefHeight="24.0" prefWidth="282.0" text="infoTurn" textAlignment="CENTER">
                      <font>
                         <Font name="Rockwell" size="20.0" />

@@ -13,9 +13,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
@@ -73,10 +71,7 @@ public class BoardController {
     private Label infoTurn;
 
     @FXML
-    private Button giveExpButton;
-
-    @FXML
-    private Button atkButton;
+    public Button giveExpButton;
 
     @FXML
     private ImageView graveYard;
@@ -84,7 +79,7 @@ public class BoardController {
     private Player p1;
     private Player p2;
 
-    private final double absolutePosition = .78;
+    private final double absolutePosition = .782;
     private Phase currPhase;
     private Player currPlayer;
     private int currTurn;
@@ -121,7 +116,7 @@ public class BoardController {
     public void switchTurn() {
         if (this.currPlayer == this.p1) {
             this.currPlayer = this.p2;
-            this.p2.newTurn();
+            if (this.currTurn > 1) this.p2.newTurn();
         }
         else {
             this.currPlayer = this.p1;
@@ -148,7 +143,6 @@ public class BoardController {
         this.currPlayer = this.p1;
         this.currTurn = 1;
         this.infoTurn.setText( currPlayer.getName() + "'s turn");
-        this.atkButton.setVisible(false);
         this.giveExpButton.setVisible(false);
 
         this.buttonEndPhase.setVisible(false);
@@ -280,10 +274,6 @@ public class BoardController {
         }
     }
 
-    @FXML
-    void deckClicked(MouseEvent event) throws IOException, HandOverException {
-    }
-
     void draw() {
 
         List<Card> listOfCard;
@@ -331,32 +321,59 @@ public class BoardController {
         /* SUMMON ATAU USE SPELL */
 
         // CHECK PHASE
-        char player;
+
         if (this.currPhase == Phase.PLAN) {
+            char player;
             player = ((Pane) event.getSource()).getId().charAt(5);
+
+            if (this.currPlayer == this.p1 && player == '0') { }
+            else if (this.currPlayer == this.p2 && player == '1') {}
+            else {
+                return;
+            }
+
+            int boardIdx = Integer.parseInt(String.valueOf(((Pane) event.getSource()).getId().charAt(7)));
+            int handIdx = Integer.parseInt(event.getDragboard().getString());
+
+            System.out.println("hand " + handIdx);
+            System.out.println("board " + boardIdx);
+            Card card = this.currPlayer.getHand().getCard(handIdx);
+            System.out.println("iki " + currPlayer.getName());
+            if (card instanceof Character) {
+                currPlayer.playCard((Character) card, boardIdx);
+            } else if (card instanceof Spell) {
+                currPlayer.playCard((Spell) card, boardIdx);
+            }
+        } else if (this.currPhase == Phase.ATTACK) {
+            String attacker = event.getDragboard().getString();
+
+            char player = attacker.charAt(0);
+            char attacked = ((Pane) event.getSource()).getId().charAt(5);
+
+            if (this.currPlayer == this.p1 && player == '0' && attacked == '1') { }
+            else if (this.currPlayer == this.p2 && player == '1' && attacked == '0') {}
+            else {
+                return;
+            }
+
+            int boardAttacker = attacker.charAt(attacker.length() - 1) - '0';
+            int boardAttacked = ((Pane) event.getSource()).getId().charAt(7) - '0';
+
+            System.out.println("ATTACKER: " + boardAttacker);
+            System.out.println("ATTACKED: " + boardAttacked);
+
+            if (this.currPlayer == this.p1) {
+                this.p1.getBoard().getCard(boardAttacker).attack(this.p2.getBoard().getCard(boardAttacked));
+                this.p2.getBoard().getCard(boardAttacked).attack(this.p1.getBoard().getCard(boardAttacker));
+            } else {
+                this.p2.getBoard().getCard(boardAttacker).attack(this.p1.getBoard().getCard(boardAttacked));
+                this.p1.getBoard().getCard(boardAttacked).attack(this.p2.getBoard().getCard(boardAttacker));
+            }
+
         } else {
             return;
         }
 
-        if (this.currPlayer == this.p1 && player == '0') { }
-        else if (this.currPlayer == this.p2 && player == '1') {}
-        else {
-            return;
-        }
-
-        int boardIdx = Integer.parseInt(String.valueOf(((Pane) event.getSource()).getId().charAt(7)));
-        int handIdx = Integer.parseInt(event.getDragboard().getString());
-
-
-        System.out.println("hand " + handIdx);
-        System.out.println("board " + boardIdx);
-        Card card = this.currPlayer.getHand().getCard(handIdx);
-        System.out.println("iki " + currPlayer.getName());
-        if (card instanceof Character) {
-            currPlayer.playCard((Character) card, boardIdx);
-        } else if (card instanceof Spell) {
-            currPlayer.playCard((Spell) card, boardIdx);
-        }
         refreshBoard();
     }
 
@@ -384,11 +401,9 @@ public class BoardController {
 
         if (this.currPhase == Phase.PLAN) {
             this.currPhase = Phase.ATTACK;
-            this.atkButton.setVisible(true);
             this.giveExpButton.setVisible(false);
         } else if (this.currPhase == Phase.ATTACK) {
             this.currPhase = Phase.END;
-            this.atkButton.setVisible(false);
         } else if (this.currPhase == Phase.END) {
             switchTurn();
         }
@@ -411,4 +426,59 @@ public class BoardController {
         }
         refreshBoard();
     }
+
+    @FXML
+    void handleCardDragDetection(MouseEvent event) {
+        Dragboard db = ((Pane) event.getSource()).startDragAndDrop(TransferMode.ANY);
+//        System.out.println(((Pane) event.getSource()).getId());
+
+        ClipboardContent cb = new ClipboardContent();
+        String string = ((Pane) event.getSource()).getId();
+        cb.putString(string.substring(Math.max(string.length() - 3, 0)));
+
+        db.setContent(cb);
+
+        event.consume();
+    }
+
+    private String currBoard; // Jangan lupa reset pas ganti turn (?)
+
+    @FXML
+    void onHover(MouseEvent event) {
+//        if (this.currPhase == Phase.PLAN) {
+//            this.giveExpButton.setVisible(true);
+//        }
+//        String selected = ((Pane) event.getSource()).getId();
+//        System.out.println(selected);
+        this.currBoard = ((Pane) event.getSource()).getId();
+
+        char player = this.currBoard.charAt(5);
+
+        if (this.currPlayer == this.p1 && player == '0' && this.currPhase == Phase.PLAN) {
+            this.giveExpButton.setVisible(true);
+        }
+        else if (this.currPlayer == this.p2 && player == '1' && this.currPhase == Phase.PLAN) {
+            this.giveExpButton.setVisible(true);
+        }
+        else {
+            this.giveExpButton.setVisible(false);
+            return;
+        }
+    }
+
+    @FXML
+    void onExpClick(MouseEvent event) {
+//        char boardIdx = this.currBoard.charAt(7);
+//        System.out.println(this.currBoard);
+//        char player = this.currBoard.charAt(5);
+
+//        if (this.currPlayer == this.p1 && player == '0') { }
+//        else if (this.currPlayer == this.p2 && player == '1') { }
+//        else {
+//            return;
+//        }
+
+        System.out.println(this.currBoard);
+    }
+
 }

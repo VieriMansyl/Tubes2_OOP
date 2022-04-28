@@ -13,7 +13,7 @@
             <Image url="@../card/image/spell_bg.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="handSpellCardImage" fitHeight="71.0" fitWidth="77.0" layoutX="4.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="handSpellCardImage" fitHeight="53.0" fitWidth="79.0" layoutX="4.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="handSpellCardSpell" alignment="CENTER" contentDisplay="CENTER" layoutY="93.0" prefHeight="15.0" prefWidth="85.0" text="INFO" textAlignment="CENTER">
          <font>
             <Font name="ROGFonts-Regular" size="7.0" />

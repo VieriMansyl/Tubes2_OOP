@@ -158,12 +158,13 @@ public class Character extends Card implements CharacterAction {
     // Use spell first, then check if duration equals 0
     // Purpose is to ignore permanent spell
     private void spellEffect() {
-        attachedSpells.stream().forEach(spell -> spell.effect(this));
+        attachedSpells.forEach(spell -> spell.effect(this));
         Iterator<Spell> iter = attachedSpells.iterator();
         while (iter.hasNext()) {
             Spell spell = iter.next();
             assert spell instanceof HasDuration;
             if (((HasDuration) spell).getDuration() == 0)
+//                    this.setHealth(-spell.getattack);
                 iter.remove();
         }
     }
@@ -191,8 +192,7 @@ public class Character extends Card implements CharacterAction {
         target.addHealth(-damage);
 
         if (target.currHealth == 0) {
-            exp += target.level;
-            levelUp(true);
+            addExp(target.level);
         }
     }
 

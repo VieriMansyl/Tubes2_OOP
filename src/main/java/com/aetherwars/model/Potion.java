@@ -30,7 +30,7 @@ public class Potion extends Spell implements HasDuration {
         return this.duration;
     }
 
-    public void addDuration(int duration){
+    public void addDuration(int duration) {
         this.duration += duration;
     }
 
