@@ -128,7 +128,11 @@ public class AetherWars extends Application {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("views/board2.fxml"));
       Parent root = loader.load();
 
-      BoardController boardController = loader.getController();
+      BoardController.setInstance(loader);
+      BoardController boardController = BoardController.getInstance();
+//      BoardController boardController = BoardController(loader);
+//      BoardController boardController = loader.getController();
+//      boardController = loader.getController();
       boardController.setupBoardController(p1,p2);
       boardController.refreshBoard();
 

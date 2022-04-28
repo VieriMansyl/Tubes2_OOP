@@ -1,9 +1,7 @@
 package com.aetherwars.controller;
 
-import com.aetherwars.model.Card;
+import com.aetherwars.model.*;
 import com.aetherwars.model.Character;
-import com.aetherwars.model.CharacterType;
-import com.aetherwars.model.Spell;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -31,13 +29,17 @@ public class DrawSpellCardController {
 
     private FlowPane hand, drawPane;
     private Spell card;
+    private Player player;
+    private int idx;
 
 
-    public void setCard(Spell cur, FlowPane hand, FlowPane drawPane) {
+    public void setCard(Player player,Spell cur, int idx,FlowPane hand,  FlowPane drawPane) {
         if (cur != null){
             this.hand = hand;
             this.card = cur;
             this.drawPane = drawPane;
+            this.player = player;
+            this.idx = idx;
             handSpellCardMana.setText(Integer.toString(cur.getMana()));
             handSpellCardSpell.setText(cur.getName());
             handSpellCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));
@@ -47,16 +49,18 @@ public class DrawSpellCardController {
 
     @FXML
     void onMouseClick(MouseEvent event) {
+
         try {
-            FXMLLoader handCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/handSpellCard.fxml"));
-            Pane handPane = handCardLoader.load();
 
-            HandSpellCardController handCardController = handCardLoader.getController();
-//            handCardController.setCard(this.card, hand.getChildren().size());
-            hand.getChildren().add(handPane);
-
+            this.player.getHand().addCard(this.card);
+            System.out.println("ikiHand");
+            this.player.getDeck().removeCard(this.card);
+            System.out.println("ikiDECK");
             this.drawPane.setVisible(false);
-        } catch (IOException e) {
+            System.out.println("ikivisible");
+            BoardController.getInstance().refreshBoard();
+            System.out.println("REFRESHHHHH");
+        } catch (Exception e) {
             System.out.println("Exception: " + e);
         }
     }

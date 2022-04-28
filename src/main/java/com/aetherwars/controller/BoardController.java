@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
@@ -26,6 +27,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class BoardController {
+    @FXML
+    private SplitPane splitPane;
+
     @FXML
     private Pane board0_0, board0_1, board0_2, board0_3, board0_4;
 
@@ -71,9 +75,20 @@ public class BoardController {
     private Player p1;
     private Player p2;
 
+    private final double absolutePosition = .15;
     private Phase currPhase;
     private Player currPlayer;
     private int currTurn;
+
+    private static BoardController instance;
+
+    public static void setInstance(FXMLLoader loader) {
+        instance = loader.getController();
+    }
+
+    public static BoardController getInstance() {
+        return instance;
+    }
 
     public static void centerImage(ImageView imgVar) {
         Image img = imgVar.getImage();
@@ -84,12 +99,7 @@ public class BoardController {
             double ratioX = imgVar.getFitWidth() / img.getWidth();
             double ratioY = imgVar.getFitHeight() / img.getHeight();
 
-            double reducCoeff = 0;
-            if(ratioX >= ratioY) {
-                reducCoeff = ratioY;
-            } else {
-                reducCoeff = ratioX;
-            }
+            double reducCoeff = Math.min(ratioX, ratioY);
 
             w = img.getWidth() * reducCoeff;
             h = img.getHeight() * reducCoeff;
@@ -125,6 +135,9 @@ public class BoardController {
         this.currPlayer = this.p1;
 
         // To Do: Handle hand card
+//        splitPane.getDividers().get(0).positionProperty().addListener((observable,oldValue,newValue) -> {
+//            splitPane.setDividerPosition(0, absolutePosition);
+//        });
     }
 
     public void displayBoard() throws IOException {
@@ -144,13 +157,12 @@ public class BoardController {
     }
 
     public void displayCard(Character cur, Pane board) throws IOException {
-        if (cur!= null) {
+        if (cur != null) {
             board.getChildren().removeAll();
             FXMLLoader boardCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/boardCard.fxml"));
             Pane boardPane = boardCardLoader.load();
 
             BoardCardController boardCardController = boardCardLoader.getController();
-
             boardCardController.setCard(cur);
             board.getChildren().add(boardPane);
         }
@@ -253,8 +265,24 @@ public class BoardController {
         this.drawPane.getChildren().clear();
         this.drawPane.setVisible(true);
 
+        int i = 0;
         for (Card card : listOfCard) {
-            currPlayer.getHand().addCard(card);
+            if (card instanceof Spell) {
+                FXMLLoader drawCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawSpellCard.fxml"));
+                Pane drawCardPane = drawCardLoader.load();
+
+                DrawSpellCardController drawCardController = drawCardLoader.getController();
+                drawCardController.setCard(currPlayer, (Spell) card, i,  hand, this.drawPane);
+                this.drawPane.getChildren().add(drawCardPane);
+            } else /* Character */ {
+                FXMLLoader drawCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawCharacterCard.fxml"));
+                Pane drawCardPane = drawCardLoader.load();
+
+                DrawCharacterCardController drawCardController = drawCardLoader.getController();
+                drawCardController.setCard(currPlayer, (Character) card, i, hand, this.drawPane);
+                this.drawPane.getChildren().add(drawCardPane);
+            }
+            i++;
         }
     }
 

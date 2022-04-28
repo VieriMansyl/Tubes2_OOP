@@ -13,8 +13,8 @@ public class Player {
     public Player(String name, Deck deck, Hand hand, Board board) {
         this.name = name;
         this.health = 80;
-        this.mana = 1;
-        this.maxMana = 0;
+        this.mana = 6;
+        this.maxMana = 6;
         this.board = board;
         this.hand = hand;
         this.deck = deck;
@@ -82,6 +82,7 @@ public class Player {
         try {
             board.setCard(character, index);
             hand.cards.remove(character);
+            mana -= character.getMana();
             System.out.println("success character");
         } catch (IllegalCardPlacementException e) {
             return;
@@ -92,20 +93,27 @@ public class Player {
         assert hand.cards.contains(spell);
 
         Character character = board.getCard(index);
-        if (spell instanceof LevelSpell) {
-            if (mana < Math.ceil(character.getLevel())) {
-                return;
-            }
-        }
-        else {
-            if (mana < spell.getMana()) {
-                return;
-            }
+        if (character == null) {
+            return;
         }
 
+        int neededMana;
+        if (spell instanceof LevelSpell) {
+            neededMana = (int) Math.ceil(character.getLevel());
+        }
+        else {
+            neededMana = spell.getMana();
+        }
+
+        if (mana < spell.getMana()) {
+            return;
+        }
+        mana -= neededMana;
         character.attachSpell(spell);
         hand.cards.remove(spell);
         System.out.println("success spell");
+
+
     }
 
 }

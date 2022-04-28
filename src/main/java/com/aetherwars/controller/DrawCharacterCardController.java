@@ -2,6 +2,7 @@ package com.aetherwars.controller;
 
 import com.aetherwars.model.Card;
 import com.aetherwars.model.Character;
+import com.aetherwars.model.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -29,9 +30,13 @@ public class DrawCharacterCardController {
 
     private FlowPane hand, drawPane;
     private Character card;
+    private Player player;
+    private int idx;
 
-    public void setCard(Character cur, FlowPane hand, FlowPane drawPane) {
+    public void setCard(Player player,Character cur, int idx, FlowPane hand, FlowPane drawPane) {
         if (cur != null){
+            this.player = player;
+            this.idx = idx;
             this.hand = hand;
             this.card = cur;
             this.drawPane = drawPane;
@@ -46,14 +51,11 @@ public class DrawCharacterCardController {
     @FXML
     void onMouseClick(MouseEvent event) {
         try {
-            FXMLLoader handCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/handCharacterCard.fxml"));
-            Pane handPane = handCardLoader.load();
-
-            HandCharacterCardController handCardController = handCardLoader.getController();
-            handCardController.setCard(this.card, hand.getChildren().size());
-            hand.getChildren().add(handPane);
+            this.player.getHand().addCard(this.card);
+            this.player.getDeck().removeCard(this.card);
             this.drawPane.setVisible(false);
-        } catch (IOException e) {
+            BoardController.getInstance().refreshBoard();
+        } catch (Exception e) {
             System.out.println("Exception: " + e);
         }
     }
