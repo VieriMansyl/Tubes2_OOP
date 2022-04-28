@@ -148,7 +148,11 @@
                         <Font name="Rockwell" size="14.0" />
                      </font>
                   </Button>
-                  <Pane fx:id="infoTurn" layoutX="19.0" layoutY="89.0" prefHeight="40.0" prefWidth="244.0" style="-fx-background-color: rgba(255,255,255,0.7); -fx-border-color: rgb(178,39,39); -fx-border-radius: 5;" />
+                  <Label fx:id="infoTurn" alignment="CENTER" contentDisplay="CENTER" layoutY="105.0" prefHeight="24.0" prefWidth="282.0" text="infoTurn" textAlignment="CENTER">
+                     <font>
+                        <Font name="Rockwell" size="20.0" />
+                     </font>
+                  </Label>
                </children></Pane>
          </children></AnchorPane>
   </items>
