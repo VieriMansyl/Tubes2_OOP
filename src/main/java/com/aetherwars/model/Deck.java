@@ -16,7 +16,7 @@ public class Deck extends Container<Card> {
 		 * jumlah kartu tidak sesuai dengan requirement setelah
 		 * melakukan pembacaan dari CSV
 		 */
-		 this.cards = new ArrayList<Card>();
+		 this.cards = new ArrayList<>();
 	}
 
 	public void shuffleCards() {
@@ -24,11 +24,8 @@ public class Deck extends Container<Card> {
 	}
 
 	public List<Card> getTop3() {
-		List<Card> temp = new ArrayList<Card>();
-		for(int i = 0; i < 3; ++i) {
-			if(i >= cards.size()) {
-				break;
-			}
+		List<Card> temp = new ArrayList<>();
+		for (int i = 0; i < Math.min(3, cards.size()); ++i) {
 			temp.add(cards.get(i));
 		}
 		return temp;

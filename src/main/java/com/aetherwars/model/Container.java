@@ -23,12 +23,6 @@ abstract public class Container<T extends Card> {
 	 */
 	public void removeCard(T card) {
 		cards.removeIf(c -> (c == card));
-//		for (int i = 0; i < cards.size(); ++i) {
-//			if (cards.get(i) == card) {
-//				cards.remove(i);
-//				break;
-//			}
-//		}
 	}
 
 	public T getCard(int index) {

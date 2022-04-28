@@ -2,12 +2,6 @@ package com.aetherwars.model;
 
 import java.util.*;
 
-//class IllegalCardPlacementException extends Exception {
-//	public IllegalCardPlacementException(String str) {
-//		super(str);
-//	}
-//}
-
 public class Board extends Container<Character> {
 
 	public Board() {

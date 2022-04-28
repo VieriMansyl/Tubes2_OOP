@@ -54,10 +54,15 @@ public class DrawCharacterCardController {
             this.player.getHand().addCard(this.card);
             this.player.getDeck().removeCard(this.card);
             this.drawPane.setVisible(false);
+            BoardController.getInstance().setPhaseToPlan();
             BoardController.getInstance().refreshBoard();
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         }
     }
 
+    @FXML
+    void onHover(MouseEvent event) {
+        BoardController.getInstance().displayInfoPane(this.card);
+    }
 }

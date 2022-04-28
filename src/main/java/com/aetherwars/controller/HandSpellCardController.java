@@ -22,10 +22,12 @@ public class HandSpellCardController {
     private Label handSpellCardSpell;
 
     private int idx;
+    private Spell card;
 
     public void setCard(Spell cur, int idx) {
         if (cur != null){
             this.idx = idx;
+            this.card = cur;
             handSpellCardMana.setText(Integer.toString(cur.getMana()));
             handSpellCardSpell.setText(cur.getName());
             handSpellCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));
@@ -44,4 +46,10 @@ public class HandSpellCardController {
 
         event.consume();
     }
+
+    @FXML
+    void onHover(MouseEvent event) {
+        BoardController.getInstance().displayInfoPane(this.card);
+    }
+
 }

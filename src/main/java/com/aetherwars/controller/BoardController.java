@@ -77,11 +77,14 @@ public class BoardController {
 
     @FXML
     private Button atkButton;
+
+    @FXML
+    private ImageView graveYard;
     
     private Player p1;
     private Player p2;
 
-    private final double absolutePosition = .15;
+    private final double absolutePosition = .78;
     private Phase currPhase;
     private Player currPlayer;
     private int currTurn;
@@ -112,23 +115,23 @@ public class BoardController {
 
             imgVar.setX((imgVar.getFitWidth() - w) / 2);
             imgVar.setY((imgVar.getFitHeight() - h) / 2);
-
         }
     }
 
     public void switchTurn() {
         if (this.currPlayer == this.p1) {
             this.currPlayer = this.p2;
-
+            this.p2.newTurn();
         }
         else {
             this.currPlayer = this.p1;
             this.currTurn++;
             this.p1.newTurn();
-            this.p2.newTurn();
         }
         this.currPhase = Phase.DRAW;
         this.infoTurn.setText( currPlayer.getName() + "'s turn");
+        this.buttonEndPhase.setVisible(false);
+        this.buttonNextPhase.setVisible(false);
         draw();
     }
 
@@ -145,11 +148,16 @@ public class BoardController {
         this.currPlayer = this.p1;
         this.currTurn = 1;
         this.infoTurn.setText( currPlayer.getName() + "'s turn");
+        this.atkButton.setVisible(false);
+        this.giveExpButton.setVisible(false);
+
+        this.buttonEndPhase.setVisible(false);
+        this.buttonNextPhase.setVisible(false);
         draw();
-        // To Do: Handle hand card
-//        splitPane.getDividers().get(0).positionProperty().addListener((observable,oldValue,newValue) -> {
-//            splitPane.setDividerPosition(0, absolutePosition);
-//        });
+        // To Do: Handle hand falsed
+        splitPane.getDividers().get(0).positionProperty().addListener((observable,oldValue,newValue) -> {
+            splitPane.setDividerPosition(0, absolutePosition);
+        });
     }
 
     public void displayBoard() throws IOException {
@@ -239,25 +247,34 @@ public class BoardController {
         healthBarB.setProgress(p2.getHealth() / 80);
     }
 
+    public void displayInfoPane(/*int i*/Card card){
+        this.infoPane.getChildren().clear();
+        try {
+            FXMLLoader infoPaneLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/infoPane.fxml"));
+            Pane infoPane = infoPaneLoader.load();
+
+            InfoPaneController infoPaneController = infoPaneLoader.getController();
+            infoPaneController.setUpInfoPane(card);
+
+            this.infoPane.getChildren().add(infoPane);
+        } catch (Exception e) {
+
+        }
+    }
+
     public void refreshBoard() {
         try {
             displayBoard();
             displayHand();
             displayManaPane();
             displayHealthBar();
+//            displayInfoPane();
 
             counterDeckA.setText(((Integer) p1.getDeck().getCards().size()).toString());
             counterDeckB.setText(((Integer) p2.getDeck().getCards().size()).toString());
 
             turn.setText(((Integer) currTurn).toString());
             labelCurrPhase.setText(String.valueOf(this.currPhase));
-
-            FXMLLoader infoPaneLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/infoPane.fxml"));
-            Pane infoPane = infoPaneLoader.load();
-
-            InfoPaneController infoPaneController = infoPaneLoader.getController();
-            infoPaneController.setUpInfoPane(Card.availableCard.get(22));
-            this.infoPane.getChildren().add(infoPane);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -265,62 +282,10 @@ public class BoardController {
 
     @FXML
     void deckClicked(MouseEvent event) throws IOException, HandOverException {
-//        List<Card> listOfCard;
-//        if (Objects.equals(((ImageView) event.getSource()).getId(), "deckA") && this.currPlayer == this.p1 && this.currPhase == Phase.DRAW) {
-//            this.p1.getDeck().shuffleCards();
-//            listOfCard = this.p1.getDeck().getTop3();
-//        } else if (Objects.equals(((ImageView) event.getSource()).getId(), "deckB") && this.currPlayer == this.p2 && this.currPhase == Phase.DRAW) {
-//            this.p2.getDeck().shuffleCards();
-//            listOfCard = this.p2.getDeck().getTop3();
-//        } else {
-//            return;
-//        }
-//
-//        this.drawPane.getChildren().clear();
-//        this.drawPane.setVisible(true);
-//
-//        int i = 0;
-//        for (Card card : listOfCard) {
-//            if (card instanceof Spell) {
-//                FXMLLoader drawCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawSpellCard.fxml"));
-//                Pane drawCardPane = drawCardLoader.load();
-//
-//                DrawSpellCardController drawCardController = drawCardLoader.getController();
-//                drawCardController.setCard(currPlayer, (Spell) card, i,  hand, this.drawPane);
-//                this.drawPane.getChildren().add(drawCardPane);
-//            } else /* Character */ {
-//                FXMLLoader drawCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawCharacterCard.fxml"));
-//                Pane drawCardPane = drawCardLoader.load();
-//
-//                DrawCharacterCardController drawCardController = drawCardLoader.getController();
-//                drawCardController.setCard(currPlayer, (Character) card, i, hand, this.drawPane);
-//                this.drawPane.getChildren().add(drawCardPane);
-//            }
-//            i++;
-//        }
     }
 
     void draw() {
-//        List<Card> listOfCard;
-//        if (Objects.equals(((ImageView) event.getSource()).getId(), "deckA") && this.currPlayer == this.p1 && this.currPhase == Phase.DRAW) {
-//            this.p1.getDeck().shuffleCards();
-//            listOfCard = this.p1.getDeck().getTop3();
-//        } else if (Objects.equals(((ImageView) event.getSource()).getId(), "deckB") && this.currPlayer == this.p2 && this.currPhase == Phase.DRAW) {
-//            this.p2.getDeck().shuffleCards();
-//            listOfCard = this.p2.getDeck().getTop3();
-//        } else {
-//            return;
-//        }
-//        this.currPlayer.getDeck().shuffleCards();
-//        this.currPlayer.getDeck().getTop3();
 
-//        if (this.currPlayer == this.p1) {
-//            this.p1.getDeck().shuffleCards();
-//            listOfCard = this.p1.getDeck().getTop3();
-//        } else {
-//            this.p2.getDeck().shuffleCards();
-//            listOfCard = this.p2.getDeck().getTop3();
-//        }
         List<Card> listOfCard;
         this.currPlayer.getDeck().shuffleCards();
         listOfCard = this.currPlayer.getDeck().getTop3();
@@ -383,7 +348,7 @@ public class BoardController {
         int handIdx = Integer.parseInt(event.getDragboard().getString());
 
 
-        System.out.println("hand " + handIdx );
+        System.out.println("hand " + handIdx);
         System.out.println("board " + boardIdx);
         Card card = this.currPlayer.getHand().getCard(handIdx);
         System.out.println("iki " + currPlayer.getName());
@@ -396,15 +361,34 @@ public class BoardController {
     }
 
     @FXML
+    void dropGraveyard(DragEvent event) throws IOException{
+        if (this.currPhase == Phase.DRAW && this.currPlayer.getHand().getCards().size() > 5){
+            int handIdx = Integer.parseInt(event.getDragboard().getString());
+            
+            Card card = this.currPlayer.getHand().getCard(handIdx);
+            System.out.println(card.getName() + "terbuang");
+            
+            currPlayer.getHand().removeCard(currPlayer.getHand().getCard(handIdx));
+//            BoardController.destroyCard(handIdx);
+            setPhaseToPlan();
+            refreshBoard();
+        } else {
+            return;
+        }
+    }
+
+    @FXML
     void onClickNextPhase(ActionEvent event) {
         counterDeckA.setText(((Integer) p1.getDeck().getCards().size()).toString());
         counterDeckB.setText(((Integer) p2.getDeck().getCards().size()).toString());
-        if (this.currPhase == Phase.DRAW) {
-            this.currPhase = Phase.PLAN;
-        } else if (this.currPhase == Phase.PLAN) {
+
+        if (this.currPhase == Phase.PLAN) {
             this.currPhase = Phase.ATTACK;
+            this.atkButton.setVisible(true);
+            this.giveExpButton.setVisible(false);
         } else if (this.currPhase == Phase.ATTACK) {
             this.currPhase = Phase.END;
+            this.atkButton.setVisible(false);
         } else if (this.currPhase == Phase.END) {
             switchTurn();
         }
@@ -419,4 +403,12 @@ public class BoardController {
         refreshBoard();
     }
 
+    void setPhaseToPlan(){
+        if (currPlayer.getHand().getCards().size() <= 5) {
+            this.currPhase = Phase.PLAN;
+            this.buttonEndPhase.setVisible(true);
+            this.buttonNextPhase.setVisible(true);
+        }
+        refreshBoard();
+    }
 }

@@ -61,7 +61,7 @@ public class Player {
             maxMana += 1;
         mana = maxMana;
 
-        board.getCards().forEach(c -> {if (c != null) c.newTurn();});
+        board.getCards().stream().forEach(c -> {if (c != null) c.newTurn();});
     }
 
     public void drawCards() {
@@ -115,14 +115,14 @@ public class Player {
         System.out.println("success spell");
     }
 
-    public void giveExp(Character c) {
+    public void giveExp(Character c, int exp) {
         assert c != null;
 
-        if (mana == 0) {
+        if (mana < exp) {
             return;
         }
-        mana -= 1;
-        c.addExp(1);
+        mana -= exp;
+        c.addExp(exp);
     }
 
 }

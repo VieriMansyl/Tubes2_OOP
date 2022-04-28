@@ -53,16 +53,20 @@ public class DrawSpellCardController {
         try {
 
             this.player.getHand().addCard(this.card);
-            System.out.println("ikiHand");
+
             this.player.getDeck().removeCard(this.card);
-            System.out.println("ikiDECK");
+
             this.drawPane.setVisible(false);
-            System.out.println("ikivisible");
+            BoardController.getInstance().setPhaseToPlan();
             BoardController.getInstance().refreshBoard();
-            System.out.println("REFRESHHHHH");
+
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         }
     }
 
+    @FXML
+    void onHover(MouseEvent event) {
+        BoardController.getInstance().displayInfoPane(this.card);
+    }
 }

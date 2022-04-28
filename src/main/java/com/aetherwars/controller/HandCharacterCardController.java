@@ -1,5 +1,6 @@
 package com.aetherwars.controller;
 
+import com.aetherwars.model.Card;
 import com.aetherwars.model.Character;
 
 import javafx.fxml.FXML;
@@ -30,10 +31,12 @@ public class HandCharacterCardController {
     private Label handCharacterCardMana;
 
     private int idx;
+    private Character card;
 
     public void setCard(Character cur, int idx) {
         if (cur != null) {
             this.idx = idx;
+            this.card = cur;
             handCharacterCardMana.setText(Integer.toString(cur.getMana()));
             handCharacterCardHp.setText(Double.toString(cur.getCurrHealth()));
             handCharacterCardAtk.setText(Double.toString(cur.getCurrAttack()));
@@ -52,5 +55,10 @@ public class HandCharacterCardController {
         db.setContent(cb);
 
         event.consume();
+    }
+
+    @FXML
+    void onHover(MouseEvent event) {
+        BoardController.getInstance().displayInfoPane(this.card);
     }
 }

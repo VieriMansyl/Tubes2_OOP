@@ -35,6 +35,7 @@ public class InfoPaneController {
     public void setUpInfoPane (Card currCard) {
 
         name.setText(currCard.getName());
+        description.setText(currCard.getDesc());
         if (currCard instanceof Character){
             // current card is a character card
             type.setText(((Character) currCard).getCharacterType().toString());
@@ -43,26 +44,34 @@ public class InfoPaneController {
             String hpInfo = "HP : " + ((Character)currCard).getCurrHealth() + "\n";
             String levelInfo = "Level : " + ((Character) currCard).getLevel() + "\n";
             String expInfo = "Exp : " + ((Character) currCard).getExp() + "/" + ((Character) currCard).getCapExp() + "\n";
-            cardInfo.setText(atkInfo + hpInfo + levelInfo + expInfo);
+
+
 
             StringBuilder currSpells = new StringBuilder();
             List<Spell> attachedSpells = ((Character) currCard).getAttachedSpells();
-            for (Spell spell : attachedSpells) {
-                currSpells.append(spell.getName()).append("\n");
+            if (attachedSpells.isEmpty()){
+                currAppliedSpell.setText("there's no spell card applied");
+            }else{
+                for (Spell spell : attachedSpells) {
+                    currSpells.append(spell.getName()).append("\n");
+                }
+                currAppliedSpell.setText(currSpells.toString());
             }
-            currAppliedSpell.setText(currSpells.toString());
 
+            cardInfo.setText(atkInfo + hpInfo + levelInfo + expInfo);
             // TO-DO : setText pada ATK dan HP belum interaktif terhadap attached spell
 
         }else{
             // current card is a spell card
-            type.setText(currCard.getClass().getName());
+            String[] temp = currCard.getClass().getName().split("\\.");
+            System.out.println("iki nama spell " + temp[0]);
+            type.setText(String.valueOf(temp[temp.length -1 ]));
 
             String manaInfo = "Mana : " + currCard.getMana() + "\n";
             cardInfo.setText(manaInfo);
             currAppliedSpell.setText("It is a spell card");
         }
-//        cardImage.setImage(new Image("/com/aetherwars/" + curr.getImgSrc()));
-//        BoardController.centerImage(cardImage);
+        cardImage.setImage(new Image("/com/aetherwars/" + currCard.getImgSrc()));
+        BoardController.centerImage(cardImage);
     }
 }

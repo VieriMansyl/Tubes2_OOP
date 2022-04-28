@@ -51,9 +51,9 @@
       </Pane>
       <Pane layoutX="5.0" layoutY="161.0" prefHeight="231.0" prefWidth="270.0" style="-fx-border-color: rgb(178,39,39); -fx-border-radius: 6;">
          <children>
-            <Text fx:id="description" layoutX="6.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="260.35472869873047">
+            <Text fx:id="description" layoutX="6.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="260.35472869873047">
                <font>
-                  <Font name="Rockwell" size="10.0" />
+                  <Font name="Rockwell" size="16.0" />
                </font>
             </Text>
          </children>

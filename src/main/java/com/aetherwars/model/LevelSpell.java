@@ -21,6 +21,4 @@ public class LevelSpell extends Spell {
         return (name);
     }
 
-//    public
-
 }

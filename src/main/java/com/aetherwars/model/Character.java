@@ -23,12 +23,22 @@ public class Character extends Card implements CharacterAction {
         this.baseAttack = baseAttack;
         this.baseHealth = baseHealth;
         this.maxHealth = baseHealth;
+        this.currHealth = baseHealth;
+        this.currAttack =baseAttack;
         this.attackUp = attackUp;
         this.healthUp = healthUp;
         this.level = 1;
         this.exp = 0;
         this.dead = false;
         this.attachedSpells = new ArrayList<>();
+    }
+
+    public double getBaseAttack() {
+        return baseAttack;
+    }
+
+    public double getBaseHealth() {
+        return baseHealth;
     }
 
     public double getCurrAttack() {
@@ -83,7 +93,8 @@ public class Character extends Card implements CharacterAction {
 
     public void addExp(int exp) {
         this.exp += exp;
-        levelUp(true);
+        while (exp > getCapExp())
+            levelUp(true);
     }
 
     public void resetExp() {
@@ -147,7 +158,7 @@ public class Character extends Card implements CharacterAction {
     // Use spell first, then check if duration equals 0
     // Purpose is to ignore permanent spell
     private void spellEffect() {
-        attachedSpells.forEach(spell -> spell.effect(this));
+        attachedSpells.stream().forEach(spell -> spell.effect(this));
         Iterator<Spell> iter = attachedSpells.iterator();
         while (iter.hasNext()) {
             Spell spell = iter.next();
