@@ -70,7 +70,7 @@ public class BoardController {
     private Pane infoPane;
 
     @FXML
-    private Pane infoTurn;
+    private Label infoTurn;
 
     @FXML
     private Button giveExpButton;
@@ -119,6 +119,7 @@ public class BoardController {
     public void switchTurn() {
         if (this.currPlayer == this.p1) {
             this.currPlayer = this.p2;
+
         }
         else {
             this.currPlayer = this.p1;
@@ -127,6 +128,7 @@ public class BoardController {
             this.p2.newTurn();
         }
         this.currPhase = Phase.DRAW;
+        this.infoTurn.setText( currPlayer.getName() + "'s turn");
         draw();
     }
 
@@ -142,6 +144,7 @@ public class BoardController {
         this.currPhase = Phase.DRAW;
         this.currPlayer = this.p1;
         this.currTurn = 1;
+        this.infoTurn.setText( currPlayer.getName() + "'s turn");
         draw();
         // To Do: Handle hand card
 //        splitPane.getDividers().get(0).positionProperty().addListener((observable,oldValue,newValue) -> {
