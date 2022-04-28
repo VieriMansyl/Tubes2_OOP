@@ -67,10 +67,16 @@ public class BoardController {
     private ProgressBar healthBarA, healthBarB;
 
     @FXML
-    private Text cardDesc;
+    private Pane infoPane;
 
     @FXML
-    private Pane infoPane;
+    private Pane infoTurn;
+
+    @FXML
+    private Button giveExpButton;
+
+    @FXML
+    private Button atkButton;
     
     private Player p1;
     private Player p2;
@@ -110,16 +116,18 @@ public class BoardController {
         }
     }
 
-    public void switchTurn(){
+    public void switchTurn() {
         if (this.currPlayer == this.p1) {
             this.currPlayer = this.p2;
         }
         else {
             this.currPlayer = this.p1;
+            this.currTurn++;
+            this.p1.newTurn();
+            this.p2.newTurn();
         }
         this.currPhase = Phase.DRAW;
-        currTurn++;
-        turn.setText(((Integer) currTurn).toString());
+        draw();
     }
 
 
@@ -133,7 +141,8 @@ public class BoardController {
         this.p2 = p2;
         this.currPhase = Phase.DRAW;
         this.currPlayer = this.p1;
-
+        this.currTurn = 1;
+        draw();
         // To Do: Handle hand card
 //        splitPane.getDividers().get(0).positionProperty().addListener((observable,oldValue,newValue) -> {
 //            splitPane.setDividerPosition(0, absolutePosition);
@@ -227,62 +236,117 @@ public class BoardController {
         healthBarB.setProgress(p2.getHealth() / 80);
     }
 
-    public void refreshBoard() throws IOException {
-        displayBoard();
-        displayHand();
-        displayManaPane();
-        displayHealthBar();
+    public void refreshBoard() {
+        try {
+            displayBoard();
+            displayHand();
+            displayManaPane();
+            displayHealthBar();
 
-        counterDeckA.setText(((Integer) p1.getDeck().getCards().size()).toString());
-        counterDeckB.setText(((Integer) p2.getDeck().getCards().size()).toString());
-        currTurn = 1;
-        turn.setText(((Integer) currTurn).toString());
+            counterDeckA.setText(((Integer) p1.getDeck().getCards().size()).toString());
+            counterDeckB.setText(((Integer) p2.getDeck().getCards().size()).toString());
 
-        // for testing purpose
-        cardDesc.setText("asdasdasdasdasdasdasddasasd"); //bisa set warp text
+            turn.setText(((Integer) currTurn).toString());
+            labelCurrPhase.setText(String.valueOf(this.currPhase));
 
-        FXMLLoader infoPaneLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/infoPane.fxml"));
-        Pane infoPane = infoPaneLoader.load();
+            FXMLLoader infoPaneLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/infoPane.fxml"));
+            Pane infoPane = infoPaneLoader.load();
 
-        InfoPaneController infoPaneController = infoPaneLoader.getController();
-        infoPaneController.setUpInfoPane(Card.availableCard.get(22));
-        this.infoPane.getChildren().add(infoPane);
+            InfoPaneController infoPaneController = infoPaneLoader.getController();
+            infoPaneController.setUpInfoPane(Card.availableCard.get(22));
+            this.infoPane.getChildren().add(infoPane);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void deckClicked(MouseEvent event) throws IOException, HandOverException {
+//        List<Card> listOfCard;
+//        if (Objects.equals(((ImageView) event.getSource()).getId(), "deckA") && this.currPlayer == this.p1 && this.currPhase == Phase.DRAW) {
+//            this.p1.getDeck().shuffleCards();
+//            listOfCard = this.p1.getDeck().getTop3();
+//        } else if (Objects.equals(((ImageView) event.getSource()).getId(), "deckB") && this.currPlayer == this.p2 && this.currPhase == Phase.DRAW) {
+//            this.p2.getDeck().shuffleCards();
+//            listOfCard = this.p2.getDeck().getTop3();
+//        } else {
+//            return;
+//        }
+//
+//        this.drawPane.getChildren().clear();
+//        this.drawPane.setVisible(true);
+//
+//        int i = 0;
+//        for (Card card : listOfCard) {
+//            if (card instanceof Spell) {
+//                FXMLLoader drawCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawSpellCard.fxml"));
+//                Pane drawCardPane = drawCardLoader.load();
+//
+//                DrawSpellCardController drawCardController = drawCardLoader.getController();
+//                drawCardController.setCard(currPlayer, (Spell) card, i,  hand, this.drawPane);
+//                this.drawPane.getChildren().add(drawCardPane);
+//            } else /* Character */ {
+//                FXMLLoader drawCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawCharacterCard.fxml"));
+//                Pane drawCardPane = drawCardLoader.load();
+//
+//                DrawCharacterCardController drawCardController = drawCardLoader.getController();
+//                drawCardController.setCard(currPlayer, (Character) card, i, hand, this.drawPane);
+//                this.drawPane.getChildren().add(drawCardPane);
+//            }
+//            i++;
+//        }
+    }
+
+    void draw() {
+//        List<Card> listOfCard;
+//        if (Objects.equals(((ImageView) event.getSource()).getId(), "deckA") && this.currPlayer == this.p1 && this.currPhase == Phase.DRAW) {
+//            this.p1.getDeck().shuffleCards();
+//            listOfCard = this.p1.getDeck().getTop3();
+//        } else if (Objects.equals(((ImageView) event.getSource()).getId(), "deckB") && this.currPlayer == this.p2 && this.currPhase == Phase.DRAW) {
+//            this.p2.getDeck().shuffleCards();
+//            listOfCard = this.p2.getDeck().getTop3();
+//        } else {
+//            return;
+//        }
+//        this.currPlayer.getDeck().shuffleCards();
+//        this.currPlayer.getDeck().getTop3();
+
+//        if (this.currPlayer == this.p1) {
+//            this.p1.getDeck().shuffleCards();
+//            listOfCard = this.p1.getDeck().getTop3();
+//        } else {
+//            this.p2.getDeck().shuffleCards();
+//            listOfCard = this.p2.getDeck().getTop3();
+//        }
         List<Card> listOfCard;
-        if (Objects.equals(((ImageView) event.getSource()).getId(), "deckA") && this.currPlayer == this.p1 && this.currPhase == Phase.DRAW) {
-            this.p1.getDeck().shuffleCards();
-            listOfCard = this.p1.getDeck().getTop3();
-        } else if (Objects.equals(((ImageView) event.getSource()).getId(), "deckB") && this.currPlayer == this.p2 && this.currPhase == Phase.DRAW) {
-            this.p2.getDeck().shuffleCards();
-            listOfCard = this.p2.getDeck().getTop3();
-        } else {
-            return;
-        }
+        this.currPlayer.getDeck().shuffleCards();
+        listOfCard = this.currPlayer.getDeck().getTop3();
 
         this.drawPane.getChildren().clear();
         this.drawPane.setVisible(true);
 
         int i = 0;
-        for (Card card : listOfCard) {
-            if (card instanceof Spell) {
-                FXMLLoader drawCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawSpellCard.fxml"));
-                Pane drawCardPane = drawCardLoader.load();
+        try {
+            for (Card card : listOfCard) {
+                if (card instanceof Spell) {
+                    FXMLLoader drawCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawSpellCard.fxml"));
+                    Pane drawCardPane = drawCardLoader.load();
 
-                DrawSpellCardController drawCardController = drawCardLoader.getController();
-                drawCardController.setCard(currPlayer, (Spell) card, i,  hand, this.drawPane);
-                this.drawPane.getChildren().add(drawCardPane);
-            } else /* Character */ {
-                FXMLLoader drawCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawCharacterCard.fxml"));
-                Pane drawCardPane = drawCardLoader.load();
+                    DrawSpellCardController drawCardController = drawCardLoader.getController();
+                    drawCardController.setCard(currPlayer, (Spell) card, i, hand, this.drawPane);
+                    this.drawPane.getChildren().add(drawCardPane);
+                } else /* Character */ {
+                    FXMLLoader drawCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawCharacterCard.fxml"));
+                    Pane drawCardPane = drawCardLoader.load();
 
-                DrawCharacterCardController drawCardController = drawCardLoader.getController();
-                drawCardController.setCard(currPlayer, (Character) card, i, hand, this.drawPane);
-                this.drawPane.getChildren().add(drawCardPane);
+                    DrawCharacterCardController drawCardController = drawCardLoader.getController();
+                    drawCardController.setCard(currPlayer, (Character) card, i, hand, this.drawPane);
+                    this.drawPane.getChildren().add(drawCardPane);
+                }
+                i++;
             }
-            i++;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -339,14 +403,9 @@ public class BoardController {
         } else if (this.currPhase == Phase.ATTACK) {
             this.currPhase = Phase.END;
         } else if (this.currPhase == Phase.END) {
-            try {
-                displayHand();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             switchTurn();
         }
-        labelCurrPhase.setText(this.currPhase.toString());
+        refreshBoard();
     }
 
     @FXML
@@ -354,12 +413,7 @@ public class BoardController {
         counterDeckA.setText(((Integer) p1.getDeck().getCards().size()).toString());
         counterDeckB.setText(((Integer) p2.getDeck().getCards().size()).toString());
         switchTurn();
-        try {
-            displayHand();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        labelCurrPhase.setText(this.currPhase.toString());
+        refreshBoard();
     }
 
 }

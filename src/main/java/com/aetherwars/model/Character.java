@@ -91,9 +91,15 @@ public class Character extends Card implements CharacterAction {
     }
 
     public void addLevel(int level) {
-        while (level > 0 && this.level >= 1 && this.level < 10) {
-            levelUp(false);
-            level -= 1;
+        if (level > 0)
+            while (level > 0 && this.level >= 1 && this.level < 10) {
+                levelUp(false);
+                level -= 1;
+            }
+        else {
+            this.level -= level;
+            if (this.level < 1)
+                this.level = 1;
         }
     }
 
@@ -158,9 +164,11 @@ public class Character extends Card implements CharacterAction {
                 return;
             exp -= cap;
         }
-        level += 1;
-        baseAttack += attackUp;
-        maxHealth += healthUp;
+        if (level < 10) {
+            level += 1;
+            baseAttack += attackUp;
+            maxHealth += healthUp;
+        }
         baseHealth = maxHealth;
     }
 
@@ -193,7 +201,6 @@ public class Character extends Card implements CharacterAction {
         this.exp = 0;
         this.attachedSpells.clear();
     }
-
 
 }
 
