@@ -24,23 +24,25 @@ public class InfoPaneController {
     private Text cardInfo;
 
     @FXML
+    private Text description;
+
+    @FXML
     private Text currAppliedSpell;
 
     @FXML
-    private ImageView CardImage;
+    private ImageView cardImage;
 
     public void setUpInfoPane (Card currCard) {
 
         name.setText(currCard.getName());
         if (currCard instanceof Character){
             // current card is a character card
-            
+            type.setText(((Character) currCard).getCharacterType().toString());
+
             String atkInfo = "ATK : " + ((Character) currCard).getCurrAttack() + "\n";
             String hpInfo = "HP : " + ((Character)currCard).getCurrHealth() + "\n";
             String levelInfo = "Level : " + ((Character) currCard).getLevel() + "\n";
             String expInfo = "Exp : " + ((Character) currCard).getExp() + "/" + ((Character) currCard).getCapExp() + "\n";
-
-            type.setText(((Character) currCard).getCharacterType().toString());
             cardInfo.setText(atkInfo + hpInfo + levelInfo + expInfo);
 
             StringBuilder currSpells = new StringBuilder();
@@ -54,13 +56,13 @@ public class InfoPaneController {
 
         }else{
             // current card is a spell card
-            String manaInfo = "Mana : " + currCard.getMana() + "\n";
-
             type.setText(currCard.getClass().getName());
+
+            String manaInfo = "Mana : " + currCard.getMana() + "\n";
             cardInfo.setText(manaInfo);
             currAppliedSpell.setText("It is a spell card");
         }
-//        CardImage.setImage(new Image("/com/aetherwars/" + curr.getImgSrc()));
-//        BoardController.centerImage(CardImage);
+//        cardImage.setImage(new Image("/com/aetherwars/" + curr.getImgSrc()));
+//        BoardController.centerImage(cardImage);
     }
 }

@@ -13,8 +13,8 @@ public class Player {
     public Player(String name, Deck deck, Hand hand, Board board) {
         this.name = name;
         this.health = 80;
-        this.mana = 6;
-        this.maxMana = 6;
+        this.mana = 1;
+        this.maxMana = 1;
         this.board = board;
         this.hand = hand;
         this.deck = deck;
@@ -60,7 +60,8 @@ public class Player {
         if (maxMana < 10)
             maxMana += 1;
         mana = maxMana;
-        board.getCards().forEach(Character::newTurn);
+
+        board.getCards().forEach(c -> {if (c != null) c.newTurn();});
     }
 
     public void drawCards() {
@@ -112,8 +113,16 @@ public class Player {
         character.attachSpell(spell);
         hand.cards.remove(spell);
         System.out.println("success spell");
+    }
 
+    public void giveExp(Character c) {
+        assert c != null;
 
+        if (mana == 0) {
+            return;
+        }
+        mana -= 1;
+        c.addExp(1);
     }
 
 }
