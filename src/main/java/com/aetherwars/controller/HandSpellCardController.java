@@ -1,7 +1,6 @@
 package com.aetherwars.controller;
 
-import com.aetherwars.model.*;
-import com.aetherwars.model.Character;
+import com.aetherwars.model.Spell;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -32,11 +31,6 @@ public class HandSpellCardController {
             handSpellCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));
             BoardController.centerImage(handSpellCardImage);
         }
-    }
-
-    @FXML
-    void click(MouseEvent event) {
-
     }
 
     @FXML

@@ -2,16 +2,10 @@ package com.aetherwars.model;
 
 import java.util.*;
 
-class HandOverException extends Exception {
-	public HandOverException(String str) {
-		super(str);
-	}
-}
-
 public class Hand extends Container<Card> {
 
 	public Hand(Deck deck) {
-		cards = new ArrayList<Card>();
+		cards = new ArrayList<>();
 		/*
 		 * inisiasi kartu awal pemain sebanyak 3 buah
 		 * kartu (sesuai dengan yang dipresentasikan asisten)

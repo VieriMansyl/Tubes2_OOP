@@ -1,9 +1,9 @@
 package com.aetherwars.controller;
 
-import com.aetherwars.model.*;
 import com.aetherwars.model.Character;
 
 import javafx.fxml.FXML;
+
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -42,6 +42,7 @@ public class HandCharacterCardController {
         }
     }
 
+    @FXML
     void handleCardDragDetection(MouseEvent event) {
         Dragboard db = CharacterCard.startDragAndDrop(TransferMode.ANY);
 

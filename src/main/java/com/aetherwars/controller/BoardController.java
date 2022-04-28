@@ -73,6 +73,7 @@ public class BoardController {
 
     private Phase currPhase;
     private Player currPlayer;
+    private int currTurn;
 
     public static void centerImage(ImageView imgVar) {
         Image img = imgVar.getImage();
@@ -141,13 +142,16 @@ public class BoardController {
     }
 
     public void displayCard(Character cur, Pane board) throws IOException {
-        FXMLLoader boardCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/boardCard.fxml"));
-        Pane boardPane = boardCardLoader.load();
+        if (cur!= null) {
+            board.getChildren().removeAll();
+            FXMLLoader boardCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/boardCard.fxml"));
+            Pane boardPane = boardCardLoader.load();
 
-        BoardCardController boardCardController = boardCardLoader.getController();
+            BoardCardController boardCardController = boardCardLoader.getController();
 
-        boardCardController.setCard(cur);
-        board.getChildren().add(boardPane);
+            boardCardController.setCard(cur);
+            board.getChildren().add(boardPane);
+        }
     }
 
     public void displayHand() throws IOException {
@@ -215,8 +219,8 @@ public class BoardController {
         displayManaPane();
         displayHealthBar();
 
-        counterDeckA.setText("40");
-        counterDeckB.setText("60");
+        counterDeckA.setText(String.valueOf(this.p1.getDeck().getCards().size()));
+        counterDeckB.setText(String.valueOf(this.p2.getDeck().getCards().size()));
         turn.setText("0");
 
         // for testing purpose
@@ -231,9 +235,8 @@ public class BoardController {
     }
 
     @FXML
-    void deckClicked(MouseEvent event) throws IOException {
+    void deckClicked(MouseEvent event) throws IOException, HandOverException {
         List<Card> listOfCard;
-        System.out.println("ini fase gan " + currPhase);
         if (Objects.equals(((ImageView) event.getSource()).getId(), "deckA") && this.currPlayer == this.p1 && this.currPhase == Phase.DRAW) {
             this.p1.getDeck().shuffleCards();
             listOfCard = this.p1.getDeck().getTop3();
@@ -248,33 +251,20 @@ public class BoardController {
         this.drawPane.setVisible(true);
 
         for (Card card : listOfCard) {
-            if (listOfCard.get(0) instanceof Spell) {
-                FXMLLoader drawCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawSpellCard.fxml"));
-                Pane drawCardPane = drawCardLoader.load();
-
-                DrawSpellCardController drawCardController = drawCardLoader.getController();
-                drawCardController.setCard((Spell) card, hand, this.drawPane);
-                this.drawPane.getChildren().add(drawCardPane);
-            } else /* Character */ {
-                FXMLLoader drawCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/drawCharacterCard.fxml"));
-                Pane drawCardPane = drawCardLoader.load();
-
-                DrawCharacterCardController drawCardController = drawCardLoader.getController();
-                drawCardController.setCard((Character) card, hand, this.drawPane);
-                this.drawPane.getChildren().add(drawCardPane);
-            }
+            currPlayer.getHand().addCard(card);
         }
     }
 
     @FXML
     void handleCardDragOver(DragEvent event) {
+
         if (event.getDragboard().hasString()) {
             event.acceptTransferModes(TransferMode.ANY);
         }
     }
 
     @FXML
-    void handleCardDropped(DragEvent event) {
+    void handleCardDropped(DragEvent event) throws IOException {
         /* SUMMON ATAU USE SPELL */
 
         // CHECK PHASE
@@ -293,12 +283,18 @@ public class BoardController {
 
         int boardIdx = Integer.parseInt(String.valueOf(((Pane) event.getSource()).getId().charAt(7)));
         int handIdx = Integer.parseInt(event.getDragboard().getString());
+
+
+        System.out.println("hand " + handIdx );
+        System.out.println("board " + boardIdx);
         Card card = this.currPlayer.getHand().getCard(handIdx);
+        System.out.println("iki " + currPlayer.getName());
         if (card instanceof Character) {
             currPlayer.playCard((Character) card, boardIdx);
         } else if (card instanceof Spell) {
             currPlayer.playCard((Spell) card, boardIdx);
         }
+        refreshBoard();
     }
 
     @FXML

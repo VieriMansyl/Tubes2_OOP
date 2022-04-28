@@ -44,30 +44,28 @@
                   </RadialGradient>
                </fill>
             </Rectangle>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="110.0" opacity="0.22" stroke="WHITE" strokeType="INSIDE" width="85.0" x="21.0" y="111.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="110.0" layoutX="96.0" layoutY="59.0" opacity="0.22" stroke="WHITE" strokeType="INSIDE" width="85.0" x="21.0" y="111.0" />
-            <Pane fx:id="board0_0" layoutX="21.0" layoutY="111.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
+            <Pane fx:id="board0_0" layoutX="21.0" layoutY="111.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
             <Circle fill="WHITE" layoutX="530.0" layoutY="53.0" radius="47.0" stroke="BLACK" strokeType="INSIDE" />
             <ImageView fitHeight="90.0" fitWidth="80.0" layoutX="21.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../card/image/character/Ghast.png" />
                </image>
             </ImageView>
-            <Pane fx:id="board0_1" layoutX="117.0" layoutY="170.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
-            <Pane fx:id="board0_2" layoutX="172.0" layoutY="288.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
-            <Pane fx:id="board0_3" layoutX="117.0" layoutY="406.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
-            <Pane fx:id="board0_4" layoutX="21.0" layoutY="460.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
+            <Pane fx:id="board0_1" layoutX="117.0" layoutY="170.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <Pane fx:id="board0_2" layoutX="172.0" layoutY="288.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <Pane fx:id="board0_3" layoutX="117.0" layoutY="406.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <Pane fx:id="board0_4" layoutX="21.0" layoutY="460.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
             <ImageView fitHeight="90.0" fitWidth="80.0" layoutX="974.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="36.17142639160147">
                <image>
                   <Image url="@../card/image/character/Ghast.png" />
                </image>
             </ImageView>
             <ProgressBar fx:id="healthBarB" layoutX="589.0" layoutY="12.0" prefHeight="28.0" prefWidth="448.0" progress="0.0" />
-            <Pane fx:id="board1_0" layoutX="963.0" layoutY="111.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" AnchorPane.rightAnchor="32.999999999999915" />
-            <Pane fx:id="board1_1" layoutX="867.0" layoutY="170.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
-            <Pane fx:id="board1_2" layoutX="803.0" layoutY="288.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
-            <Pane fx:id="board1_3" layoutX="867.0" layoutY="406.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" />
-            <Pane fx:id="board1_4" layoutX="963.0" layoutY="460.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" AnchorPane.rightAnchor="32.999999999999915" />
+            <Pane fx:id="board1_0" layoutX="963.0" layoutY="111.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" AnchorPane.rightAnchor="32.999999999999915" />
+            <Pane fx:id="board1_1" layoutX="867.0" layoutY="170.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <Pane fx:id="board1_2" layoutX="803.0" layoutY="288.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <Pane fx:id="board1_3" layoutX="867.0" layoutY="406.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
+            <Pane fx:id="board1_4" layoutX="963.0" layoutY="460.0" onDragDropped="#handleCardDropped" onDragOver="#handleCardDragOver" prefHeight="110.0" prefWidth="85.0" style="-fx-background-color: rgba(255,255,255,0.2);" AnchorPane.rightAnchor="32.999999999999915" />
             <ImageView fx:id="deckA" fitHeight="100.0" fitWidth="80.0" layoutX="353.0" layoutY="84.0" onMouseClicked="#deckClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../card.png" />
@@ -77,7 +75,7 @@
                   <Image url="@../card.png" />
                </image>
             </ImageView>
-            <FlowPane fx:id="hand" layoutX="254.0" layoutY="513.0" prefHeight="143.0" prefWidth="566.0" />
+            <FlowPane fx:id="hand" layoutX="254.0" layoutY="513.0" prefHeight="143.0" prefWidth="566.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
             <FlowPane fx:id="drawPane" alignment="TOP_RIGHT" layoutX="329.0" layoutY="286.0" prefHeight="200.0" prefWidth="417.0" style="-fx-background-color: red;" visible="false" />
             <Pane layoutX="442.0" layoutY="100.0" prefHeight="102.0" prefWidth="179.0">
                <children>
@@ -109,15 +107,6 @@
                   <FlowPane fx:id="flowPaneManaA" alignment="TOP_RIGHT" columnHalignment="RIGHT" prefHeight="20.0" prefWidth="250.0" style="-fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: black;" />
                </children>
             </FlowPane>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="110.0" layoutX="847.0" layoutY="59.0" opacity="0.22" stroke="WHITE" strokeType="INSIDE" width="85.0" x="21.0" y="111.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="110.0" layoutX="151.0" layoutY="177.0" opacity="0.22" stroke="WHITE" strokeType="INSIDE" width="85.0" x="21.0" y="111.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="110.0" layoutX="942.0" opacity="0.22" stroke="WHITE" strokeType="INSIDE" width="85.0" x="21.0" y="111.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="110.0" layoutY="349.0" opacity="0.22" stroke="WHITE" strokeType="INSIDE" width="85.0" x="21.0" y="111.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="110.0" layoutX="96.0" layoutY="295.0" opacity="0.22" stroke="WHITE" strokeType="INSIDE" width="85.0" x="21.0" y="111.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="110.0" layoutX="782.0" layoutY="177.0" opacity="0.22" stroke="WHITE" strokeType="INSIDE" width="85.0" x="21.0" y="111.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="110.0" layoutX="942.0" layoutY="349.0" opacity="0.22" stroke="WHITE" strokeType="INSIDE" width="85.0" x="21.0" y="111.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="110.0" layoutX="846.0" layoutY="295.0" opacity="0.22" stroke="WHITE" strokeType="INSIDE" width="85.0" x="21.0" y="111.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="143.0" layoutX="233.0" layoutY="402.0" opacity="0.22" stroke="WHITE" strokeType="INSIDE" width="566.0" x="21.0" y="111.0" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="718.0" prefWidth="305.0" SplitPane.resizableWithParent="false">
          <children>

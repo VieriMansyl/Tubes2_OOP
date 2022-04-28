@@ -10,7 +10,6 @@ import java.util.*;
 abstract public class Container<T extends Card> {
 	protected List<T> cards;
 
-
 	/*
 	 * menambah kartu pada container
 	 */
@@ -20,15 +19,16 @@ abstract public class Container<T extends Card> {
 
 	/*
 	 * mengeluarkan kartu apabila id dari kartu tersebut
-	 * coock dengan yang ada pada container
+	 * cocok dengan yang ada pada container
 	 */
 	public void removeCard(T card) {
-		for (int i = 0; i < cards.size(); ++i) {
-			if (cards.get(i).getId() == card.getId()) {
-				cards.remove(i);
-				break;
-			}
-		}
+		cards.removeIf(c -> (c == card));
+//		for (int i = 0; i < cards.size(); ++i) {
+//			if (cards.get(i) == card) {
+//				cards.remove(i);
+//				break;
+//			}
+//		}
 	}
 
 	public T getCard(int index) {

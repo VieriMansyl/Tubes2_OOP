@@ -60,6 +60,7 @@ public class Player {
         if (maxMana < 10)
             maxMana += 1;
         mana = maxMana;
+        board.getCards().forEach(Character::newTurn);
     }
 
     public void drawCards() {
@@ -70,41 +71,41 @@ public class Player {
         show.chooseCard(card);
     }
 
-    public boolean playCard(Character character, int index) {
+    public void playCard(Character character, int index) {
         assert hand.cards.contains(character);
-        hand.cards.remove(character);
 
         if (mana < character.getMana()) {
-            return false;
+            System.out.println(character.getName() +  " mana kurang mas");
+            return;
         }
 
         try {
             board.setCard(character, index);
-            return true;
+            hand.cards.remove(character);
+            System.out.println("success character");
         } catch (IllegalCardPlacementException e) {
-            return false;
+            return;
         }
     }
 
-    public boolean playCard(Spell spell, int index) {
+    public void playCard(Spell spell, int index) {
         assert hand.cards.contains(spell);
-        hand.cards.remove(spell);
 
         Character character = board.getCard(index);
-
         if (spell instanceof LevelSpell) {
             if (mana < Math.ceil(character.getLevel())) {
-                return false;
+                return;
             }
         }
         else {
             if (mana < spell.getMana()) {
-                return false;
+                return;
             }
         }
 
         character.attachSpell(spell);
-        return true;
+        hand.cards.remove(spell);
+        System.out.println("success spell");
     }
 
 }
