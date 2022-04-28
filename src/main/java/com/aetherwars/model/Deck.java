@@ -26,10 +26,10 @@ public class Deck extends Container<Card> {
 	public List<Card> getTop3() {
 		List<Card> temp = new ArrayList<Card>();
 		for(int i = 0; i < 3; ++i) {
-			if(cards.size() <= 0) {
+			if(i >= cards.size()) {
 				break;
 			}
-			temp.add(cards.remove(0));
+			temp.add(cards.get(i));
 		}
 		return temp;
 	}

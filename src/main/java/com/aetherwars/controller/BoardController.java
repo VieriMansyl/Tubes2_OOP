@@ -108,6 +108,8 @@ public class BoardController {
             this.currPlayer = this.p1;
         }
         this.currPhase = Phase.DRAW;
+        currTurn++;
+        turn.setText(((Integer) currTurn).toString());
     }
 
 
@@ -219,9 +221,10 @@ public class BoardController {
         displayManaPane();
         displayHealthBar();
 
-        counterDeckA.setText(String.valueOf(this.p1.getDeck().getCards().size()));
-        counterDeckB.setText(String.valueOf(this.p2.getDeck().getCards().size()));
-        turn.setText("0");
+        counterDeckA.setText(((Integer) p1.getDeck().getCards().size()).toString());
+        counterDeckB.setText(((Integer) p2.getDeck().getCards().size()).toString());
+        currTurn = 1;
+        turn.setText(((Integer) currTurn).toString());
 
         // for testing purpose
         cardDesc.setText("asdasdasdasdasdasdasddasasd"); //bisa set warp text
@@ -299,6 +302,8 @@ public class BoardController {
 
     @FXML
     void onClickNextPhase(ActionEvent event) {
+        counterDeckA.setText(((Integer) p1.getDeck().getCards().size()).toString());
+        counterDeckB.setText(((Integer) p2.getDeck().getCards().size()).toString());
         if (this.currPhase == Phase.DRAW) {
             this.currPhase = Phase.PLAN;
         } else if (this.currPhase == Phase.PLAN) {
@@ -306,6 +311,11 @@ public class BoardController {
         } else if (this.currPhase == Phase.ATTACK) {
             this.currPhase = Phase.END;
         } else if (this.currPhase == Phase.END) {
+            try {
+                displayHand();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             switchTurn();
         }
         labelCurrPhase.setText(this.currPhase.toString());
@@ -313,7 +323,14 @@ public class BoardController {
 
     @FXML
     void onClickEndPhase(ActionEvent event) {
+        counterDeckA.setText(((Integer) p1.getDeck().getCards().size()).toString());
+        counterDeckB.setText(((Integer) p2.getDeck().getCards().size()).toString());
         switchTurn();
+        try {
+            displayHand();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         labelCurrPhase.setText(this.currPhase.toString());
     }
 
