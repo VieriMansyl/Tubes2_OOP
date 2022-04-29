@@ -14,6 +14,7 @@ class PlayerTest {
         Player player = new Player("Pewdiepie", deck, hand, board);
 
         assertEquals("Pewdiepie", player.getName());
+        assertNotEquals("Pewdaipie", player.getName());
 
     }
 
@@ -25,6 +26,7 @@ class PlayerTest {
         Player player = new Player("Pewdiepie", deck, hand, board);
 
         assertEquals(80, player.getHealth());
+        assertNotEquals(100, player.getHealth());
 
     }
 
@@ -37,6 +39,7 @@ class PlayerTest {
         Player player = new Player("Pewdiepie", deck, hand, board);
 
         assertEquals(1, player.getMana());
+        assertNotEquals(10, player.getMana());
     }
 
     @Test
@@ -47,6 +50,7 @@ class PlayerTest {
         Player player = new Player("Pewdiepie", deck, hand, board);
 
         assertEquals(1, player.getMaxMana());
+        assertNotEquals(10, player.getMaxMana());
     }
 
     @Test
@@ -58,6 +62,7 @@ class PlayerTest {
 
         player.addHealth(-80);
         assertEquals(true, player.isDead());
+        assertNotEquals(false, player.isDead());
     }
 
     @Test
@@ -69,6 +74,7 @@ class PlayerTest {
         player.addHealth(-20);
 
         assertEquals(60, player.getHealth());
+        assertNotEquals(80, player.getHealth());
     }
 
     @Test
@@ -80,6 +86,7 @@ class PlayerTest {
         player.addHealth(20);
 
         assertEquals(100, player.getHealth());
+        assertNotEquals(80, player.getHealth());
     }
 
     @Test
@@ -90,6 +97,8 @@ class PlayerTest {
         Player player = new Player("Pewdiepie", deck, hand, board);
 
         assertEquals(hand, player.getHand());
+        assertNotEquals(board, player.getHand());
+        assertNotEquals(deck, player.getHand());
     }
 
     @Test
@@ -100,6 +109,8 @@ class PlayerTest {
         Player player = new Player("Pewdiepie", deck, hand, board);
 
         assertEquals(board, player.getBoard());
+        assertNotEquals(deck, player.getBoard());
+        assertNotEquals(hand, player.getBoard());
     }
 
     @Test
@@ -110,6 +121,8 @@ class PlayerTest {
         Player player = new Player("Pewdiepie", deck, hand, board);
 
         assertEquals(deck, player.getDeck());
+        assertNotEquals(hand, player.getDeck());
+        assertNotEquals(board, player.getDeck());
     }
 
 }

@@ -9,12 +9,15 @@ class MorphTest {
     @Test
     void testGetCharacterID() {
         Morph mor = new Morph(1, "Sheep", "Mbee", "src", 1, 2);
+
         assertEquals(2, mor.getCharacterID());
+        assertNotEquals(1, mor.getCharacterID());
     }
 
     @Test
     void testGetInfo() {
         Morph mor = new Morph(1, "Sheep", "Mbee", "src", 1, 2);
+
         assertEquals("MORPH", mor.getInfo());
     }
 }
