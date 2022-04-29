@@ -1,5 +1,6 @@
 package com.aetherwars.controller;
 
+import com.aetherwars.model.Phase;
 import com.aetherwars.model.Spell;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -33,7 +34,7 @@ public class HandSpellCardController {
             this.card = cur;
             handSpellCardName.setText(cur.getName());
             handSpellCardMana.setText(Integer.toString(cur.getMana()));
-            handSpellCardSpell.setText(cur.getName());
+            handSpellCardSpell.setText(cur.getInfo());
             handSpellCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));
             BoardController.centerImage(handSpellCardImage);
         }
@@ -41,20 +42,22 @@ public class HandSpellCardController {
 
     @FXML
     void handleCardDragDetection(MouseEvent event) {
-        Dragboard db = SpellCard.startDragAndDrop(TransferMode.ANY);
+        if (BoardController.getInstance().getCurrPhase() == Phase.PLAN) {
+            Dragboard db = SpellCard.startDragAndDrop(TransferMode.ANY);
 
-        ClipboardContent cb = new ClipboardContent();
-        cb.putString(String.valueOf(this.idx));
+            ClipboardContent cb = new ClipboardContent();
+            cb.putString(String.valueOf(this.idx));
 
-        db.setContent(cb);
+            db.setContent(cb);
 
-        event.consume();
+            event.consume();
+        }
     }
 
     @FXML
     void onHover(MouseEvent event) {
         BoardController.getInstance().displayInfoPane(this.card);
-        BoardController.getInstance().giveExpButton.setVisible(false);
+        BoardController.getInstance().getGiveExpButton().setVisible(false);
     }
 
 }

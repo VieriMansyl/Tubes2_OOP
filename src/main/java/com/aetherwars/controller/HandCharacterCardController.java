@@ -3,6 +3,7 @@ package com.aetherwars.controller;
 import com.aetherwars.model.Card;
 import com.aetherwars.model.Character;
 
+import com.aetherwars.model.Phase;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
@@ -47,19 +48,21 @@ public class HandCharacterCardController {
 
     @FXML
     void handleCardDragDetection(MouseEvent event) {
-        Dragboard db = CharacterCard.startDragAndDrop(TransferMode.ANY);
+        if (BoardController.getInstance().getCurrPhase() == Phase.PLAN) {
+            Dragboard db = CharacterCard.startDragAndDrop(TransferMode.ANY);
 
-        ClipboardContent cb = new ClipboardContent();
-        cb.putString(String.valueOf(this.idx));
+            ClipboardContent cb = new ClipboardContent();
+            cb.putString(String.valueOf(this.idx));
 
-        db.setContent(cb);
+            db.setContent(cb);
 
-        event.consume();
+            event.consume();
+        }
     }
 
     @FXML
     void onHover(MouseEvent event) {
         BoardController.getInstance().displayInfoPane(this.card);
-        BoardController.getInstance().giveExpButton.setVisible(false);
+        BoardController.getInstance().getGiveExpButton().setVisible(false);
     }
 }

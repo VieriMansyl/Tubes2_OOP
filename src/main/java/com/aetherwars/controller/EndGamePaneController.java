@@ -11,9 +11,9 @@ public class EndGamePaneController {
 
     public void chooseWinner(Player p1 , Player p2) {
         if (p1.isDead()) {
-            this.winner.setText(p1.getName());
-        }else if (p2.isDead()) {
             this.winner.setText(p2.getName());
+        }else if (p2.isDead()) {
+            this.winner.setText(p1.getName());
         }
     }
 }

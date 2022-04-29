@@ -5,6 +5,7 @@ public class Swap extends Spell implements HasDuration {
 
     public Swap(int id, String name, String desc, String imgSrc, int duration,int mana){
         super(id, name, desc, imgSrc, mana);
+        if (duration == 0) duration = -1;
         this.duration = duration;
     }
 
@@ -12,15 +13,15 @@ public class Swap extends Spell implements HasDuration {
         return this.duration;
     }
 
-    public void addDuration(int duration){
-        this.duration += duration;
+    public void addDuration(int duration) {
+        if (this.duration >= 0)
+            this.duration += duration;
     }
 
     public void effect(Character target){
         double temp = target.getCurrAttack();
         target.setAttack(target.getCurrHealth());
         target.setHealth(temp);
-        duration -= 1;
     }
 
     public String getInfo(){

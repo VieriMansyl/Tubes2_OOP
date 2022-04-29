@@ -29,68 +29,44 @@ public class BoardController {
     private SplitPane splitPane;
 
     @FXML
-    private Pane board0_0, board0_1, board0_2, board0_3, board0_4;
+    private Pane board0_0, board0_1, board0_2, board0_3, board0_4, board1_0, board1_1, board1_2, board1_3, board1_4, infoPane, endgamePhase;
 
     @FXML
-    private Pane board1_0, board1_1, board1_2, board1_3, board1_4;
+    private Button buttonNextPhase, buttonEndPhase, giveExpButton;
 
     @FXML
-    private Button buttonNextPhase, buttonEndPhase;
+    private Label counterDeckA, counterDeckB, turn, infoTurn;
 
     @FXML
-    private Label counterDeckA;
+    private ImageView deckA, deckB, drawScroll;
 
     @FXML
-    private Label counterDeckB;
+    private FlowPane drawPane, flowPaneManaA, flowPaneManaB, hand;
 
     @FXML
-    private ImageView deckA, deckB;
-
-    @FXML
-    private FlowPane drawPane;
-
-    @FXML
-    private FlowPane flowPaneManaA, flowPaneManaB;
-
-    @FXML
-    private FlowPane hand;
-
-    @FXML
-    private Text labelCurrPhase;
-
-    @FXML
-    private Label turn;
+    private Text labelCurrPhase, warning;
 
     @FXML
     private ProgressBar healthBarA, healthBarB;
 
-    @FXML
-    private Pane infoPane;
-
-    @FXML
-    private Pane endgamePhase;
-
-    @FXML
-    private Label infoTurn;
-
-    @FXML
-    public Button giveExpButton;
-
-    @FXML
-    private ImageView drawScroll;
-
-    @FXML
-    private Text warning;
-    
     private Player p1;
     private Player p2;
 
     private final double absolutePosition = .782;
     private Phase currPhase;
     private Player currPlayer;
+    private String currBoard;
     private int currTurn;
 
     private static BoardController instance;
+
+    public Phase getCurrPhase() {
+        return this.currPhase;
+    }
+
+    public Button getGiveExpButton() {
+        return this.giveExpButton;
+    }
 
     public static void setInstance(FXMLLoader loader) {
         instance = loader.getController();
@@ -135,7 +111,6 @@ public class BoardController {
         this.buttonNextPhase.setVisible(false);
         draw();
     }
-
 
     /**
      * this function serves to setup the board controller class
@@ -188,10 +163,6 @@ public class BoardController {
             board.getChildren().add(boardPane);
         }
     }
-
-//    public void destroyCard() {
-//
-//    }
 
     public void displayHand() throws IOException {
         hand.getChildren().clear();
@@ -478,18 +449,20 @@ public class BoardController {
 
     @FXML
     void handleCardDragDetection(MouseEvent event) {
-        Dragboard db = ((Pane) event.getSource()).startDragAndDrop(TransferMode.ANY);
+        if (this.currPhase == Phase.ATTACK) {
+            Dragboard db = ((Pane) event.getSource()).startDragAndDrop(TransferMode.ANY);
 
-        ClipboardContent cb = new ClipboardContent();
-        String string = ((Pane) event.getSource()).getId();
-        cb.putString(string.substring(Math.max(string.length() - 3, 0)));
+            ClipboardContent cb = new ClipboardContent();
+            String string = ((Pane) event.getSource()).getId();
+            cb.putString(string.substring(Math.max(string.length() - 3, 0)));
 
-        db.setContent(cb);
+            db.setContent(cb);
 
-        event.consume();
+            event.consume();
+        }
     }
 
-    private String currBoard; // Jangan lupa reset pas ganti turn (?)
+
 
     @FXML
     void onHover(MouseEvent event) {

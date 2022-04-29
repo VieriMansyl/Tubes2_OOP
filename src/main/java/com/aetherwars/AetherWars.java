@@ -117,8 +117,8 @@ public class AetherWars extends Application {
           Board b1 = new Board();
           Board b2 = new Board();
 
-          p1 = new Player("Player1", d1,h1,b1);
-          p2 = new Player("Player2", d2,h2,b2);
+          p1 = new Player("Bambang", d1,h1,b1);
+          p2 = new Player("Adi", d2,h2,b2);
 
       } catch (Exception e) {
             System.out.println("Constructor error");

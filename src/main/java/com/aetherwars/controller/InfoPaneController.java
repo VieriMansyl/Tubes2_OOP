@@ -74,9 +74,11 @@ public class InfoPaneController {
             // spell card's buff info
             String manaInfo = "Mana     : " + currCard.getMana() + "\n";
             if (currCard instanceof Potion){
-                String atkBuffInfo = "Attack   : + " + ((Potion) currCard).getAtk() + ")\n";
-                String hpBuffInfo = "Health   : + " + ((Potion) currCard).getHp() + ")\n";
-                String duration = "Duration : " + ((Potion) currCard).getDuration() + "\n";
+                int temp2 = ((Potion) currCard).getAtk();
+                String atkBuffInfo = "Attack   :  " + ((temp2 < 0) ? "" : "+") + temp2 + "\n";
+                temp2 = ((Potion) currCard).getHp();
+                String hpBuffInfo  = "Health   :  " + ((temp2 < 0) ? "" : "+") + temp2  + "\n";
+                String duration    = "Duration : " + ((Potion) currCard).getDuration() + "\n";
                 cardInfo.setText(atkBuffInfo + hpBuffInfo + manaInfo + duration);
             }else if (currCard instanceof Swap) {
                 String duration = "Duration : " + ((Swap) currCard).getDuration() + "\n";

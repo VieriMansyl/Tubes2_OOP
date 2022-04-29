@@ -14,6 +14,10 @@ public class Character extends Card implements CharacterAction {
     protected int level;
     protected boolean dead;
     protected List<Spell> attachedSpells;
+    protected List<Potion> swappedPotions;
+    protected boolean swapped;
+    protected double swappedHealthUp;
+    protected double swappedAttackUp;
     protected boolean attackable;
 
     public Character(int id, String name, CharacterType characterType, String desc,String imgSrc, double baseAttack,
@@ -24,13 +28,17 @@ public class Character extends Card implements CharacterAction {
         this.baseHealth = baseHealth;
         this.maxHealth = baseHealth;
         this.currHealth = baseHealth;
-        this.currAttack =baseAttack;
+        this.currAttack = baseAttack;
         this.attackUp = attackUp;
         this.healthUp = healthUp;
         this.level = 1;
         this.exp = 0;
         this.dead = false;
         this.attachedSpells = new ArrayList<>();
+        this.swappedPotions = new ArrayList<>();
+        this.swapped = false;
+        this.swappedAttackUp = 0;
+        this.swappedHealthUp = 0;
         this.attackable = true;
     }
 
@@ -78,16 +86,18 @@ public class Character extends Card implements CharacterAction {
         return attachedSpells;
     }
 
-    public void addHealth(double health) {
-        baseHealth += health;
-        if (baseHealth <= 0)
-            dead = true;
+    public double getCurrentHealth() {
+        currHealth = baseHealth;
+        spellEffect();
+        return currHealth;
     }
 
-    public void addAttack(double attack) {
-        baseAttack += attack;
+    public double getCurrentAttack() {
+        currAttack = baseAttack;
+        spellEffect();
+        return currAttack;
     }
-
+    
     public void addTempHealth(double health) {
         currHealth += health;
     }
@@ -96,10 +106,30 @@ public class Character extends Card implements CharacterAction {
         currAttack += attack;
     }
 
+    public void addHealth(double health) {
+        if (health < 0) {   // damage
+            Collections.reverse(attachedSpells);
+            for (Spell s : attachedSpells) {
+                if (s instanceof Potion)
+                    health = ((Potion) s).addHp(health);
+                if (health == 0)
+                    break;
+            }
+            Collections.reverse(attachedSpells);
+        }
+        else {      // heal to base
+            baseHealth += health;
+        }
+    }
+
+    public void addAttack(double attack) {
+        baseAttack += attack;
+    }
+
     public void addExp(int exp) {
         this.exp += exp;
-        while (exp >= getCapExp())
-        {System.out.println("masuk level up"); levelUp(true);}
+        while (this.exp >= getCapExp())
+            levelUp(true);
     }
 
     public void resetExp() {
@@ -127,6 +157,12 @@ public class Character extends Card implements CharacterAction {
         this.currHealth = health;
     }
 
+    private void swapStats() {
+        double temp = baseAttack;
+        baseAttack = baseHealth;
+        baseHealth = temp;
+    }
+
     public void attachSpell(Spell s) {
         if (s instanceof Morph || s instanceof LevelSpell) {
             s.effect(this);
@@ -140,8 +176,17 @@ public class Character extends Card implements CharacterAction {
                     break;
                 }
             }
-            if (!found)
+            if (!found) {
+                for (Spell existingSpell : attachedSpells) {
+                    if (existingSpell instanceof Potion) {
+                        ((Potion) existingSpell).swapStats();
+                        swappedPotions.add((Potion) existingSpell);
+                    }
+                }
                 attachedSpells.add(s);
+                swapStats();
+                swapped = true;
+            }
         }
         else {
             attachedSpells.add(s);
@@ -151,7 +196,35 @@ public class Character extends Card implements CharacterAction {
     public void newTurn() {
         this.currAttack = baseAttack;
         this.currHealth = baseHealth;
+
+        // Check spell duration
+        Iterator<Spell> iter = attachedSpells.iterator();
+        while (iter.hasNext()) {
+            Spell spell = iter.next();
+            assert spell instanceof HasDuration;
+            ((HasDuration) spell).addDuration(-1);
+            // To accomodate permanent duration
+            if (((HasDuration) spell).getDuration() == -1) {
+                // If swap ended
+                if (spell instanceof Swap) {
+                    swappedPotions.stream().forEach(Potion::swapStats);
+                    swapped = false;
+                    swapStats();
+                    baseAttack = baseHealth - swappedHealthUp + swappedAttackUp;
+                    baseHealth = baseAttack - swappedAttackUp + swappedHealthUp;
+                    swappedAttackUp = 0;
+                    swappedHealthUp = 0;
+                }
+                iter.remove();
+            }
+
+            if (spell instanceof Potion) {
+                swappedPotions.remove(spell);
+            }
+        }
+
         spellEffect();
+
         if (currAttack < 0)
             currAttack = 0;
         if (currHealth < 0) {
@@ -165,31 +238,25 @@ public class Character extends Card implements CharacterAction {
     // Use spell first, then check if duration equals 0
     // Purpose is to ignore permanent spell
     private void spellEffect() {
-        attachedSpells.forEach(spell -> spell.effect(this));
-        Iterator<Spell> iter = attachedSpells.iterator();
-        while (iter.hasNext()) {
-            Spell spell = iter.next();
-            assert spell instanceof HasDuration;
-            if (((HasDuration) spell).getDuration() == 0)
-//                    this.setHealth(-spell.getattack);
-                iter.remove();
-        }
+        attachedSpells.forEach(spell -> {if (spell instanceof Potion) spell.effect(this);});
     }
 
-    private void levelUp(boolean consumeExp) {
+    private void levelUp (boolean consumeExp) {
         if (consumeExp) {
             int cap = getCapExp();
             if (exp < cap) {
-                System.out.println("belum cukup");
                 return;
             }
             exp -= cap;
         }
         if (level < 10) {
-            System.out.println("hi");
             level += 1;
             baseAttack += attackUp;
             maxHealth += healthUp;
+            if (swapped) {
+                swappedAttackUp += attackUp;
+                swappedHealthUp += healthUp;
+            }
         }
         baseHealth = maxHealth;
     }
@@ -201,19 +268,14 @@ public class Character extends Card implements CharacterAction {
         double damage = typeMultiplier * currAttack;
         target.addHealth(-damage);
 
-        if (target.currHealth <= 0) {
+        if (target.isDead()) {
             addExp(target.level);
         }
     }
 
     public void attack(Player target) {
-
         double damage =  currAttack;
         target.addHealth(-damage);
-
-        if (target.getHealth() == 0) {
-            //end game
-        }
     }
 
     public void hasInitiatedAttack() {
@@ -235,6 +297,10 @@ public class Character extends Card implements CharacterAction {
         this.level = 1;
         this.exp = 0;
         this.attachedSpells.clear();
+        this.swappedPotions.clear();
+        this.swappedAttackUp = 0;
+        this.swappedHealthUp = 0;
+        this.swapped = false;
     }
 
 }
