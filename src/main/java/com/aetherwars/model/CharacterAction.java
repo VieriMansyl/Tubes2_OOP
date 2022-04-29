@@ -8,4 +8,5 @@ public interface CharacterAction {
         /* End */  {   0.5  ,   2d    ,   1d   }};
 
     void attack(Character target);
+    void attack(Player target);
 }

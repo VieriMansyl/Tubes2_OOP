@@ -44,6 +44,10 @@ public class Player {
         return show;
     }
 
+    public boolean isDead(){
+        return  (this.health <= 0);
+    }
+
     public Board getBoard() {
         return this.board;
     }
@@ -86,7 +90,6 @@ public class Player {
             mana -= character.getMana();
             System.out.println("success character");
         } catch (IllegalCardPlacementException e) {
-            return;
         }
     }
 

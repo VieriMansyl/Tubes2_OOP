@@ -12,12 +12,12 @@ public class Board extends Container<Character> {
 		}
 	}
 
-	public boolean isEmpty(){
+	public boolean isEmpty() {
 		boolean flag = true;
 		for (int i = 0; i < 5 & flag; ++i) {
-			if (cards.get(i) != null) flag = false;
+			if (this.getCard(i) != null) flag = false;
 		}
-		return  flag;
+		return flag;
 	}
 
 	// set kartu ke lokasi spesifik pada board
@@ -35,4 +35,13 @@ public class Board extends Container<Character> {
 		cards.set(index, null);
 	}
 
+	@Override
+    public List<Character> getCards(){
+		for (int i = 0; i < 5; ++i) {
+			if (this.getCard(i) != null && this.getCard(i).isDead())
+				destroyCard(i);
+		}
+
+		return this.cards;
+	}
 }

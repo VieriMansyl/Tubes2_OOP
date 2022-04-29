@@ -45,6 +45,7 @@ public class BoardCardController {
         }
     }
 
+
     @FXML
     void onHover(MouseEvent event) {
         BoardController.getInstance().displayInfoPane(this.card);

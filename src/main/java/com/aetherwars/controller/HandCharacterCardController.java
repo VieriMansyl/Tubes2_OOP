@@ -60,5 +60,6 @@ public class HandCharacterCardController {
     @FXML
     void onHover(MouseEvent event) {
         BoardController.getInstance().displayInfoPane(this.card);
+        BoardController.getInstance().giveExpButton.setVisible(false);
     }
 }

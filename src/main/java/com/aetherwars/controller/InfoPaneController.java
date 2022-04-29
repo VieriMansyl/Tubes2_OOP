@@ -1,9 +1,7 @@
 package com.aetherwars.controller;
 
-import com.aetherwars.model.Card;
+import com.aetherwars.model.*;
 import com.aetherwars.model.Character;
-import com.aetherwars.model.Potion;
-import com.aetherwars.model.Spell;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -33,15 +31,13 @@ public class InfoPaneController {
     @FXML
     private ImageView cardImage;
 
-    // Color code on Text
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-
     public void setUpInfoPane (Card currCard) {
-
+        // card's name
         name.setText(currCard.getName());
+
+        // card's description
         description.setText(currCard.getDesc());
+
         if (currCard instanceof Character){
             // current card is a character card
             type.setText(((Character) currCard).getCharacterType().toString());
@@ -55,6 +51,8 @@ public class InfoPaneController {
 
             StringBuilder currSpells = new StringBuilder();
             List<Spell> attachedSpells = ((Character) currCard).getAttachedSpells();
+
+            // character card's current applied spell(s)
             if (attachedSpells.isEmpty()){
                 currAppliedSpell.setText("there's no spell card applied");
             }else {
@@ -64,19 +62,31 @@ public class InfoPaneController {
                 currAppliedSpell.setText(currSpells.toString());
             }
 
+            // character card's info
             cardInfo.setText(atkInfo + hpInfo + levelInfo + expInfo);
-            // TO-DO : setText pada ATK dan HP belum interaktif terhadap attached spell
-
         }else{
             // current card is a spell card
             String[] temp = currCard.getClass().getName().split("\\.");
 
+            // spell card's type
             type.setText(String.valueOf(temp[temp.length -1 ]));
 
-            String manaInfo = "Mana : " + currCard.getMana() + "\n";
-            cardInfo.setText(manaInfo);
+            // spell card's buff info
+            String manaInfo = "Mana     : " + currCard.getMana() + "\n";
+            if (currCard instanceof Potion){
+                String atkBuffInfo = "Attack   : + " + ((Potion) currCard).getAtk() + ")\n";
+                String hpBuffInfo = "Health   : + " + ((Potion) currCard).getHp() + ")\n";
+                String duration = "Duration : " + ((Potion) currCard).getDuration() + "\n";
+                cardInfo.setText(atkBuffInfo + hpBuffInfo + manaInfo + duration);
+            }else if (currCard instanceof Swap) {
+                String duration = "Duration : " + ((Swap) currCard).getDuration() + "\n";
+                cardInfo.setText(manaInfo + duration);
+            }
+
+            // spell card's current applied spell : None
             currAppliedSpell.setText("It is a spell card");
         }
+        // card's image
         cardImage.setImage(new Image("/com/aetherwars/" + currCard.getImgSrc()));
         BoardController.centerImage(cardImage);
     }

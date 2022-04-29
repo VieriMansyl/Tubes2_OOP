@@ -14,6 +14,7 @@ public class Character extends Card implements CharacterAction {
     protected int level;
     protected boolean dead;
     protected List<Spell> attachedSpells;
+    protected boolean attackable;
 
     public Character(int id, String name, CharacterType characterType, String desc,String imgSrc, double baseAttack,
                      double baseHealth, int mana, int attackUp, int healthUp) {
@@ -31,6 +32,7 @@ public class Character extends Card implements CharacterAction {
         this.exp = 0;
         this.dead = false;
         this.attachedSpells = new ArrayList<>();
+        this.attackable = true;
     }
 
     public double getBaseAttack() {
@@ -65,6 +67,10 @@ public class Character extends Card implements CharacterAction {
         return dead;
     }
 
+    public boolean isAttackable() {
+        return attackable;
+    }
+
     public CharacterType getCharacterType() {
         return characterType;
     }
@@ -75,7 +81,7 @@ public class Character extends Card implements CharacterAction {
 
     public void addHealth(double health) {
         baseHealth += health;
-        if (baseHealth < 0)
+        if (baseHealth <= 0)
             dead = true;
     }
 
@@ -144,6 +150,7 @@ public class Character extends Card implements CharacterAction {
     }
 
     public void newTurn() {
+
         this.currAttack = baseAttack;
         this.currHealth = baseHealth;
         spellEffect();
@@ -153,6 +160,8 @@ public class Character extends Card implements CharacterAction {
             currHealth = 0;
             dead = true;
         }
+
+        this.attackable = true;
     }
 
     // Use spell first, then check if duration equals 0
@@ -204,6 +213,10 @@ public class Character extends Card implements CharacterAction {
         if (target.getHealth() == 0) {
             //end game
         }
+    }
+
+    public void hasInitiatedAttack() {
+        this.attackable = false;
     }
 
     // Change whole data without changing object reference

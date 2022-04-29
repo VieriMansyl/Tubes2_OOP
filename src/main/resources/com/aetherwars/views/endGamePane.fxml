@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="1087.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="1087.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aetherwars.controller.EndGamePaneController">
    <children>
       <ImageView fitHeight="695.0" fitWidth="1101.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../background/endgamephase.jpg" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="451.0" layoutY="174.0" prefHeight="158.0" prefWidth="452.0" text="WINNER" textAlignment="CENTER">
+      <Label fx:id="winner" alignment="CENTER" contentDisplay="CENTER" layoutX="451.0" layoutY="174.0" prefHeight="158.0" prefWidth="452.0" text="WINNER" textAlignment="CENTER">
          <font>
             <Font name="Lucida Fax Demibold" size="100.0" />
          </font>
