@@ -71,6 +71,11 @@
                <image>
                   <Image url="@../card/image/card.png" />
                </image></ImageView>
+            <ImageView fx:id="drawScroll" fitHeight="207.0" fitWidth="418.0" layoutX="328.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../background/scrollPage.png" />
+               </image>
+            </ImageView>
             <ImageView fx:id="deckB" fitHeight="100.0" fitWidth="80.0" layoutX="640.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../card/image/card.png" />

@@ -74,7 +74,7 @@ public class BoardController {
     public Button giveExpButton;
 
     @FXML
-    private ImageView graveYard;
+    private ImageView drawScroll;
     
     private Player p1;
     private Player p2;
@@ -281,6 +281,7 @@ public class BoardController {
         listOfCard = this.currPlayer.getDeck().getTop3();
 
         this.drawPane.getChildren().clear();
+        this.drawScroll.setVisible(true);
         this.drawPane.setVisible(true);
 
         int i = 0;
@@ -388,6 +389,7 @@ public class BoardController {
     @FXML
     void dropGraveyard(DragEvent event) throws IOException{
         if (this.currPhase == Phase.DRAW && this.currPlayer.getHand().getCards().size() > 5){
+            this.drawScroll.setVisible(false);
             int handIdx = Integer.parseInt(event.getDragboard().getString());
             
             Card card = this.currPlayer.getHand().getCard(handIdx);
@@ -428,6 +430,7 @@ public class BoardController {
 
     void setPhaseToPlan(){
         if (currPlayer.getHand().getCards().size() <= 5) {
+            this.drawScroll.setVisible(false);
             this.currPhase = Phase.PLAN;
             this.buttonEndPhase.setVisible(true);
             this.buttonNextPhase.setVisible(true);
