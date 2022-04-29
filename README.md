@@ -7,6 +7,8 @@ Image Credit<br>
 https://www.youtube.com/watch?v=yCNUP2NAt-A
 </div>
 
+<br>
+
 > Membuat game kartu <em>turn based</em> untuk 2 pemain yang dimana pemain nantinya dapat bermain secara bergantian pada 1 layar yang sama. Tujuan dari game ini adalah menghabiskan <em>health points</em> (HP) musuh. HP dapat berkurang apabila terkena serangan dari kartu karakter yang diletakkan di board.<br><br>
 > Ada pula peraturan dari permainan ini sebagai berikut:<br>
 > a. Nama yang di <strong>hardcode</strong><br>
