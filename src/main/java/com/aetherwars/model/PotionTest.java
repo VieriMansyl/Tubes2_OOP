@@ -10,35 +10,45 @@ class PotionTest {
     void testGetAtk() {
         Potion ptn = new Potion(1, "Potion A", "Ini potion", "src",
                 3, 3, 5, 3);
+
         assertEquals(3, ptn.getAtk());
+        assertNotEquals(5, ptn.getAtk());
     }
 
     @Test
     void testGetHp() {
         Potion ptn = new Potion(1, "Potion A", "Ini potion", "src",
                 3, 3, 5, 3);
+
         assertEquals(3, ptn.getHp());
+        assertNotEquals(5, ptn.getHp());
     }
 
     @Test
     void testGetDuration() {
         Potion ptn = new Potion(1, "Potion A", "Ini potion", "src",
                 3, 3, 5, 3);
+
         assertEquals(3, ptn.getDuration());
+        assertNotEquals(5, ptn.getDuration());
     }
 
     @Test
     void testAddDuration() {
         Potion ptn = new Potion(1, "Potion A", "Ini potion", "src",
                 3, 3, 5, 3);
+
         ptn.addDuration(7);
+
         assertEquals(10, ptn.getDuration());
+        assertNotEquals(3, ptn.getDuration());
     }
 
     @Test
     void testGetInfo() {
         Potion ptn = new Potion(1, "Potion A", "Ini potion", "src",
                 3, 3, 5, 3);
+
         assertEquals("ATK3/HP3", ptn.getInfo());
     }
 }

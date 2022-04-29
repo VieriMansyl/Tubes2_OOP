@@ -13,7 +13,11 @@ class BoardTest {
                 "src", 1, 1, 1, 1, 1);
         try {
             b.setCard(c, 3);
+            assertNotEquals(c, b.getCard(0));
+            assertNotEquals(c, b.getCard(1));
+            assertNotEquals(c, b.getCard(2));
             assertEquals(c, b.getCard(3));
+            assertNotEquals(c, b.getCard(4));
         } catch(Exception e) {
             System.out.println("Cannot Place Card");
         }
