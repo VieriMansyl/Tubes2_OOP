@@ -104,6 +104,23 @@ public class Player {
         hand.cards.remove(spell);
     }
 
+    public void playCard(Player player, Morph morph, int index) {
+        assert hand.cards.contains(morph);
+
+        Character character = player.getBoard().getCard(index);
+        if (character == null) {
+            return;
+        }
+
+        int neededMana = morph.getMana();
+        if (mana < neededMana) {
+            return;
+        }
+        mana -= neededMana;
+        character.attachSpell(morph);
+        hand.cards.remove(morph);
+    }
+
     public void giveExp(Character c, int exp) {
         assert c != null;
 
