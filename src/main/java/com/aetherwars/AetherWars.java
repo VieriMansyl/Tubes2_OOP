@@ -16,7 +16,8 @@ import javafx.fxml.FXMLLoader;
 
 import com.aetherwars.util.CSVReader;
 
-public class AetherWars extends Application {
+public class
+AetherWars extends Application {
   private static final String CHARACTER_CSV_FILE_PATH = "card/data/character.csv";
   private static final String SPELL_LEVEL_CSV_FILE_PATH = "card/data/spell_level.csv";
   private static final String SPELL_MORPH_CSV_FILE_PATH = "card/data/spell_morph.csv";
@@ -95,14 +96,6 @@ public class AetherWars extends Application {
   @Override
   public void start(Stage stage) throws Exception {
 
-//    try {
-//      this.loadCards();
-//      text.setText("Minecraft: Aether Wars!");
-//    } catch (Exception e) {
-//      text.setText("Failed to load cards: " + e);
-//    }
-
-
     Player p1 = null;
     Player p2 = null;
 
@@ -124,24 +117,38 @@ public class AetherWars extends Application {
             System.out.println("Constructor error");
       }
 
-      // set up the scene
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("views/board2.fxml"));
-      Parent root = loader.load();
 
-      BoardController.setInstance(loader);
-      BoardController boardController = BoardController.getInstance();
-//      BoardController boardController = BoardController(loader);
-//      BoardController boardController = loader.getController();
-//      boardController = loader.getController();
-      boardController.setupBoardController(p1,p2);
-      boardController.refreshBoard();
+      FXMLLoader loader;
+      /*
+       * 37 dan 57 digunakan karena deck telah
+       * di draw (3 kartu teratas)
+       */
+      if ((p1.getDeck().getCards().size() >= 37 && p1.getDeck().getCards().size() <= 57) &&
+              (p2.getDeck().getCards().size() >= 37 && p2.getDeck().getCards().size() <= 57)) {
+          // set up the scene
+          loader = new FXMLLoader(getClass().getResource("views/board2.fxml"));
+          Parent root = loader.load();
 
-      Scene scene = new Scene(root);
-      // set up the stage
-      stage.setTitle("Minecraft: Aether Wars");
-      stage.setScene(scene);
+          BoardController.setInstance(loader);
+          BoardController boardController = BoardController.getInstance();
+          boardController.setupBoardController(p1, p2);
+          boardController.refreshBoard();
+
+          Scene scene = new Scene(root);
+          // set up the stage
+          stage.setTitle("Minecraft: Aether Wars");
+          stage.setScene(scene);
+      } else {
+          loader = new FXMLLoader(getClass().getResource("views/fail.fxml"));
+          Parent root = loader.load();
+
+          Scene scene = new Scene(root);
+          // set up the stage
+          stage.setTitle("Minecraft: Aether Wars");
+          stage.setScene(scene);
+      }
       stage.show();
-    }
+  }
 
   public static void main(String[] args) {
     launch();
