@@ -78,6 +78,9 @@ public class BoardController {
 
     @FXML
     private ImageView drawScroll;
+
+    @FXML
+    private Text warning;
     
     private Player p1;
     private Player p2;
@@ -147,6 +150,7 @@ public class BoardController {
         this.currTurn = 1;
         this.infoTurn.setText( currPlayer.getName() + "'s turn");
         this.giveExpButton.setVisible(false);
+        this.warning.setVisible(false);
 
         this.buttonEndPhase.setVisible(false);
         this.buttonNextPhase.setVisible(false);
@@ -292,6 +296,7 @@ public class BoardController {
 
             this.endgamePhase.getChildren().add(endgamePane);
             this.endgamePhase.setVisible(true);
+            this.endgamePhase.setDisable(false);
         }
     }
 
@@ -459,10 +464,14 @@ public class BoardController {
 
     void setPhaseToPlan(){
         if (currPlayer.getHand().getCards().size() <= 5) {
+            this.warning.setVisible(false);
             this.drawScroll.setVisible(false);
             this.currPhase = Phase.PLAN;
             this.buttonEndPhase.setVisible(true);
             this.buttonNextPhase.setVisible(true);
+        }else{
+            this.warning.setText("Warning: Hand Overflow");
+            this.warning.setVisible(true);
         }
         refreshBoard();
     }
@@ -487,11 +496,13 @@ public class BoardController {
         this.currBoard = ((Pane) event.getSource()).getId();
 
         char player = this.currBoard.charAt(5);
+        int idx = this.currBoard.charAt(7) - '0';
+        boolean chr =  this.currPlayer.getBoard().getCards().get(idx) != null;
 
-        if (this.currPlayer == this.p1 && player == '0' && this.currPhase == Phase.PLAN) {
+        if (this.currPlayer == this.p1 && player == '0' && this.currPhase == Phase.PLAN && chr) {
             this.giveExpButton.setVisible(true);
         }
-        else if (this.currPlayer == this.p2 && player == '1' && this.currPhase == Phase.PLAN) {
+        else if (this.currPlayer == this.p2 && player == '1' && this.currPhase == Phase.PLAN && chr) {
             this.giveExpButton.setVisible(true);
         }
         else {
@@ -503,6 +514,14 @@ public class BoardController {
     @FXML
     void onExpClick(MouseEvent event) {
         System.out.println(this.currBoard);
+        int idx = this.currBoard.charAt(7) - '0';
+        System.out.println("Ini idx: " + idx);
+        try {
+            this.currPlayer.giveExp(this.currPlayer.getBoard().getCards().get(idx), 1);
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+        }
+        refreshBoard();
     }
 
 }

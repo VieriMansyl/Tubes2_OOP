@@ -19,7 +19,6 @@ public class Character extends Card implements CharacterAction {
     public Character(int id, String name, CharacterType characterType, String desc,String imgSrc, double baseAttack,
                      double baseHealth, int mana, int attackUp, int healthUp) {
         super(id, name, desc, imgSrc, mana);
-        this.type = CardType.CHARACTER;
         this.characterType = characterType; 
         this.baseAttack = baseAttack;
         this.baseHealth = baseHealth;
@@ -99,8 +98,8 @@ public class Character extends Card implements CharacterAction {
 
     public void addExp(int exp) {
         this.exp += exp;
-        while (exp > getCapExp())
-            levelUp(true);
+        while (exp >= getCapExp())
+        {System.out.println("masuk level up"); levelUp(true);}
     }
 
     public void resetExp() {
@@ -150,7 +149,6 @@ public class Character extends Card implements CharacterAction {
     }
 
     public void newTurn() {
-
         this.currAttack = baseAttack;
         this.currHealth = baseHealth;
         spellEffect();
@@ -181,11 +179,14 @@ public class Character extends Card implements CharacterAction {
     private void levelUp(boolean consumeExp) {
         if (consumeExp) {
             int cap = getCapExp();
-            if (exp < cap)
+            if (exp < cap) {
+                System.out.println("belum cukup");
                 return;
+            }
             exp -= cap;
         }
         if (level < 10) {
+            System.out.println("hi");
             level += 1;
             baseAttack += attackUp;
             maxHealth += healthUp;
@@ -200,7 +201,7 @@ public class Character extends Card implements CharacterAction {
         double damage = typeMultiplier * currAttack;
         target.addHealth(-damage);
 
-        if (target.currHealth == 0) {
+        if (target.currHealth <= 0) {
             addExp(target.level);
         }
     }

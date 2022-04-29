@@ -4,7 +4,6 @@ import java.util.*;
 
 abstract public class Card {
     protected int id;
-    protected CardType type;
     protected String name;
     protected String desc;
     protected String imgSrc;
@@ -22,10 +21,6 @@ abstract public class Card {
 
     public int getId() {
         return id;
-    }
-
-    public CardType getType() {
-        return type;
     }
 
     public String getName() {
