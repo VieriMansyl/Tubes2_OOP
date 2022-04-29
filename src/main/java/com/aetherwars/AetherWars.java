@@ -103,7 +103,7 @@ AetherWars extends Application {
       try {
           Card.availableCard = this.loadCards();
           Deck d1 = this.loadDeck("card/data/deck1.csv");
-          Deck d2 = this.loadDeck("card/data/deck1.csv");
+          Deck d2 = this.loadDeck("card/data/deck2.csv");
 
           Hand h1 = new Hand(d1);
           Hand h2 = new Hand(d2);

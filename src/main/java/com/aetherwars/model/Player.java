@@ -90,13 +90,13 @@ public class Player {
 
         int neededMana;
         if (spell instanceof LevelSpell) {
-            neededMana = (int) Math.ceil(character.getLevel());
+            neededMana = (int) Math.ceil((double) character.getLevel() / 2);
         }
         else {
             neededMana = spell.getMana();
         }
 
-        if (mana < spell.getMana()) {
+        if (mana < neededMana) {
             return;
         }
         mana -= neededMana;

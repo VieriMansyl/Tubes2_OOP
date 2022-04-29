@@ -367,7 +367,7 @@ public class BoardController {
         } else if (this.currPhase == Phase.ATTACK) {
 
             // ATTACK
-            System.out.println("LAGI NGATTACK GAN");
+
 
             String attacker = event.getDragboard().getString();
 
@@ -409,7 +409,7 @@ public class BoardController {
         }
         // endGame();
         refreshBoard();
-        System.out.println("BOARD REFRESHED");
+
     }
 
     @FXML
@@ -419,7 +419,7 @@ public class BoardController {
             int handIdx = Integer.parseInt(event.getDragboard().getString());
             
             Card card = this.currPlayer.getHand().getCard(handIdx);
-            System.out.println(card.getName() + "terbuang");
+
             
             currPlayer.getHand().removeCard(currPlayer.getHand().getCard(handIdx));
             setPhaseToPlan();
@@ -503,9 +503,9 @@ public class BoardController {
 
     @FXML
     void onExpClick(MouseEvent event) {
-        System.out.println(this.currBoard);
+        
         int idx = this.currBoard.charAt(7) - '0';
-        System.out.println("Ini idx: " + idx);
+
         try {
             this.currPlayer.giveExp(this.currPlayer.getBoard().getCards().get(idx), 1);
         } catch (Exception e) {
