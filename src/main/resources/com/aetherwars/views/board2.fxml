@@ -83,8 +83,8 @@
                         <Image url="@../card/image/card.png" />
                      </image>
                   </ImageView>
-                  <FlowPane fx:id="hand" layoutX="254.0" layoutY="513.0" prefHeight="143.0" prefWidth="566.0" style="-fx-background-color: rgba(255,255,255,0.2);" />
-                  <FlowPane fx:id="drawPane" alignment="CENTER" layoutX="329.0" layoutY="286.0" prefHeight="200.0" prefWidth="417.0" visible="false" />
+                  <FlowPane fx:id="hand" hgap="10.0" layoutX="254.0" layoutY="513.0" prefHeight="143.0" prefWidth="566.0" style="-fx-background-color: rgba(255,255,255,0.2);" vgap="10.0" />
+                  <FlowPane fx:id="drawPane" alignment="CENTER" hgap="10.0" layoutX="329.0" layoutY="286.0" prefHeight="200.0" prefWidth="417.0" vgap="10.0" visible="false" />
                   <Pane layoutX="442.0" layoutY="100.0" prefHeight="110.0" prefWidth="179.0">
                      <children>
                         <Text fx:id="labelCurrPhase" layoutX="1.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phase" textAlignment="CENTER" wrappingWidth="176.67914962768555">
