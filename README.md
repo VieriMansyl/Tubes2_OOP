@@ -16,6 +16,7 @@ https://www.youtube.com/watch?v=yCNUP2NAt-A
 > c. Mana yang jumlahnya bertambah setiap giliran<br>
 > d. <em>Deck</em> yang berisi 40-60 kartu<br>
 > e. Kartu <em>hand</em> sejumlah <strong>maksimal</strong> 5 kartu.
+> f. Pemain dengan deck yang habis duluan dinyatakan <strong>kalah</strong>.
 
 ## Daftar Anggota Kelompok
 
@@ -54,16 +55,3 @@ https://www.youtube.com/watch?v=yCNUP2NAt-A
 ## Tampilan GUI Apliksi
 
 ![Welcome Game Page](./img/welcome.jpg)
-
-## Credit
-
-Minecraft images and description are taken from [Minecraft Wikia](https://minecraft.fandom.com/wiki/)
-Other sources for "random" images are:
-
--   Album Supporteran STEI 2018 :D
--   https://mobile.twitter.com/masterlimbad6
--   https://www.nationalgeographic.com/science/article/141104-kamikaze-kublai-khan-winds-typhoon-japan-invasion
--   https://open.spotify.com/album/3GzwPyPZCyrqUTaurTaS23
--   https://cdn.wccftech.com/wp-content/uploads/2021/06/nvidia-geforce-rtx-3080-ti-product-gallery-photo-003-scaled.jpg
--   https://twitter.com/GGumiliar
--   https://dota2.fandom.com/wiki/Spectre
