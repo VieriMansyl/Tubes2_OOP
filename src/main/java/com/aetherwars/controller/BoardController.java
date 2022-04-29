@@ -174,7 +174,7 @@ public class BoardController {
     }
 
     public void displayCard(Character cur, Pane board) throws IOException {
-        board.getChildren().removeAll();
+        board.getChildren().clear();
         if (cur != null) {
             FXMLLoader boardCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/boardCard.fxml"));
             Pane boardPane = boardCardLoader.load();
@@ -292,6 +292,7 @@ public class BoardController {
 
             this.endgamePhase.getChildren().add(endgamePane);
             this.endgamePhase.setVisible(true);
+            this.endgamePhase.setDisable(false);
         }
     }
 
