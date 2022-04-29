@@ -33,7 +33,8 @@ public class HandSpellCardController {
             this.idx = idx;
             this.card = cur;
             handSpellCardName.setText(cur.getName());
-            handSpellCardMana.setText(Integer.toString(cur.getMana()));
+            if (cur.getMana() == -1) { handSpellCardMana.setText("?"); }
+            else { handSpellCardMana.setText(Integer.toString(cur.getMana())); }
             handSpellCardSpell.setText(cur.getInfo());
             handSpellCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));
             BoardController.centerImage(handSpellCardImage);

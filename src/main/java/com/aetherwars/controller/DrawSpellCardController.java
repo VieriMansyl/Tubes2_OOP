@@ -43,7 +43,8 @@ public class DrawSpellCardController {
             this.drawPane = drawPane;
             this.player = player;
             this.idx = idx;
-            handSpellCardMana.setText(Integer.toString(cur.getMana()));
+            if (cur.getMana() == -1) { handSpellCardMana.setText("?"); }
+            else { handSpellCardMana.setText(Integer.toString(cur.getMana())); }
             spellName.setText(cur.getName());
             handSpellCardSpell.setText(cur.getInfo());
             handSpellCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));

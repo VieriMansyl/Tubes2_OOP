@@ -48,7 +48,7 @@
       </Pane>
       <Pane layoutX="140.0" layoutY="103.0" prefHeight="115.0" prefWidth="128.0" style="-fx-border-color: rgb(178,39,39); -fx-border-radius: 6;">
          <children>
-            <Text fx:id="cardInfo" layoutX="6.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Info">
+            <Text fx:id="cardInfo" layoutX="6.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Rockwell" size="12.0" />
                </font>

@@ -75,7 +75,7 @@ AetherWars extends Application {
         return Card.availableCard;
     }
 
-    public Deck loadDeck(String srcDeck) throws IOException, URISyntaxException {
+    public Deck loadDeck(String srcDeck) throws IOException, URISyntaxException, HandOverException {
 
         Deck tes = new Deck();
         File CSVFile = new File(getClass().getResource(srcDeck).toURI());
@@ -87,6 +87,7 @@ AetherWars extends Application {
                 tes.addCard(current);
             } catch (Exception e){
                 //do nothing ?
+                throw e;
             }
         }
         tes.shuffleCards();
@@ -115,6 +116,7 @@ AetherWars extends Application {
 
       } catch (Exception e) {
             System.out.println("Constructor error");
+            throw e;
       }
 
 
@@ -151,6 +153,6 @@ AetherWars extends Application {
   }
 
   public static void main(String[] args) {
-    launch();
+      launch();
   }
 }
