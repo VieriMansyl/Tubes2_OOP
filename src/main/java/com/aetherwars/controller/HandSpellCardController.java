@@ -42,7 +42,6 @@ public class HandSpellCardController {
 
     @FXML
     void handleCardDragDetection(MouseEvent event) {
-        if (BoardController.getInstance().getCurrPhase() == Phase.PLAN) {
             Dragboard db = SpellCard.startDragAndDrop(TransferMode.ANY);
 
             ClipboardContent cb = new ClipboardContent();
@@ -51,7 +50,6 @@ public class HandSpellCardController {
             db.setContent(cb);
 
             event.consume();
-        }
     }
 
     @FXML

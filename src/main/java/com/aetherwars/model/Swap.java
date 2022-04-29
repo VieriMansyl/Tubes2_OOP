@@ -14,7 +14,7 @@ public class Swap extends Spell implements HasDuration {
     }
 
     public void addDuration(int duration) {
-        if (this.duration >= 0)
+        if (this.duration >= -1)
             this.duration += duration;
     }
 

@@ -51,13 +51,13 @@ public class Character extends Card implements CharacterAction {
     }
 
     public double getCurrAttack() {
-        currAttack = baseAttack;
+        
         spellEffect();
         return currAttack;
     }
 
     public double getCurrHealth() {
-        currHealth = baseHealth;
+        // currHealth = baseHealth;
         spellEffect();
         return currHealth;
     }
@@ -192,8 +192,8 @@ public class Character extends Card implements CharacterAction {
     }
 
     public void newTurn() {
-        this.currAttack = baseAttack;
-        this.currHealth = baseHealth;
+        // this.currAttack = baseAttack;
+        // this.currHealth = baseHealth;
 
         // Check spell duration
         Iterator<Spell> iter = attachedSpells.iterator();
@@ -223,8 +223,6 @@ public class Character extends Card implements CharacterAction {
 
         spellEffect();
 
-        if (currAttack < 0)
-            currAttack = 0;
         if (currHealth < 0) {
             currHealth = 0;
             dead = true;
@@ -236,7 +234,14 @@ public class Character extends Card implements CharacterAction {
     // Use spell first, then check if duration equals 0
     // Purpose is to ignore permanent spell
     private void spellEffect() {
+        currHealth = baseHealth;
+        currAttack = baseAttack;
+
         attachedSpells.forEach(spell -> {if (spell instanceof Potion) spell.effect(this);});
+
+        if (currHealth <= 0)
+       
+            this.dead = true;
     }
 
     private void levelUp (boolean consumeExp) {
@@ -260,20 +265,22 @@ public class Character extends Card implements CharacterAction {
     }
 
     public void attack(Character target) {
-        double typeMultiplier = CharacterAction.typeEffectiveness[characterType.ordinal()]
-                [target.characterType.ordinal()];
+        if (currAttack > 0) {
+            double typeMultiplier = CharacterAction.typeEffectiveness[characterType.ordinal()]
+                    [target.characterType.ordinal()];
 
-        double damage = typeMultiplier * currAttack;
-        target.addHealth(-damage);
+            double damage = typeMultiplier * currAttack;
+            target.addHealth(-damage);
 
-        if (target.isDead()) {
-            addExp(target.level);
+            if (target.isDead()) {
+                addExp(target.level);
+            }
         }
     }
 
     public void attack(Player target) {
-        double damage =  currAttack;
-        target.addHealth(-damage);
+        if (currAttack > 0)
+            target.addHealth(-currAttack);
     }
 
     public void hasInitiatedAttack() {

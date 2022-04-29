@@ -137,7 +137,7 @@ public class BoardController {
     }
 
     public void displayBoard() throws IOException {
-        // Player1
+        // Player 1
         displayCard(p1.getBoard().getCard(0), board0_0);
         displayCard(p1.getBoard().getCard(1), board0_1);
         displayCard(p1.getBoard().getCard(2), board0_2);
@@ -240,6 +240,7 @@ public class BoardController {
 
     public void refreshBoard() {
         try {
+            endGame();
             displayBoard();
             displayHand();
             displayManaPane();
@@ -259,7 +260,7 @@ public class BoardController {
     }
 
     public void endGame() throws IOException {
-        if (p1.isDead() || p2.isDead()) {
+        if (p1.isDead() || p2.isDead() || p1.getDeck().getCards().isEmpty() || p2.getDeck().getCards().isEmpty()) {
             FXMLLoader endgamePaneLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/endGamePane.fxml"));
             Pane endgamePane = endgamePaneLoader.load();
             EndGamePaneController endGamePaneController = endgamePaneLoader.getController();
@@ -388,12 +389,13 @@ public class BoardController {
             // DO NOTHING
             return;
         }
-        endGame();
+        // endGame();
         refreshBoard();
+        System.out.println("BOARD REFRESHED");
     }
 
     @FXML
-    void dropGraveyard(DragEvent event) throws IOException{
+    void dropGraveyard(DragEvent event) throws IOException {
         if (this.currPhase == Phase.DRAW && this.currPlayer.getHand().getCards().size() > 5){
             this.drawScroll.setVisible(false);
             int handIdx = Integer.parseInt(event.getDragboard().getString());
@@ -462,8 +464,6 @@ public class BoardController {
         }
     }
 
-
-
     @FXML
     void onHover(MouseEvent event) {
         this.currBoard = ((Pane) event.getSource()).getId();
@@ -480,7 +480,6 @@ public class BoardController {
         }
         else {
             this.giveExpButton.setVisible(false);
-            return;
         }
     }
 

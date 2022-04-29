@@ -48,16 +48,14 @@ public class HandCharacterCardController {
 
     @FXML
     void handleCardDragDetection(MouseEvent event) {
-        if (BoardController.getInstance().getCurrPhase() == Phase.PLAN) {
-            Dragboard db = CharacterCard.startDragAndDrop(TransferMode.ANY);
+        Dragboard db = CharacterCard.startDragAndDrop(TransferMode.ANY);
 
-            ClipboardContent cb = new ClipboardContent();
-            cb.putString(String.valueOf(this.idx));
+        ClipboardContent cb = new ClipboardContent();
+        cb.putString(String.valueOf(this.idx));
 
-            db.setContent(cb);
+        db.setContent(cb);
 
-            event.consume();
-        }
+        event.consume();
     }
 
     @FXML
