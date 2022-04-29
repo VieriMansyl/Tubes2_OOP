@@ -78,6 +78,9 @@ public class BoardController {
 
     @FXML
     private ImageView drawScroll;
+
+    @FXML
+    private Text warning;
     
     private Player p1;
     private Player p2;
@@ -147,6 +150,7 @@ public class BoardController {
         this.currTurn = 1;
         this.infoTurn.setText( currPlayer.getName() + "'s turn");
         this.giveExpButton.setVisible(false);
+        this.warning.setVisible(false);
 
         this.buttonEndPhase.setVisible(false);
         this.buttonNextPhase.setVisible(false);
@@ -460,10 +464,14 @@ public class BoardController {
 
     void setPhaseToPlan(){
         if (currPlayer.getHand().getCards().size() <= 5) {
+            this.warning.setVisible(false);
             this.drawScroll.setVisible(false);
             this.currPhase = Phase.PLAN;
             this.buttonEndPhase.setVisible(true);
             this.buttonNextPhase.setVisible(true);
+        }else{
+            this.warning.setText("Warning: Hand Overflow");
+            this.warning.setVisible(true);
         }
         refreshBoard();
     }
