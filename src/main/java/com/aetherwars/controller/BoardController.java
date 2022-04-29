@@ -174,8 +174,8 @@ public class BoardController {
     }
 
     public void displayCard(Character cur, Pane board) throws IOException {
+        board.getChildren().removeAll();
         if (cur != null) {
-            board.getChildren().removeAll();
             FXMLLoader boardCardLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/boardCard.fxml"));
             Pane boardPane = boardCardLoader.load();
 

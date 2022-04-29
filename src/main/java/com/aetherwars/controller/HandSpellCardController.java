@@ -13,6 +13,9 @@ public class HandSpellCardController {
     private Pane SpellCard;
 
     @FXML
+    private Label handSpellCardName;
+
+    @FXML
     private ImageView handSpellCardImage;
 
     @FXML
@@ -28,6 +31,7 @@ public class HandSpellCardController {
         if (cur != null){
             this.idx = idx;
             this.card = cur;
+            handSpellCardName.setText(cur.getName());
             handSpellCardMana.setText(Integer.toString(cur.getMana()));
             handSpellCardSpell.setText(cur.getName());
             handSpellCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));

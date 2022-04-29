@@ -27,6 +27,9 @@ public class DrawSpellCardController {
     @FXML
     private Label handSpellCardSpell;
 
+    @FXML
+    private Label spellName;
+
     private FlowPane hand, drawPane;
     private Spell card;
     private Player player;
@@ -41,7 +44,8 @@ public class DrawSpellCardController {
             this.player = player;
             this.idx = idx;
             handSpellCardMana.setText(Integer.toString(cur.getMana()));
-            handSpellCardSpell.setText(cur.getName());
+            spellName.setText(cur.getName());
+            handSpellCardSpell.setText(cur.getInfo());
             handSpellCardImage.setImage(new Image("/com/aetherwars/" + cur.getImgSrc()));
             BoardController.centerImage(handSpellCardImage);
         }
