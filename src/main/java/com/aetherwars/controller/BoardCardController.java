@@ -35,7 +35,7 @@ public class BoardCardController {
     public void setCard(Character cur) {
         if (cur != null){
             this.card = cur;
-            boardCardAtk.setText(String.valueOf(cur.getCurrAttack()));
+            boardCardAtk.setText(String.valueOf(Math.max(cur.getCurrAttack(), 0)));
             boardCardExp.setText(String.valueOf(cur.getExp()));
             boardCardHp.setText(String.valueOf(cur.getCurrHealth()));
             boardCardLvl.setText(String.valueOf(cur.getLevel()));

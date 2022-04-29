@@ -126,8 +126,11 @@ public class Character extends Card implements CharacterAction {
 
     public void addExp(int exp) {
         this.exp += exp;
-        while (this.exp >= getCapExp())
+        while (this.exp >= getCapExp() && this.level < 10)
             levelUp(true);
+        if (this.level == 10 && this.exp >= getCapExp()) {
+            this.exp = getCapExp();
+        }
     }
 
     public void resetExp() {
@@ -192,9 +195,6 @@ public class Character extends Card implements CharacterAction {
     }
 
     public void newTurn() {
-        // this.currAttack = baseAttack;
-        // this.currHealth = baseHealth;
-
         // Check spell duration
         Iterator<Spell> iter = attachedSpells.iterator();
         while (iter.hasNext()) {
@@ -265,6 +265,7 @@ public class Character extends Card implements CharacterAction {
     }
 
     public void attack(Character target) {
+
         if (currAttack > 0) {
             double typeMultiplier = CharacterAction.typeEffectiveness[characterType.ordinal()]
                     [target.characterType.ordinal()];
@@ -275,10 +276,12 @@ public class Character extends Card implements CharacterAction {
             if (target.isDead()) {
                 addExp(target.level);
             }
+            System.out.println("udh kelar attack gan");
         }
     }
 
     public void attack(Player target) {
+            System.out.println("iki nyerang player loh " + currAttack);
         if (currAttack > 0)
             target.addHealth(-currAttack);
     }

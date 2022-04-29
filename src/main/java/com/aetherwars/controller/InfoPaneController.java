@@ -42,12 +42,12 @@ public class InfoPaneController {
             // current card is a character card
             type.setText(((Character) currCard).getCharacterType().toString());
 
-            String atkBuffInfo = String.valueOf(((Character) currCard).getCurrAttack() - ((Character) currCard).getBaseAttack());
-            String hpBuffInfo = String.valueOf(((Character) currCard).getCurrHealth() - ((Character) currCard).getBaseHealth());
-            String atkInfo = "ATK   : " + ((Character) currCard).getBaseAttack() + " (+" + atkBuffInfo + ")\n";
-            String hpInfo = "HP     : " + ((Character) currCard).getBaseHealth() + " (+" + hpBuffInfo + ")\n";
-            String levelInfo = "Level : " + ((Character) currCard).getLevel() + "\n";
-            String expInfo = "Exp    : " + ((Character) currCard).getExp() + "/" + ((Character) currCard).getCapExp() + "\n";
+            double atkBuffInfo = ((Character) currCard).getCurrAttack() - ((Character) currCard).getBaseAttack();
+            double hpBuffInfo  = ((Character) currCard).getCurrHealth() - ((Character) currCard).getBaseHealth();
+            String atkInfo   = "ATK    : " + Math.max(((Character) currCard).getBaseAttack(), 0) + " (" + ((atkBuffInfo < 0) ? "" : "+") + String.format("%.1f", atkBuffInfo) + ")\n";
+            String hpInfo    = "HP     : " + Math.max(((Character) currCard).getBaseHealth(), 0) + " (" + ((hpBuffInfo < 0) ? "" : "+") + String.format("%.1f", hpBuffInfo) + ")\n";
+            String levelInfo = "Level  : " + ((Character) currCard).getLevel() + "\n";
+            String expInfo   = "Exp    : " + ((Character) currCard).getExp() + "/" + ((Character) currCard).getCapExp() + "\n";
 
             StringBuilder currSpells = new StringBuilder();
             List<Spell> attachedSpells = ((Character) currCard).getAttachedSpells();

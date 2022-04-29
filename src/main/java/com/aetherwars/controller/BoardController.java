@@ -35,7 +35,7 @@ public class BoardController {
     private Button buttonNextPhase, buttonEndPhase, giveExpButton;
 
     @FXML
-    private Label counterDeckA, counterDeckB, turn, infoTurn;
+    private Label counterDeckA, counterDeckB, turn, infoTurn, health1, health2;
 
     @FXML
     private ImageView deckA, deckB, drawScroll;
@@ -219,8 +219,21 @@ public class BoardController {
     }
 
     public void displayHealthBar() {
-        healthBarA.setProgress(p1.getHealth() / 80);
-        healthBarB.setProgress(p2.getHealth() / 80);
+        double healthA = Math.min(p1.getHealth() / 80, 1);
+        if (healthA < 0.2) healthBarA.setStyle("-fx-accent: red");
+        else if (healthA < 0.5) healthBarA.setStyle("-fx-accent: yellow");
+        else healthBarA.setStyle("-fx-accent: rgba(80, 200, 80, 1)");
+        health1.setText(String.valueOf(p1.getHealth()));
+
+        healthBarA.setProgress(healthA);
+
+        double healthB = Math.min(p2.getHealth() / 80, 1);
+        if (healthB < 0.2) healthBarB.setStyle("-fx-accent: red");
+        else if (healthB < 0.5) healthBarB.setStyle("-fx-accent: yellow");
+        else healthBarB.setStyle("-fx-accent: rgba(80, 200, 80, 1)");
+        health2.setText(String.valueOf(p2.getHealth()));
+
+        healthBarB.setProgress(healthB);
     }
 
     public void displayInfoPane(/*int i*/Card card){
@@ -260,7 +273,10 @@ public class BoardController {
     }
 
     public void endGame() throws IOException {
-        if (p1.isDead() || p2.isDead() || p1.getDeck().getCards().isEmpty() || p2.getDeck().getCards().isEmpty()) {
+        if (p1.isDead() || p2.isDead() ||
+                (((p1.getDeck().getCards().isEmpty() && this.currPlayer == this.p1) ||
+                        (p2.getDeck().getCards().isEmpty()) && this.currPlayer == this.p2)
+                        && currPhase== Phase.DRAW)) {
             FXMLLoader endgamePaneLoader = new FXMLLoader(getClass().getResource("/com/aetherwars/views/endGamePane.fxml"));
             Pane endgamePane = endgamePaneLoader.load();
             EndGamePaneController endGamePaneController = endgamePaneLoader.getController();
@@ -333,31 +349,36 @@ public class BoardController {
 
             int boardIdx = Integer.parseInt(String.valueOf(((Pane) event.getSource()).getId().charAt(7)));
             int handIdx = Integer.parseInt(event.getDragboard().getString());
-
-//            System.out.println("hand " + handIdx);
-//            System.out.println("board " + boardIdx);
+            
             Card card = this.currPlayer.getHand().getCard(handIdx);
-//            System.out.println("iki " + currPlayer.getName());
             if (card instanceof Character) {
                 currPlayer.playCard((Character) card, boardIdx);
             } else if (card instanceof Spell) {
                 currPlayer.playCard((Spell) card, boardIdx);
             }
 
+            refreshBoard();
+
         } else if (this.currPhase == Phase.ATTACK) {
 
             // ATTACK
+            System.out.println("LAGI NGATTACK GAN");
 
             String attacker = event.getDragboard().getString();
 
             char player = attacker.charAt(0);
             char attacked = ((Pane) event.getSource()).getId().charAt(5);
+System.out.println("attaacker" + attacker);
+            System.out.println("player "+player);
+            System.out.println(attacked);
 
             if (this.currPlayer == this.p1 && player == '0' && attacked == '1') { }
             else if (this.currPlayer == this.p2 && player == '1' && attacked == '0') {}
             else {
                 return;
             }
+
+            System.out.println("Kalo gak ada ini berarti atas return true");
 
             Character boardAttacker, boardAttacked;
             Player foe;
@@ -370,7 +391,9 @@ public class BoardController {
                 boardAttacked = this.p1.getBoard().getCard(attacker.charAt(attacker.length() - 1) - '0');
                 foe = this.p1;
             }
-
+            System.out.println("idxat1:" + (attacker.charAt(attacker.length() - 1) - '0'));
+            System.out.println("idxat2:" + (((Pane) event.getSource()).getId().charAt(7) - '0'));
+            
             System.out.println("ATTACKER: " + boardAttacker);
             System.out.println("ATTACKED: " + boardAttacked);
 
@@ -456,7 +479,7 @@ public class BoardController {
 
             ClipboardContent cb = new ClipboardContent();
             String string = ((Pane) event.getSource()).getId();
-            cb.putString(string.substring(Math.max(string.length() - 3, 0)));
+            cb.putString(string.substring(5, 8));
 
             db.setContent(cb);
 

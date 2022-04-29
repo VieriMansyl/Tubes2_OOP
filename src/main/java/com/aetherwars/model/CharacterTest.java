@@ -55,10 +55,9 @@ public class CharacterTest {
         Character c = new Character(1, "Steve", CharacterType.OVERWORLD, "Pro Minecrafter",
                 "src", 1, 1, 1, 1, 1);
 
-        c.setAttack(3);
+        c.addAttack(3);
 
-        assertEquals(3, c.getCurrAttack());
-        assertNotEquals(1, c.getCurrAttack());
+        assertEquals(4, c.getCurrAttack());
     }
 
     @Test
@@ -66,10 +65,9 @@ public class CharacterTest {
         Character c = new Character(1, "Steve", CharacterType.OVERWORLD, "Pro Minecrafter",
                 "src", 1, 1, 1, 1, 1);
 
-        c.setHealth(3);
+        c.addHealth(3);
 
-        assertEquals(3, c.getCurrHealth());
-        assertNotEquals(1, c.getCurrHealth());
+        assertEquals(4, c.getCurrHealth());
     }
 
     @Test
@@ -92,22 +90,20 @@ public class CharacterTest {
         Character c = new Character(1, "Steve", CharacterType.OVERWORLD, "Pro Minecrafter",
                 "src", 1, 1, 1, 1, 1);
 
-        c.addExp(1);
+        c.addExp(1000);
 
         // Karena level up, exp reset ke 0
-        assertEquals(0, c.getExp());
-        assertNotEquals(1, c.getExp());
+        assertEquals(19, c.getExp());
+        assertEquals(10, c.getLevel());
     }
 
     @Test
-    public void testCharacterResetExp() {
+    public void testCharacter() {
         Character c = new Character(1, "Steve", CharacterType.OVERWORLD, "Pro Minecrafter",
                 "src", 1, 1, 1, 1, 1);
 
         c.addExp(1000);
         c.resetExp();
-
         assertEquals(0, c.getExp());
-        assertNotEquals(1, c.getExp());
     }
 }

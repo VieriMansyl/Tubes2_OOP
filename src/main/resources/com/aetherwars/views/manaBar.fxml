@@ -3,4 +3,4 @@
 <?import javafx.scene.shape.Rectangle?>
 
 
-<Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9c057d" height="20.0" stroke="#f2f2f2" strokeType="INSIDE" width="25.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" />
+<Rectangle arcHeight="5.0" arcWidth="5.0" fill="#32c8fa" height="20.0" stroke="#f2f2f2" strokeType="INSIDE" width="25.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" />
