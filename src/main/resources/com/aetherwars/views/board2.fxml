@@ -161,6 +161,11 @@
                         <Text fx:id="warning" fill="#ec1111" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Warning" />
                      </children>
                   </Pane>
+                  <ImageView fx:id="creditImage" fitHeight="676.0" fitWidth="338.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../background/credit.jpg" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
         </items>
