@@ -51,10 +51,14 @@ public class Character extends Card implements CharacterAction {
     }
 
     public double getCurrAttack() {
+        currAttack = baseAttack;
+        spellEffect();
         return currAttack;
     }
 
     public double getCurrHealth() {
+        currHealth = baseHealth;
+        spellEffect();
         return currHealth;
     }
 
@@ -85,18 +89,6 @@ public class Character extends Card implements CharacterAction {
     public List<Spell> getAttachedSpells() {
         return attachedSpells;
     }
-
-    public double getCurrentHealth() {
-        currHealth = baseHealth;
-        spellEffect();
-        return currHealth;
-    }
-
-    public double getCurrentAttack() {
-        currAttack = baseAttack;
-        spellEffect();
-        return currAttack;
-    }
     
     public void addTempHealth(double health) {
         currHealth += health;
@@ -116,6 +108,12 @@ public class Character extends Card implements CharacterAction {
                     break;
             }
             Collections.reverse(attachedSpells);
+            if (health < 0) {
+                this.baseHealth += health;
+            }
+            if (this.baseHealth <= 0) {
+                this.dead = true;
+            }
         }
         else {      // heal to base
             baseHealth += health;
