@@ -36,12 +36,12 @@ public class Board extends Container<Character> {
 	}
 
 	@Override
-    public List<Character> getCards(){
-		for (int i = 0; i < 5; ++i) {
-			if (this.getCard(i) != null && this.getCard(i).isDead())
-				destroyCard(i);
-		}
+    public Character getCard(int index){
+		
+		if (super.getCard(index) != null && super.getCard(index).isDead())
+			destroyCard(index);
+		
 
-		return this.cards;
+		return cards.get(index);
 	}
 }
