@@ -90,18 +90,35 @@ public class Player {
 
         int neededMana;
         if (spell instanceof LevelSpell) {
-            neededMana = (int) Math.ceil(character.getLevel());
+            neededMana = (int) Math.ceil((double) character.getLevel() / 2);
         }
         else {
             neededMana = spell.getMana();
         }
 
-        if (mana < spell.getMana()) {
+        if (mana < neededMana) {
             return;
         }
         mana -= neededMana;
         character.attachSpell(spell);
         hand.cards.remove(spell);
+    }
+
+    public void playCard(Player player, Morph morph, int index) {
+        assert hand.cards.contains(morph);
+
+        Character character = player.getBoard().getCard(index);
+        if (character == null) {
+            return;
+        }
+
+        int neededMana = morph.getMana();
+        if (mana < neededMana) {
+            return;
+        }
+        mana -= neededMana;
+        character.attachSpell(morph);
+        hand.cards.remove(morph);
     }
 
     public void giveExp(Character c, int exp) {

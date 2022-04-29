@@ -337,48 +337,48 @@ public class BoardController {
         if (this.currPhase == Phase.PLAN) {
 
             /* SUMMON OR USE SPELL */
-
             char player;
             player = ((Pane) event.getSource()).getId().charAt(5);
 
-            if (this.currPlayer == this.p1 && player == '0') { }
-            else if (this.currPlayer == this.p2 && player == '1') {}
-            else {
-                return;
-            }
-
             int boardIdx = Integer.parseInt(String.valueOf(((Pane) event.getSource()).getId().charAt(7)));
             int handIdx = Integer.parseInt(event.getDragboard().getString());
-            
             Card card = this.currPlayer.getHand().getCard(handIdx);
-            if (card instanceof Character) {
-                currPlayer.playCard((Character) card, boardIdx);
-            } else if (card instanceof Spell) {
-                currPlayer.playCard((Spell) card, boardIdx);
-            }
 
+            if ((this.currPlayer == this.p1 && player == '0') || (this.currPlayer == this.p2 && player == '1')) {
+                if (card instanceof Character) {
+                    currPlayer.playCard((Character) card, boardIdx);
+                } else if (card instanceof Spell) {
+                    currPlayer.playCard((Spell) card, boardIdx);
+                }
+            } else {
+                // kalo morph ke musuh
+                if (this.currPlayer.getHand().getCard(handIdx) instanceof Morph) {
+                    Player foe;
+                    if (this.currPlayer == this.p1) {
+                        foe = this.p2;
+                    } else {
+                        foe = this.p1;
+                    }
+                    currPlayer.playCard(foe, (Morph) card, boardIdx);
+                }
+            }
             refreshBoard();
 
         } else if (this.currPhase == Phase.ATTACK) {
 
             // ATTACK
-            System.out.println("LAGI NGATTACK GAN");
+
 
             String attacker = event.getDragboard().getString();
 
             char player = attacker.charAt(0);
             char attacked = ((Pane) event.getSource()).getId().charAt(5);
-System.out.println("attaacker" + attacker);
-            System.out.println("player "+player);
-            System.out.println(attacked);
 
             if (this.currPlayer == this.p1 && player == '0' && attacked == '1') { }
             else if (this.currPlayer == this.p2 && player == '1' && attacked == '0') {}
             else {
                 return;
             }
-
-            System.out.println("Kalo gak ada ini berarti atas return true");
 
             Character boardAttacker, boardAttacked;
             Player foe;
@@ -391,11 +391,6 @@ System.out.println("attaacker" + attacker);
                 boardAttacked = this.p1.getBoard().getCard(attacker.charAt(attacker.length() - 1) - '0');
                 foe = this.p1;
             }
-            System.out.println("idxat1:" + (attacker.charAt(attacker.length() - 1) - '0'));
-            System.out.println("idxat2:" + (((Pane) event.getSource()).getId().charAt(7) - '0'));
-            
-            System.out.println("ATTACKER: " + boardAttacker);
-            System.out.println("ATTACKED: " + boardAttacked);
 
             if (boardAttacker.isAttackable()) {
                 if (foe.getBoard().isEmpty()) {
@@ -414,7 +409,7 @@ System.out.println("attaacker" + attacker);
         }
         // endGame();
         refreshBoard();
-        System.out.println("BOARD REFRESHED");
+
     }
 
     @FXML
@@ -424,7 +419,7 @@ System.out.println("attaacker" + attacker);
             int handIdx = Integer.parseInt(event.getDragboard().getString());
             
             Card card = this.currPlayer.getHand().getCard(handIdx);
-            System.out.println(card.getName() + "terbuang");
+
             
             currPlayer.getHand().removeCard(currPlayer.getHand().getCard(handIdx));
             setPhaseToPlan();
@@ -508,9 +503,9 @@ System.out.println("attaacker" + attacker);
 
     @FXML
     void onExpClick(MouseEvent event) {
-        System.out.println(this.currBoard);
+        
         int idx = this.currBoard.charAt(7) - '0';
-        System.out.println("Ini idx: " + idx);
+
         try {
             this.currPlayer.giveExp(this.currPlayer.getBoard().getCards().get(idx), 1);
         } catch (Exception e) {

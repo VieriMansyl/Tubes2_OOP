@@ -144,7 +144,7 @@ public class Character extends Card implements CharacterAction {
                 level -= 1;
             }
         else {
-            this.level -= level;
+            this.level += level;
             if (this.level < 1)
                 this.level = 1;
         }
@@ -276,12 +276,12 @@ public class Character extends Card implements CharacterAction {
             if (target.isDead()) {
                 addExp(target.level);
             }
-            System.out.println("udh kelar attack gan");
+           
         }
     }
 
     public void attack(Player target) {
-            System.out.println("iki nyerang player loh " + currAttack);
+            
         if (currAttack > 0)
             target.addHealth(-currAttack);
     }
