@@ -196,6 +196,16 @@ public class Character extends Card implements CharacterAction {
         }
     }
 
+    public void attack(Player target) {
+
+        double damage =  currAttack;
+        target.addHealth(-damage);
+
+        if (target.getHealth() == 0) {
+            //end game
+        }
+    }
+
     // Change whole data without changing object reference
     public void morph(int characterID) {
         Character copyChar = (Character) Card.getCard(characterID);

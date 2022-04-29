@@ -362,9 +362,17 @@ public class BoardController {
             System.out.println("ATTACKER: " + boardAttacker);
             System.out.println("ATTACKED: " + boardAttacked);
 
+
             if (this.currPlayer == this.p1) {
-                this.p1.getBoard().getCard(boardAttacker).attack(this.p2.getBoard().getCard(boardAttacked));
-                this.p2.getBoard().getCard(boardAttacked).attack(this.p1.getBoard().getCard(boardAttacker));
+                if (this.p2.getBoard().isEmpty()){
+                    System.out.println(this.p2.getHealth());
+                    this.p1.getBoard().getCard(boardAttacker).attack(this.p2);
+                }
+                else{
+                    this.p1.getBoard().getCard(boardAttacker).attack(this.p2.getBoard().getCard(boardAttacked));
+                    this.p2.getBoard().getCard(boardAttacked).attack(this.p1.getBoard().getCard(boardAttacker));
+                }
+
             } else {
                 this.p2.getBoard().getCard(boardAttacker).attack(this.p1.getBoard().getCard(boardAttacked));
                 this.p1.getBoard().getCard(boardAttacked).attack(this.p2.getBoard().getCard(boardAttacker));

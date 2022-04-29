@@ -52,7 +52,7 @@ public class Player {
         return this.deck;
     }
 
-    public void addHealth(int health) {
+    public void addHealth(double health) {
         this.health += health;
     }
 

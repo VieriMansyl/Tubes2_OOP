@@ -12,6 +12,14 @@ public class Board extends Container<Character> {
 		}
 	}
 
+	public boolean isEmpty(){
+		boolean flag = true;
+		for (int i = 0; i < 5 & flag; ++i) {
+			if (cards.get(i) != null) flag = false;
+		}
+		return  flag;
+	}
+
 	// set kartu ke lokasi spesifik pada board
 	public void setCard(Character card, int index) throws IllegalCardPlacementException {
 		if (getCard(index) != null) {
