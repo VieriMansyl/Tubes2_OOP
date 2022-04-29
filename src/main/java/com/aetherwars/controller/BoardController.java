@@ -488,11 +488,13 @@ public class BoardController {
         this.currBoard = ((Pane) event.getSource()).getId();
 
         char player = this.currBoard.charAt(5);
+        int idx = this.currBoard.charAt(7) - '0';
+        boolean chr =  this.currPlayer.getBoard().getCards().get(idx) != null;
 
-        if (this.currPlayer == this.p1 && player == '0' && this.currPhase == Phase.PLAN) {
+        if (this.currPlayer == this.p1 && player == '0' && this.currPhase == Phase.PLAN && chr) {
             this.giveExpButton.setVisible(true);
         }
-        else if (this.currPlayer == this.p2 && player == '1' && this.currPhase == Phase.PLAN) {
+        else if (this.currPlayer == this.p2 && player == '1' && this.currPhase == Phase.PLAN && chr) {
             this.giveExpButton.setVisible(true);
         }
         else {
@@ -504,6 +506,14 @@ public class BoardController {
     @FXML
     void onExpClick(MouseEvent event) {
         System.out.println(this.currBoard);
+        int idx = this.currBoard.charAt(7) - '0';
+        System.out.println("Ini idx: " + idx);
+        try {
+            this.currPlayer.giveExp(this.currPlayer.getBoard().getCards().get(idx), 1);
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+        }
+        refreshBoard();
     }
 
 }

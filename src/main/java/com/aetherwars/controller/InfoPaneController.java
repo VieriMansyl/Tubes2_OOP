@@ -44,10 +44,10 @@ public class InfoPaneController {
 
             String atkBuffInfo = String.valueOf(((Character) currCard).getCurrAttack() - ((Character) currCard).getBaseAttack());
             String hpBuffInfo = String.valueOf(((Character) currCard).getCurrHealth() - ((Character) currCard).getBaseHealth());
-            String atkInfo = "ATK : " + ((Character) currCard).getBaseAttack() + "(+" + atkBuffInfo + ")\n";
-            String hpInfo = "HP : " + ((Character) currCard).getBaseHealth() + "(+" + hpBuffInfo + ")\n";
+            String atkInfo = "ATK   : " + ((Character) currCard).getBaseAttack() + " (+" + atkBuffInfo + ")\n";
+            String hpInfo = "HP     : " + ((Character) currCard).getBaseHealth() + " (+" + hpBuffInfo + ")\n";
             String levelInfo = "Level : " + ((Character) currCard).getLevel() + "\n";
-            String expInfo = "Exp : " + ((Character) currCard).getExp() + "/" + ((Character) currCard).getCapExp() + "\n";
+            String expInfo = "Exp    : " + ((Character) currCard).getExp() + "/" + ((Character) currCard).getCapExp() + "\n";
 
             StringBuilder currSpells = new StringBuilder();
             List<Spell> attachedSpells = ((Character) currCard).getAttachedSpells();
